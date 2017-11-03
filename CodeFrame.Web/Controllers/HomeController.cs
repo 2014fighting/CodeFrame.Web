@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Service.ServiceInterface;
+using CodeFrame.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using CodeFrame.Web.Models;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +28,16 @@ namespace CodeFrame.Web.Controllers
         }
         public IActionResult Index()
         {
+           
             _userInfoService.AddUserInfo();
-            var xuser = _unitOfWork.GetRepository<UserInfo>().GetPagedList(predicate:x=>x.UserName.Contains("wenqing"), orderBy: source => source.OrderByDescending(b => b.Id));
+            var xuser = _unitOfWork.GetRepository<UserInfo>().
+                GetPagedList(predicate:x=>x.UserName.Contains("wenqing")
+             &&x.Password.Contains("12")
+            , orderBy: source => source.OrderByDescending(b => b.Id));
             ViewBag.username = xuser.Items.First().UserName;
+           var w= _unitOfWork.GetRepository<UserInfo>().GetPagedList();
+
+         
            // _logger.Log();
             return View();
         }

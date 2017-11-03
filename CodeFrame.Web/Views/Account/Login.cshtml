@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container">
+    <form action="@Url.Action("Login")" method="post">
+        <input id="userName" name="userName" />
+        <input id="password" name="password" />
+
+        <input id="returnUrl" value="@Url.Action("Login")" name="returnUrl" />
+        <input type="submit"  value="提交" class="btn-default btn" />
+
+    </form>
+</div>
+
+

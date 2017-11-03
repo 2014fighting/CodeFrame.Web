@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="2.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CodeFrame.Models\CodeFrame.Models.csproj" />
+    <ProjectReference Include="..\CodeFrame.UnitOfWork\CodeFrame.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

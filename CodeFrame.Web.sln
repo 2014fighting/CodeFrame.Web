@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Models", "CodeFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Service", "CodeFrame.Service\CodeFrame.Service.csproj", "{BA70BD83-8D04-4C72-91E1-00EF37F3C705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFrame.Common", "CodeFrame.Common\CodeFrame.Common.csproj", "{C8F4300C-A09C-454D-9D22-56CF18C30619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Common", "CodeFrame.Common\CodeFrame.Common.csproj", "{C8F4300C-A09C-454D-9D22-56CF18C30619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFrame.UnitOfWork", "CodeFrame.UnitOfWork\CodeFrame.UnitOfWork.csproj", "{14097C94-08DD-4BE1-A0CF-28397399BCFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C8F4300C-A09C-454D-9D22-56CF18C30619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F4300C-A09C-454D-9D22-56CF18C30619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F4300C-A09C-454D-9D22-56CF18C30619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14097C94-08DD-4BE1-A0CF-28397399BCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14097C94-08DD-4BE1-A0CF-28397399BCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14097C94-08DD-4BE1-A0CF-28397399BCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14097C94-08DD-4BE1-A0CF-28397399BCFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
