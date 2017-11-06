@@ -16,7 +16,7 @@ namespace CodeFrame.UnitOfWork
     /// </summary>
     /// <typeparam name="TContext">The type of the db context.</typeparam>
     public class UnitOfWork<TContext> : IRepositoryFactory, IUnitOfWorkOfT<TContext> where TContext : DbContext
-    {
+    {   
         private readonly TContext _context;
         private bool disposed = false;
         private Dictionary<Type, object> repositories;

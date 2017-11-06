@@ -15,7 +15,7 @@ namespace CodeFrame.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
 
@@ -28,7 +28,7 @@ namespace CodeFrame.Web.Controllers
         }
         public IActionResult Index()
         {
-           
+            _logger.LogInformation("握了个叉");
             _userInfoService.AddUserInfo();
             var xuser = _unitOfWork.GetRepository<UserInfo>().
                 GetPagedList(predicate:x=>x.UserName.Contains("wenqing")

@@ -42,7 +42,6 @@ namespace CodeFrame.Web.Controllers
         [HttpGet]
         public  ActionResult GetUserInfo(int page =1, int limit = 10)
         {
-
             //var w = _unitOfWork.GetRepository<UserInfo>().GetPagedList(pageIndex:page-1,pageSize:limit);
 
             var result = _unitOfWork.GetRepository<UserInfo>().GetEntities();
