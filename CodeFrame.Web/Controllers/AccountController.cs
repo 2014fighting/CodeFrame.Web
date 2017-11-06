@@ -26,7 +26,6 @@ namespace CodeFrame.Web.Controllers
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
             _logger = logger;
-
         }
 
         public ActionResult Index()

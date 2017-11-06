@@ -71,7 +71,7 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <div>
+             
                 <div class="layui-tab" lay-filter="manageTab" lay-allowclose="true">
                     <ul class="layui-tab-title">
                         <li class="layui-this"  lay-id="11"><i class="layui-icon">&#xe68e;</i>
@@ -80,12 +80,14 @@
          
                     </ul>
                     <div class="layui-tab-content">
-                        <div class="layui-tab-item layui-show">内容1</div>
+                        <div class="layui-tab-item layui-show">
+                            <iframe src="@Url.Action("Index","UserInfo")"  width="100%" height="99%" scrolling="auto" frameborder="0" ></iframe>
+                        </div>
                         <div class="layui-tab-item">内容2</div>
                     </div>
                 </div>
 
-            </div>
+         
         </div>
 
         @*<div class="layui-footer">*@

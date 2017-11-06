@@ -2831,7 +2831,8 @@ body .layui-table-tips .layui-layer-content {
 
 .layui-tab {
     /*margin: 10px 0;*/
-    text-align: left !important
+    text-align: left !important;
+    height: calc(100% - 41px)
 }
 
     .layui-tab[overflow] > .layui-tab-title {
@@ -2911,7 +2912,8 @@ body .layui-table-tips .layui-layer-content {
     }
 
 .layui-tab-item {
-    display: none
+    display: none;
+    height: 100%
 }
 
 .layui-tab-more {
@@ -2937,7 +2939,8 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-tab-content {
-    padding: 10px
+    /*padding: 10px*/
+    height: 100%;
 }
 
 .layui-tab-title li .layui-tab-close {
