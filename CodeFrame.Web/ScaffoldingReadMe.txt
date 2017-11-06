@@ -1,39 +1,12 @@
-﻿
-ASP.NET MVC core dependencies have been added to the project.
-(These dependencies include packages required to enable scaffolding)
+﻿Scaffolding has generated all the files and added the required dependencies.
 
-However you may still need to do make changes to your project.
+However the Application's Startup code may required additional changes for things to work end to end.
+Add the following code to the Configure method in your Application's Startup class if not already done:
 
-1. Suggested changes to Startup class:
-    1.1 Add a constructor:
-        public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration)
+        app.UseMvc(routes =>
         {
-            Configuration = configuration;
-        }
-    1.2 Add MVC services:
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add framework services.
-            services.AddMvc();
-       }
-
-    1.3 Configure web app to use use Configuration and use MVC routing:
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
+          route.MapRoute(
+            name : "areas",
+            template : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+          );
+        });

@@ -74,10 +74,18 @@ namespace CodeFrame.Web
             app.UseAuthentication();//使用授权
             app.UseMvc(routes =>//路由
             {
+                //区域路由
+                routes.MapAreaRoute("Manage_route", "Manage",
+                    "Manage/{controller=MyHome}/{action=Index}/{id?}"
+                    );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+ 
             });
+
+           
         }
     }
 }

@@ -2830,7 +2830,7 @@ body .layui-table-tips .layui-layer-content {
         }
 
 .layui-tab {
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     text-align: left !important
 }
 

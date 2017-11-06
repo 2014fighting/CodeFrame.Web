@@ -1,4 +1,8 @@
-﻿<form class="layui-form" action="">
+﻿
+@{
+    Layout = "_MyLayout";
+}
+<form class="layui-form" action="">
     <fieldset class="layui-elem-field site-demo-button" style="margin: 0">
         <legend><button class="layui-btn layui-btn-primary layui-btn-small">点击隐藏</button></legend>
         <div style="float:left">
@@ -24,7 +28,7 @@
                 </div>
 
             </div>
-      
+
 
         </div>
 
@@ -35,14 +39,14 @@
     </fieldset>
 </form>
 <div class="layui-btn-group mytool">
-    <button class="layui-btn layui-btn-primary layui-btn-small" onclick="myadd();"><i class="layui-icon"></i>新增</button>
+    <button class="layui-btn layui-btn-primary layui-btn-small" id="btnadd"><i class="layui-icon"></i>新增</button>
     <button class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i>编辑</button>
     <button class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i>删除</button>
 </div>
 <table id="demo"></table>
 
 
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layer = layui.layer;
     function GetTest() {
@@ -58,22 +62,9 @@
             heigth: getHeight()
         });
     }
-    function myadd() {
-        //iframe窗
-        layer.open({
-            type: 2,
-            title: '很多时候，我们想最大化看，比如像这个页面。',
-            shadeClose: true,
-            //shade: false,
-            maxmin: true, //开启最大化最小化按钮
-            area: ['893px', '600px'],
-            content: '//fly.layui.com/'
-        });
-    }
 
     layui.use(['form', 'layedit', 'laydate','table'],
         function() {
-
             var form = layui.form
                 , layer = layui.layer
                 , laydate = layui.laydate
@@ -84,7 +75,7 @@
                 elem: '#date'
                 , type: 'datetime'
             });
- 
+
 
             //监听提交
             form.on('submit(demo1)', function (data) {
@@ -95,7 +86,18 @@
                 return false;
             });
 
-
+            $("#btnadd").on('click',
+                function() {
+                       layer.open({
+                           type: 2,
+                           title: '很多时候，我们想最大化看，比如像这个页面。',
+                           shadeClose: true,
+                           //shade: false,
+                           maxmin: true, //开启最大化最小化按钮
+                           area: ['893px', '600px'],
+                           content: '//fly.layui.com/'
+                       });
+                });
             //展示已知数据
             tableIns=table.render({
                 elem: '#demo',
