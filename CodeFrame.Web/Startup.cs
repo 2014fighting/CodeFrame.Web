@@ -48,11 +48,12 @@ namespace CodeFrame.Web
 
 
             //添加授权支持，并添加使用Cookie的方式，配置登录页面和没有权限时的跳转页面。
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权架构
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                 {
+                    
                     o.LoginPath = new PathString("/Account/Login");
-                    o.AccessDeniedPath = new PathString("/Error/Forbidden");
+                    o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
             services.AddMvc();
         }
@@ -71,13 +72,17 @@ namespace CodeFrame.Web
             }
 
             app.UseStaticFiles();//使用静态文件
-            app.UseAuthentication();//使用授权
+            app.UseAuthentication();//使用授权  
             app.UseMvc(routes =>//路由
             {
-                //区域路由
+                //区域路由 此路由方式 不需要给 控制器添加 区域属性[Area("Manage")]
                 routes.MapAreaRoute("Manage_route", "Manage",
                     "Manage/{controller=MyHome}/{action=Index}/{id?}"
                     );
+
+                //此方式必须给控制器加上区域属性[Area("Manage")]
+                //routes.MapRoute(name: "areaRoute",
+                //    template: "{area:exists}/{controller=MyHome}/{action=Index}");
 
                 routes.MapRoute(
                     name: "default",

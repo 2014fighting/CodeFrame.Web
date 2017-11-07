@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeFrame.Web.Areas.Manage.Controllers
 {
+    [Area("Manage")]
     public class UserInfoController : Controller
     {
         private ILogger<UserInfoController> _logger;

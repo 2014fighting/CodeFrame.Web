@@ -2,15 +2,50 @@
 @{
     ViewData["Title"] = "Login";
 }
-<div class="container">
-    <form action="@Url.Action("Login")" method="post">
-        <input id="userName" name="userName" />
-        <input id="password" name="password" />
-
-        <input id="returnUrl" value="@Url.Action("Login")" name="returnUrl" />
-        <input type="submit"  value="提交" class="btn-default btn" />
-
-    </form>
+@model LoginViewModel
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a  >Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a>Register as a new user?</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to log in.</h4>
+        </section>
+    </div>
 </div>
-
-

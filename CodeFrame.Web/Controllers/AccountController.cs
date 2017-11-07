@@ -59,7 +59,6 @@ namespace CodeFrame.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Login(string userName, string password, string returnUrl)
         {
             var user = _userInfoService.GetUserInfo(userName, password);
@@ -68,7 +67,9 @@ namespace CodeFrame.Web.Controllers
 
                 user.AuthenticationType = CookieAuthenticationDefaults.AuthenticationScheme;
                 var identity = new ClaimsIdentity(user.AuthenticationType);
-                identity.AddClaim(new Claim(ClaimTypes.Name, user.Id.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                // 将用户身份信息写入到响应cookie中 ，[Authorize]
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
                 if (string.IsNullOrEmpty(returnUrl))
@@ -83,6 +84,18 @@ namespace CodeFrame.Web.Controllers
 
         [HttpGet]
         public  IActionResult  Login()
+        {
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            _logger.LogInformation("User logged out.");
+           return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult AccessDenied()
         {
             return View();
         }

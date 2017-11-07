@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CodeFrame.Web.Areas.Manage.Controllers
 {
-    
+    [Area("Manage")]
     public class MyHomeController : Controller
     {
         public IActionResult Index()
