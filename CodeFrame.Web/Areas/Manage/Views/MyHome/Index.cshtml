@@ -56,11 +56,24 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;">解决方案</a>
+                        <a class="" href="javascript:;"><i aria-hidden="true"></i><span> 基本元素</span></a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">列表一</a></dd>
-                            <dd><a href="javascript:;">列表二</a></dd>
-                            <dd><a href="">超链接</a></dd>
+                            <dd>
+                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                    <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-url="form.html" data-icon="&#xe628;" data-title="表单" kit-target data-id='2'><i class="layui-icon">&#xe628;</i><span> 表单</span></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
+                            </dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item"><a href="">云市场</a></li>
@@ -81,7 +94,7 @@
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
-                            <iframe src="@Url.Action("Index","UserInfo")"  width="100%" height="99%" scrolling="auto" frameborder="0" ></iframe>
+                            <iframe src="@Url.Action("Index","UserInfo")"  width="100%" height="99.6%" scrolling="auto" frameborder="0" ></iframe>
                         </div>
                         <div class="layui-tab-item">内容2</div>
                     </div>
@@ -97,22 +110,18 @@
     </div>
 
 
-    <script>
-        //JavaScript代码区域
-        layui.use('element', function () {
-            var element = layui.element;
-            //一些事件监听
-            element.on('tab(manageTab)', function(data) {
-                
-            });
-
-
-            element.tabAdd('manageTab', {
-                title: '选项卡的标题'
-                ,content: '选项卡的内容' //支持传入html
-                ,id: '选项卡标题的lay-id属性值'
-            }); 
-        });
-    </script>
+<script>
+ 
+    layui.config({
+        base: '/js/manage/' //你存放新模块的目录，注意，不是layui的模块目录
+    }).use(["app"],function() {
+        var app = layui.app,
+            $ = layui.jquery,
+            layer = layui.layer;
+        
+      
+        app.hello("wenqing");
+    }); //加载入口
+</script>
 </body>
 </html>

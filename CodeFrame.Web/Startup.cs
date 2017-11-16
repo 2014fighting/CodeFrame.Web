@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeFrame.Common;
@@ -7,6 +8,9 @@ using CodeFrame.Models;
 using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,16 +18,29 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CodeFrame.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public static ILoggerRepository Repository;
+       
+        public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
+
+            Repository = LogManager.CreateRepository("NETCoreRepository");
+            XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
+
             Configuration = configuration;
         }
-
+   
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -48,7 +65,7 @@ namespace CodeFrame.Web
 
 
             //添加授权支持，并添加使用Cookie的方式，配置登录页面和没有权限时的跳转页面。
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权架构
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权方案
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                 {
                     
@@ -59,8 +76,11 @@ namespace CodeFrame.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var log = LogManager.GetLogger(Repository.Name, typeof(Startup));
+            log.Info("启动web");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

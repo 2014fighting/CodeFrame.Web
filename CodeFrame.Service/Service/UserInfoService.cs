@@ -47,15 +47,11 @@ namespace CodeFrame.Service.Service
 
         }
 
-        public LoginUser GetUserInfo(string userName, string password)
+        public UserInfo GetUserInfo(string userName, string password)
         {
-            var user= _unitOfWork.GetRepository<UserInfo>()
+            return  _unitOfWork.GetRepository<UserInfo>()
                 .GetFirstOrDefault(predicate:i => i.Password == password && i.UserName == userName);
-            return new LoginUser()
-            {
-                UserName =user.UserName,Password =user.Password,
-                PhoneNo=user.PhoneNo
-            };
+            
         }
 
         public bool LoginVaildate()

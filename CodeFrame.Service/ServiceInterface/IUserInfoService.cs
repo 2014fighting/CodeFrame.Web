@@ -11,6 +11,6 @@ namespace CodeFrame.Service.ServiceInterface
         bool AddUserInfo();
         bool LoginVaildate();
         //AuthenticationScheme
-        LoginUser GetUserInfo(string userName,string password);
+        UserInfo GetUserInfo(string userName,string password);
     }
 }
