@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CodeFrame.Common;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
@@ -18,14 +19,15 @@ namespace CodeFrame.Web.Controllers
 {
     public class AccountController : Controller
     {
- 
+        private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
-        private readonly ILog _log = LogManager.GetLogger(Startup.Repository.Name, typeof(AccountController));
-        public AccountController(IUserInfoService userInfoService, IUnitOfWork unitOfWork )
+        //private readonly ILog _log = LogManager.GetLogger(Startup.Repository.Name, typeof(AccountController));
+        public AccountController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
+            _logger = logger;
         }
 
         public ActionResult Index()
@@ -69,10 +71,10 @@ namespace CodeFrame.Web.Controllers
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 //可多个Claim构成一个用户的身份
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));   
                 // 将用户身份信息写入到响应cookie中 ，[Authorize]
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-                _log.Info("用户登入~");
+                _logger.Info($"{user.UserName}用户登入~");
                 if (string.IsNullOrEmpty(returnUrl))
                 {
                     return RedirectToAction("Index", "MyHome", new { area ="Manage" });
@@ -92,7 +94,7 @@ namespace CodeFrame.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            _log.Info("用户退出~");
+            _logger.Info("当前用户退出~");
            return RedirectToAction("Login", "Account");
         }
         [HttpGet]

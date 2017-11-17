@@ -22,11 +22,14 @@ namespace CodeFrame.Common
                 foreach (var item in ts.Where(s => !s.IsInterface))
                 {
                     var interfaceType = item.GetInterfaces();
+                    if(item.IsGenericType)continue;
                     result.Add(item, interfaceType);
                 }
                 return result;
             }
             return new Dictionary<Type, Type[]>();
         }
+
+      
     }
 }

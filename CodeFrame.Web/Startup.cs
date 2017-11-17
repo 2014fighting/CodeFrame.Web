@@ -8,6 +8,7 @@ using CodeFrame.Models;
 using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
+using CodeFrame.Web.Controllers;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -35,8 +36,9 @@ namespace CodeFrame.Web
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            Repository = LogManager.CreateRepository("NETCoreRepository");
-            XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
+           
+             Repository = LogManager.CreateRepository("wenqingNETCoreRepository");
+            //XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
 
             Configuration = configuration;
         }
@@ -60,9 +62,8 @@ namespace CodeFrame.Web
                     services.AddScoped(typeArray, item.Key);
                 }
             }
-            // services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
-
-
+            //services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
+ 
 
             //添加授权支持，并添加使用Cookie的方式，配置登录页面和没有权限时的跳转页面。
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权方案
@@ -76,10 +77,11 @@ namespace CodeFrame.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILogService logger)
         {
-            var log = LogManager.GetLogger(Repository.Name, typeof(Startup));
-            log.Info("启动web");
+
+            //var log = LogManager.GetLogger(Repository.Name, typeof(Startup));
+            logger.Info("启动web");
 
             if (env.IsDevelopment())
             {
