@@ -19,18 +19,16 @@ namespace CodeFrame.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _wlogger;
-
+        
         private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
     
-        public HomeController(ILogger<HomeController> wlogger,IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
+        public HomeController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
             _logger = logger;
-            _wlogger = wlogger;
         }
        
         public IActionResult Index()
