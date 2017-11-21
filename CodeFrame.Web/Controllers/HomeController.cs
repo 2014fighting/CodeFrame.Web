@@ -39,7 +39,7 @@ namespace CodeFrame.Web.Controllers
 
             //_userInfoService.AddUserInfo();
             var xuser = _unitOfWork.GetRepository<UserInfo>().
-                GetPagedList();
+                GetPagedList(predicate:i=>i.UserName.Contains("wenqing"),orderBy:sour=>sour.OrderByDescending(i=>i.Id));
             //var xuser = _unitOfWork.GetRepository<UserInfo>()
             //    .GetEntities(i => i.UserName.Contains("wenqing") && i.Password.Contains("12"));
             //ViewBag.username = xuser.Items.First().UserName;

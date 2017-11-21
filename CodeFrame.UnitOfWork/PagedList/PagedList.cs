@@ -63,7 +63,7 @@ namespace CodeFrame.UnitOfWork.PagedList
         /// <param name="pageIndex">The index of the page.</param>
         /// <param name="pageSize">The size of the page.</param>
         /// <param name="indexFrom">The index from.</param>
-        internal PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int indexFrom)
+        internal PagedList(IQueryable<T> source, int pageIndex, int pageSize, int indexFrom)
         {
             if (indexFrom > pageIndex)
             {
@@ -145,7 +145,7 @@ namespace CodeFrame.UnitOfWork.PagedList
         /// <param name="pageIndex">The index of the page.</param>
         /// <param name="pageSize">The size of the page.</param>
         /// <param name="indexFrom">The index from.</param>
-        public PagedList(IEnumerable<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter, int pageIndex, int pageSize, int indexFrom)
+        public PagedList(IQueryable<TSource> source, Func<IQueryable<TSource>, IQueryable<TResult>> converter, int pageIndex, int pageSize, int indexFrom)
         {
             if (indexFrom > pageIndex)
             {
@@ -158,7 +158,7 @@ namespace CodeFrame.UnitOfWork.PagedList
             TotalCount = source.Count();
             TotalPages = (int)Math.Ceiling(TotalCount / (double)PageSize);
 
-            var items = source.Skip((PageIndex - IndexFrom) * PageSize).Take(PageSize).ToArray();
+            var items = source.Skip((PageIndex - IndexFrom) * PageSize).Take(PageSize);
 
             Items = new List<TResult>(converter(items));
         }

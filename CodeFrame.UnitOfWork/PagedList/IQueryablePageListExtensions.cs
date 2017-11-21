@@ -43,5 +43,14 @@ namespace CodeFrame.UnitOfWork.PagedList
 
             return pagedList;
         }
+         
+        public static IPagedList<T> ToPagedList<T>
+            (this IQueryable<T> source, int pageIndex, int pageSize, int indexFrom = 0) =>
+            new PagedList<T>(source, pageIndex, pageSize, indexFrom);
+
+        public static IPagedList<TResult> ToPagedList<TSource, TResult>
+        (this IQueryable<TSource> source, Func<IQueryable<TSource>,
+            IQueryable<TResult>> converter, int pageIndex, int pageSize, int indexFrom = 0)=> 
+            new PagedList<TSource, TResult>(source, converter, pageIndex, pageSize, indexFrom);
     }
 }
