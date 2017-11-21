@@ -37,7 +37,7 @@ namespace CodeFrame.Web
             Configuration = builder.Build();
 
            
-             Repository = LogManager.CreateRepository("wenqingNETCoreRepository");
+             Repository = LogManager.CreateRepository("NETCoreRepository");
             //XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
 
             Configuration = configuration;

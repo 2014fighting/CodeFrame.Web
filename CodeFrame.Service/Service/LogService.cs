@@ -19,8 +19,8 @@ namespace CodeFrame.Service.Service
 
         public  LogService()
         {
-            Repository = LogManager.GetRepository("wenqingNETCoreRepository") ??
-                LogManager.CreateRepository("wenqingNETCoreRepository");
+            Repository = LogManager.GetRepository("NETCoreRepository") ??
+                LogManager.CreateRepository("NETCoreRepository");
             if (_logger == null)
             {
                 _logger = LogManager.GetLogger(Repository.Name, typeof(LogService));
@@ -59,15 +59,16 @@ namespace CodeFrame.Service.Service
         {
             _logger.Info(message);
         }
-
-        public void InitConfig()
-        {
-            XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
-        }
+         
 
         public void Warn(Exception ex)
         {
             _logger.Warn(ex);
+        }
+
+        public void InitConfig()
+        {
+            XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
         }
     }
 }

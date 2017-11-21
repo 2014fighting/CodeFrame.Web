@@ -36,15 +36,15 @@ namespace CodeFrame.Web.Controllers
 
             _logger.Info("握了个叉");
             _logger.Info("错误信息");
-  
+
             //_userInfoService.AddUserInfo();
             var xuser = _unitOfWork.GetRepository<UserInfo>().
-                GetPagedList(predicate:x=>x.UserName.Contains("wenqing")
-             &&x.Password.Contains("12")
-            , orderBy: source => source.OrderBy(b => b.Id));
-            ViewBag.username = xuser.Items.First().UserName;
-           var w= _unitOfWork.GetRepository<UserInfo>().GetPagedList();
- 
+                GetPagedList();
+            //var xuser = _unitOfWork.GetRepository<UserInfo>()
+            //    .GetEntities(i => i.UserName.Contains("wenqing") && i.Password.Contains("12"));
+            //ViewBag.username = xuser.Items.First().UserName;
+            //var w= _unitOfWork.GetRepository<UserInfo>().GetPagedList();
+            var w = _unitOfWork.GetRepository<UserInfo>().GetEntities().Take(10).ToList();
             return View();
         }
         [Authorize]
