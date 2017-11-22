@@ -31,6 +31,23 @@
     <Folder Include="Areas\Manage\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\manage\js\app.js" />
+    <None Include="wwwroot\js\manage\js\kitconfig.js" />
+    <None Include="wwwroot\js\manage\js\loader.js" />
+    <None Include="wwwroot\js\manage\js\message.js" />
+    <None Include="wwwroot\js\manage\js\navbar.js" />
+    <None Include="wwwroot\js\manage\js\nprogress.js" />
+    <None Include="wwwroot\js\manage\js\onelevel.js" />
+    <None Include="wwwroot\js\manage\js\pjax.js" />
+    <None Include="wwwroot\js\manage\js\spa.js" />
+    <None Include="wwwroot\js\manage\js\tab.js" />
+    <None Include="wwwroot\js\manage\js\utils.js" />
+    <None Include="wwwroot\js\manage\js\ztree.js" />
+    <None Include="wwwroot\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

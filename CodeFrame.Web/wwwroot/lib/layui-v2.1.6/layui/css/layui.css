@@ -2979,7 +2979,8 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-tab-card {
-    border: 1px solid #e2e2e2;
+    /*border: 1px solid #e2e2e2;*/
+    border: 0px solid #e2e2e2;
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.1)
 }

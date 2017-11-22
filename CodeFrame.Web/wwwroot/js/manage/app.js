@@ -3,9 +3,10 @@
   定义了一个app模块 并依赖 layer  form  element
    
 **/
-layui.define(['layer', 'form', "element"], function (exports) {
+layui.define(['layer', 'form', "element","tab"], function (exports) {
     var element = layui.element,
         layer = layui.layer,
+        tab = layui.tab,
         form = layui.form;
 
     //一些事件监听

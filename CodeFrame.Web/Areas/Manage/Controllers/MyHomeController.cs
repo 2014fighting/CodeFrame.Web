@@ -19,5 +19,9 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         {
             return View();
         }
+        public ActionResult MainPage()
+        {
+            return View();
+        }
     }
 }

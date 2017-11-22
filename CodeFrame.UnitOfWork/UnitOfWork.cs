@@ -193,10 +193,7 @@ namespace CodeFrame.UnitOfWork
                 if (disposing)
                 {
                     // clear repositories
-                    if (repositories != null)
-                    {
-                        repositories.Clear();
-                    }
+                    repositories?.Clear();
 
                     // dispose the db context.
                     _context.Dispose();
