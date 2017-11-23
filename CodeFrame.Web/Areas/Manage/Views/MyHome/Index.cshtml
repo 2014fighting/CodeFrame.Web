@@ -11,30 +11,21 @@
 
     <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/manage/css/app.css" rel="stylesheet" />
+    <link href="http://siyouku.cn/Content/animate.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="layui-layout layui-layout-admin kit-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo">Code Frame</div>
+            <div class="layui-logo" id="pay">Code Frame</div>
             <div class="layui-logo kit-logo-mobile">K</div>
+
+            !-- 头部区域（可配合layui已有的水平导航） -->
             <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
-                <li class="layui-nav-item"><a href="">控制台</a></li>
-                <li class="layui-nav-item"><a href="">商品管理</a></li>
+                @*<li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item"><a href="">商品管理</a></li>*@
             </ul>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left kit-nav">
-                <li class="layui-nav-item"><a href="">控制台</a></li>
-                <li class="layui-nav-item"><a href="">商品管理</a></li>
-                <li class="layui-nav-item"><a href="">用户</a></li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">其它系统</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">邮件管理</a></dd>
-                        <dd><a href="">消息管理</a></dd>
-                        <dd><a href="">授权管理</a></dd>
-                    </dl>
-                </li>
-            </ul>
+            <
 
             <ul class="layui-nav layui-layout-right kit-nav">
                 @*<li class="layui-nav-item"><a href="javascript:;" id="pay"><i class="fa fa-gratipay" aria-hidden="true"></i> 捐赠我</a></li>*@
@@ -47,7 +38,7 @@
                         <dd><a href="javascript:;">安全设置</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
+                <li class="layui-nav-item"><a href="@Url.Action("Logout","Account",new{area=""})" id="exist"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
             </ul>
         </div>
 
@@ -55,8 +46,8 @@
             <div class="layui-side-scroll">
                 <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
-                    <li class="layui-nav-item">
+                <ul class="layui-nav layui-nav-tree animated flipInX" lay-filter="kitNavbar" kit-navbar>
+                    @*<li class="layui-nav-item">
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
                         <dl class="layui-nav-child">
                             <dd>
@@ -92,7 +83,7 @@
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" data-url="/views/form.html" data-name="form" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表单(page)</span></a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -113,6 +104,7 @@
             var app = layui.app,
                 $ = layui.jquery,
                 layer = layui.layer;
+         
             //将message设置为全局以便子页面调用
             message = layui.message;
             //app.hello();
@@ -121,6 +113,7 @@
                 type: 'iframe'
             }).init();
             $('#pay').on('click', function () {
+                
                 layer.open({
                     title: false,
                     type: 1,

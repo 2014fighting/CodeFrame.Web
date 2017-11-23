@@ -202,7 +202,10 @@ layui.define(['layer', 'laytpl', 'element'], function(exports) {
                     //渲染模板
                     laytpl(_tpl.join('')).render(_data, function(html) {
                         _elem.html(html);
+                       
+
                         element.init();
+                  
                         //绑定a标签的点击事件
                         that.bind(function(data) {
                             typeof callback === 'function' && callback(data);

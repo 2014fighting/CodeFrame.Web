@@ -1,0 +1,35 @@
+﻿[
+  {
+    "id": "1",
+    "title": "基础管理",
+    "icon": "fa-cubes",
+    "spread": true,
+    "children": [
+      {
+        "id": "7",
+        "title": "菜单一",
+        "icon": "&#xe6c6;",
+        "url": "/manage/UserInfo/Index"
+      },
+      {
+        "id": "8",
+        "title": "菜单二",
+        "icon": "&#xe63c;",
+        "url": "form.html"
+      },
+      {
+        "id": "8",
+        "title": "菜单三",
+        "icon": "&#xe64c;",
+        "url": "form.html"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "一级菜单",
+    "icon": "fa-stop-circle",
+    "url": "https://www.baidu.com",
+    "spread": false
+  }
+]

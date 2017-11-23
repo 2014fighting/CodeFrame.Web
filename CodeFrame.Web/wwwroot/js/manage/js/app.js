@@ -130,30 +130,33 @@ layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'
 
                 //处理顶部一级菜单
                 var onelevel = layui.onelevel;
+             
                 if (onelevel.hasElem()) {
                     onelevel.set({
                         remote: {
-                            url: '/datas/onelevel1.json' //远程地址
+                            url: 'js/manage/js/onelevel1.json' //远程地址
                         },
-                        onClicked: function(id) {
+                        onClicked: function (id) {
+                            debugger;
                             switch (id) {
                                 case 1:
                                     navbar.set({
                                         remote: {
-                                            url: '/datas/navbar1.json'
+                                            url: 'js/manage/js/navbar1.json'
                                         }
                                     }).render(function(data) {
                                         tab.tabAdd(data);
-                                    });
+                                        });
+
                                     break;
                                 case 2:
                                     navbar.set({
                                         remote: {
-                                            url: '/datas/navbar2.json'
+                                            url: 'js/manage/js/navbar2.json'
                                         }
                                     }).render(function(data) {
                                         tab.tabAdd(data);
-                                    });
+                                        });
                                     break;
                                 default:
                                     navbar.set({

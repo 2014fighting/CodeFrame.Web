@@ -110,7 +110,7 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
                     '</div>'
                 ],
                 _htm = tpl.join('');
-            debugger;
+            //debugger;
             switch (_config.renderType) {
                 case renderType.page:
                     _htm = _htm.replace('{{content}}', that.getBodyContent(_config.mainUrl + '?v=' + new Date().getTime()));
