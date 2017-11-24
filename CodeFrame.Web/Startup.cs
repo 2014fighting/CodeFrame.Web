@@ -29,15 +29,16 @@ namespace CodeFrame.Web
        
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            //在CreateDefaultBuilder 已经配置  但再次可以重写
+            //var builder = new ConfigurationBuilder()
+            //    .SetBasePath(env.ContentRootPath)
+            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)//热更新
+            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            //    .AddEnvironmentVariables();
+            //Configuration = builder.Build();
 
-           
-             Repository = LogManager.CreateRepository("NETCoreRepository");
+
+            Repository = LogManager.CreateRepository("NETCoreRepository");
             //XmlConfigurator.Configure(Repository, new FileInfo("log4net.config"));
 
             Configuration = configuration;
