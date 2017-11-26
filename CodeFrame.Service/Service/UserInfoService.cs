@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Models.VModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeFrame.Service.Service
 {
@@ -49,9 +51,15 @@ namespace CodeFrame.Service.Service
 
         public UserInfo GetUserInfo(string userName, string password)
         {
-            return  _unitOfWork.GetRepository<UserInfo>()
-                .GetFirstOrDefault(predicate:i => i.Password == password && i.UserName == userName);
-            
+            var role = _unitOfWork.GetRepository<RoleInfo>().GetEntities();
+            var user= _unitOfWork.GetRepository<UserInfo>()
+                .GetFirstOrDefault(i => i.Password == password
+                && i.UserName == userName,include:i=>i.Include(x=>x.UserRoles));
+            user?.UserRoles?.ForEach(i=>
+            {
+                i.RoleInfo = role.FirstOrDefault(x => x.Id == i.RoleId);
+            });
+            return user;
         }
 
         public bool LoginVaildate()

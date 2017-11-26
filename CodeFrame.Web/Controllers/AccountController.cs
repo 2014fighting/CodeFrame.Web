@@ -19,6 +19,7 @@ namespace CodeFrame.Web.Controllers
 {
     public class AccountController : Controller
     {
+        #region Constructor
         private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
@@ -28,7 +29,8 @@ namespace CodeFrame.Web.Controllers
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
             _logger = logger;
-        }
+        } 
+        #endregion
 
         public ActionResult Index()
         {
@@ -67,11 +69,19 @@ namespace CodeFrame.Web.Controllers
             var user = _userInfoService.GetUserInfo(userName, password);
             if (user != null)
             {
+
                 //创建一个基于声明的授权方案
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+ 
                 //可多个Claim构成一个用户的身份
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));   
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                //用户所有角色 分别一个claim
+                user.UserRoles.ForEach(i =>
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, i.RoleInfo.RoleName));
+                });
+
                 // 将用户身份信息写入到响应cookie中 ，[Authorize]
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 _logger.Info($"{user.UserName}用户登入~");

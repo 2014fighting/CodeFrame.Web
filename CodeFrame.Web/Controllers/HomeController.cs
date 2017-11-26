@@ -19,18 +19,20 @@ namespace CodeFrame.Web.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+        #region Constructor
         private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
-    
+
         public HomeController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
             _logger = logger;
-        }
-       
+        } 
+        #endregion
+
         public IActionResult Index()
         {
 
@@ -47,14 +49,14 @@ namespace CodeFrame.Web.Controllers
             var w = _unitOfWork.GetRepository<UserInfo>().GetEntities().Take(10).ToList();
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "system")]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "bos")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
