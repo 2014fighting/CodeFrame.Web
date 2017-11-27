@@ -16,7 +16,7 @@ namespace CodeFrame.XUnit
     {
         private readonly InMemoryContext _db;
 
-        private readonly IUserInfoService _userInfoService;
+        
         public UnitTest1()
         {
             _db = new InMemoryContext();
@@ -26,21 +26,12 @@ namespace CodeFrame.XUnit
                 _db.AddRange(TestTowns); 
             _db.AddRange(TestUsers);
             _db.SaveChanges();
-            
-      
-            //ºØ≥…≤‚ ‘
-            var optionsBuilder = new DbContextOptionsBuilder<CodeFrameContext>();
-            var optionsBuilder1 = optionsBuilder.UseMySql("Server=localhost;database=CodeFrameDb;uid=root;pwd=abc123;");
-            _userInfoService = new UserInfoService(
-                new UnitOfWork<CodeFrameContext>(new CodeFrameContext(optionsBuilder1.Options)));
-
         }
         [Fact]
         public void TestMethod1()
         {
             var repository = new Repository<City>(_db);
             var city = repository.GetEntities().ToList();
-            var x = _userInfoService.GetUserInfo("wenqing", "123456");
             var s = "akjdflsjfe2awfjwjafwljfe";
             var res = s.Count(i => i.ToString() == "a");
             Assert.Equal(3, res);
