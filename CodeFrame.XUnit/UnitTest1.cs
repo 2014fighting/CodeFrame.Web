@@ -30,8 +30,8 @@ namespace CodeFrame.XUnit
         [Fact]
         public void TestMethod1()
         {
-            var repository = new Repository<City>(_db);
-            var city = repository.GetEntities().ToList();
+            var repository = new UnitOfWork<InMemoryContext>(_db);
+            var city = repository.GetRepository<City>().GetEntities().ToList();
             var s = "akjdflsjfe2awfjwjafwljfe";
             var res = s.Count(i => i.ToString() == "a");
             Assert.Equal(3, res);

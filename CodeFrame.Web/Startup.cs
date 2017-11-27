@@ -74,7 +74,11 @@ namespace CodeFrame.Web
                     o.LoginPath = new PathString("/Account/Login");
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
-            services.AddMvc();
+
+            //you can configure Json.NET to ignore cycles that it finds in the object graph
+            services.AddMvc().AddJsonOptions(
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

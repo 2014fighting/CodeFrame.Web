@@ -6,6 +6,7 @@ using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
 
 namespace CodeFrame.XUnit
 {
@@ -20,9 +21,12 @@ namespace CodeFrame.XUnit
             _userInfoService = new UserInfoService(
                 new UnitOfWork<CodeFrameContext>(new CodeFrameContext(optionsBuilder1.Options)));
         }
+        [Fact]
         public void TestMethod()
         {
             var x = _userInfoService.GetUserInfo("wenqing", "123456");
+
+            Assert.Equal("wenqing",x.UserName);
         }
      
     }
