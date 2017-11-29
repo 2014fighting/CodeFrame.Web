@@ -5,8 +5,7 @@
 
 
 <form class="layui-form" action="">
-    <fieldset class="layui-elem-field site-demo-button" style="margin: 0">
-        <legend><button class="layui-btn layui-btn-primary layui-btn-small">点击隐藏</button></legend>
+    <fieldset class="layui-elem-field comfield" style="margin: 0">
         <div style="float:left">
             <div class="layui-form-item">
                 <div class="layui-inline">
@@ -41,11 +40,16 @@
     </fieldset>
 </form>
 <div class="layui-btn-group mytool">
-    <button class="layui-btn layui-btn-primary layui-btn-small" id="btnadd"><i class="layui-icon"></i>新增</button>
-    <button class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i>编辑</button>
-    <button class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i>删除</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btnadd"><i class="layui-icon"></i>新增</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i>编辑</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i>删除</button>
 </div>
-<table id="demo"></table>
+<table id="demo" lay-filter="test"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -94,6 +98,7 @@
                            content: '//fly.layui.com/'
                        });
                 });
+         
             //展示已知数据
             tableIns=table.render({
                 elem: '#demo',
@@ -107,7 +112,8 @@
                     , { field: 'password', title: '密码', width: 150 }
                     , { field: 'phoneNo', title: '电话', width: 80 }
                     , { field: 'updateTime', title: '修改时间', width: 100 }
-                    , { field: 'creteTime', title: '创建时间', width: 80, sort: true }
+                    , { field: 'creteTime', title: '创建时间', width:180, sort: true }
+                    , { fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo' }
                 ]]
                 , skin: 'row' //表格风格
                 , even: true
@@ -115,6 +121,49 @@
                 , limits: [5, 7, 10,100]
                 , limit: 5 //每页默认显示的数量
             });
+
+            //监听工具条
+            table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+                console.info(data);
+                if(layEvent === 'detail'){ //查看
+                    //do somehing
+                    layer.open({
+                        type: 2,
+                        title: '很多时候，我们想最大化看，比如像这个页面。',
+                        shadeClose: true,
+                        //shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '//fly.layui.com/'
+                    });
+                } else if(layEvent === 'del'){ //删除
+                    layer.confirm('真的删除' + data.id+'这行么', function(index){
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        //向服务端发送删除指令
+                    });
+                } else if(layEvent === 'edit'){ //编辑
+                    layer.open({
+                        type: 2,
+                        title: '很多时候，我们想最大化看，比如像这个页面。',
+                        shadeClose: true,
+                        //shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '//fly.layui.com/'
+                    });
+    
+                    //同步更新缓存对应的值
+                    obj.update({
+                        username: '123'
+                        ,title: 'xxx'
+                    });
+                }
+            });
+
         });
 
 

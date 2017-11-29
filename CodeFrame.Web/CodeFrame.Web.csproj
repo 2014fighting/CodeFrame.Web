@@ -46,6 +46,30 @@
     <None Include="wwwroot\js\manage\js\ztree.js" />
     <None Include="wwwroot\lib\font-awesome\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\font\iconfont.svg" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\layui.all.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\layui.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\code.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\element.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\form.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\table.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\util.js" />
+    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\GitHub.url" />
+    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\Git码云.url" />
+    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\在线示例.url" />
+    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\快速上手.url" />
+    <None Include="wwwroot\lib\layui-v2.2.3\更新日志.url" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
