@@ -7,3 +7,4 @@
 - log4net 2.0.8  http://logging.apache.org/log4net/
 - EntityFrameworkCore https://github.com/aspnet/EntityFrameworkCore
 - layui https://github.com/sentsin/layui/
+- AutoMaper https://github.com/AutoMapper
