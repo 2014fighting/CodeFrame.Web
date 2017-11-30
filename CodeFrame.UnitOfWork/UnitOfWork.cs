@@ -196,7 +196,7 @@ namespace CodeFrame.UnitOfWork
                     repositories?.Clear();
 
                     // dispose the db context.
-                    _context.Dispose();
+                  //_context.Dispose();
                 }
             }
 

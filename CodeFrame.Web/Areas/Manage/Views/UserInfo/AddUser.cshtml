@@ -2,6 +2,84 @@
 @{
     ViewData["Title"] = "AddUser";
 }
+ 
+<div>
+    <form class="layui-form" action="">
+        <fieldset class="layui-elem-field comfield" style="margin: 0">
+            <div style="float:left">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="UserName" lay-verify="required|username" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="Password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户手机</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input"  placeholder="手机号">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">真实姓名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="TrueName" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                        </div>
+                    </div>
 
-<h2>AddUser</h2>
 
+
+                </div>
+            </div>
+
+            <div style="position: absolute; left: 40%;bottom:10px">
+                <button class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="demo1">提交</button>
+                <button type="reset" class="layui-btn layui-btn-normal layui-btn-radius">重置</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    //注意：parent 是 JS 自带的全局对象，可用于操作父页面
+    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    layui.use(['form', 'layedit', 'laydate', 'table','layer'],
+        function() {
+            var form = layui.form, layer = layui.layer;
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                //console.info(data.field);
+                //自定义验证规则
+                form.verify({
+                    username: function(value) {
+                        if(value.length < 5){
+                            return '标题至少得5个字符啊';
+                        }
+                    },pass: [/(.+){6,12}$/, '密码必须6到12位']
+                });
+
+
+                $.post('@Url.Action("AddUser")',
+                    data.field,
+                    function (data) {
+                        if (data.code === 0) {
+                            parent.layer.msg("添加成功！：" + data.msg);
+                            parent.layer.close(index);
+                            parent.tableIns.reload();
+                        }
+                        else
+                            layer.msg("保存失败：" + data.msg);
+                    });
+                return false;
+            });
+ 
+  
+        });
+
+
+</script>

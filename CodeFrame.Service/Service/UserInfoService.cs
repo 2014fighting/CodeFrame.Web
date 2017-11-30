@@ -51,14 +51,15 @@ namespace CodeFrame.Service.Service
 
         public UserInfo GetUserInfo(string userName, string password)
         {
-            var user1 = _unitOfWork.GetRepository<UserInfo>()
-                .GetPagedList(predicate:i => i.Password == password && i.UserName == userName, 
-                               include: i => i.Include(ur => ur.UserRoles).ThenInclude(r => r.RoleInfo)).Items;
+            //var user1 = _unitOfWork.GetRepository<UserInfo>()
+            //    .GetPagedList(predicate:i => i.Password == password && i.UserName == userName, 
+            //                   include: i => i.Include(ur => ur.UserRoles).ThenInclude(r => r.RoleInfo)).Items;
 
 
             var user= _unitOfWork.GetRepository<UserInfo>()
                 .GetFirstOrDefault(i => i.Password == password
-                && i.UserName == userName,include:i=>i.Include(ur=>ur.UserRoles).ThenInclude(r=>r.RoleInfo));
+                && i.UserName == userName,include:i=>i.Include(ur=>ur.UserRoles)
+                .ThenInclude(r=>r.RoleInfo));
             return user;
         }
 

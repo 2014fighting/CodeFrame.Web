@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CodeFrame.Common;
 using CodeFrame.Models;
 using CodeFrame.Service.Service;
@@ -29,7 +30,7 @@ namespace CodeFrame.Web
        
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
-            //在CreateDefaultBuilder 已经配置  但再次可以重写
+            //在CreateDefaultBuilder 已经配置 再此可以重写
             //var builder = new ConfigurationBuilder()
             //    .SetBasePath(env.ContentRootPath)
             //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)//热更新
@@ -74,7 +75,7 @@ namespace CodeFrame.Web
                     o.LoginPath = new PathString("/Account/Login");
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
-
+            services.AddAutoMapper();
             //you can configure Json.NET to ignore cycles that it finds in the object graph
             services.AddMvc().AddJsonOptions(
                 options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

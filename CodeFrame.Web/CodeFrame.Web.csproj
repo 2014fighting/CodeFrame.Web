@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manage\Data\" />
-    <Folder Include="Areas\Manage\Models\" />
   </ItemGroup>
 
   <ItemGroup>

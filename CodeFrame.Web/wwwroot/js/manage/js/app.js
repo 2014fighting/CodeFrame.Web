@@ -137,7 +137,7 @@ layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'
                             url: 'js/manage/js/onelevel1.json' //远程地址
                         },
                         onClicked: function (id) {
-                            debugger;
+                       
                             switch (id) {
                                 case 1:
                                     navbar.set({
