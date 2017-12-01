@@ -41,8 +41,8 @@
 </form>
 <div class="layui-btn-group mytool">
     <button class="layui-btn layui-btn-primary layui-btn-sm" id="btnadd"><i class="layui-icon"></i>新增</button>
-    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i>编辑</button>
-    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i>删除</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btnedit"><i class="layui-icon"></i>编辑</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btndel"><i class="layui-icon"></i>删除</button>
 </div>
 <table id="demo" lay-filter="test"></table>
 <script type="text/html" id="barDemo">
@@ -87,7 +87,7 @@
          
                 return false;
             });
-
+           
             $("#btnadd").on('click',
                 function() {
                        layer.open({
@@ -100,14 +100,67 @@
                            content: '@Url.Action("AddUser")'
                        });
                 });
-         
+            $("#btnedit").on('click',
+                function () {
+                    var checkStatus = table.checkStatus('demo');
+                    var checkdata = checkStatus.data;
+                    if (checkdata.length!=1) {
+                        layer.msg("请选一条数据编辑！");
+                        return;
+                    }
+                    layer.open({
+                        type: 2,
+                        title: '新增用户信息',
+                        shadeClose: true,
+                        //shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '@Url.Action("EditUser")/' + checkStatus.data[0].id
+                    });
+                });
+
+            $("#btndel").on('click',
+                function () {
+                    var checkStatus = table.checkStatus('demo');
+                    var checkdata = checkStatus.data;
+                    if (checkdata.length==0) {
+                        layer.msg("请选择要删除的数据支持批量删除！");
+                        return;
+                    }
+                    layer.confirm('真的要删??', function (index) {
+                        var postdata = [];
+                        checkdata.forEach(function(value) {
+                            postdata.push(value.id); 
+                        });
+                        
+                        //console.info(postdata);
+                        $.ajax({
+                            type: "post",
+                            url: '@Url.Action("UserDelete")',
+                            data: { ids: postdata},
+                            success: function (data) {
+                                console.info(data);
+                                if (data.code===0) {
+                                    layer.msg("删除成功！!");
+                                    //obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                    tableIns.reload();
+                                } else {
+                                    layer.msg(data.msg);
+                                }
+                            }
+                        });
+                        layer.close(index);
+                        //向服务端发送删除指令
+
+                    });
+                });
             //展示已知数据
             tableIns=table.render({
                 elem: '#demo',
                 url: '@Url.Action("GetUserInfo")'
                 , height:getHeight()
                 , cols: [[ //标题栏
-                    { checkbox: true, LAY_CHECKED: true } //默认全选
+                    { checkbox: true, LAY_CHECKED: false } //默认全选
                     , { field: 'id', title: 'id', width: 80, sort: true }
                     , { field: 'userName', title: '用户名', width:220 }
                     , { field: 'trueName', title: '真实姓名', width: 150 }
@@ -121,7 +174,7 @@
                 , even: true
                 , page: true //是否显示分页
                 , limits: [5, 7, 10,100]
-                , limit: 5 //每页默认显示的数量
+                , limit:10 //每页默认显示的数量
                 , loading:true
             });
 
@@ -132,15 +185,14 @@
                 var tr = obj.tr; //获得当前行 tr 的DOM对象
                 console.info(data);
                 if(layEvent === 'detail'){ //查看
-                    //do somehing
                     layer.open({
                         type: 2,
-                        title: '很多时候，我们想最大化看，比如像这个页面。',
+                        title: '新增用户信息',
                         shadeClose: true,
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '//fly.layui.com/'
+                        content: '@Url.Action("EditUser")/?id=' + data.id+'&type=2'
                     });
                 } else if(layEvent === 'del'){ //删除
                     layer.confirm('真的删除' + data.id + '这行么', function (index) {
@@ -169,18 +221,12 @@
                 } else if(layEvent === 'edit'){ //编辑
                     layer.open({
                         type: 2,
-                        title: '很多时候，我们想最大化看，比如像这个页面。',
+                        title: '新增用户信息',
                         shadeClose: true,
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '//fly.layui.com/'
-                    });
-    
-                    //同步更新缓存对应的值
-                    obj.update({
-                        username: '123'
-                        ,title: 'xxx'
+                        content: '@Url.Action("EditUser")/' + data.id
                     });
                 }
             });

@@ -34,16 +34,8 @@ namespace CodeFrame.Service.Service
             repoUser.Insert(new UserInfo
             {
                 UserName = "wenqing" + new Random().Next(),
-                Password = "123456",
-                TrueName = "wenqing1",
-                UserRoles = new List<UserRole>() { new UserRole()
-                {
-                   RoleInfo = new RoleInfo()
-                    {
-                        RoleName ="炒鸡管理",
-                        Describe ="miaoshu"
-                    }
-                }}
+                Password = "123456666",
+                TrueName = "wenqing666"
             });
             return _unitOfWork.SaveChanges() > 0;//提交到数据库
 

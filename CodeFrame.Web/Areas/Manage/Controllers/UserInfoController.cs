@@ -9,21 +9,26 @@ using CodeFrame.UnitOfWork;
 using CodeFrame.Web.Areas.Manage.Models;
 using CodeFrame.Web.Areas.Manage.Models.Common;
 using CodeFrame.Web.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CodeFrame.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize]
     public class UserInfoController : Controller
     {
+        #region Constructor
         private ILogger<UserInfoController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+
         private readonly IUserInfoService _userInfoService;
+
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
 
-        public UserInfoController(IUserInfoService userInfoService, 
+        public UserInfoController(IUserInfoService userInfoService,
             IUnitOfWork unitOfWork, ILogger<UserInfoController> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -31,6 +36,11 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             _logger = logger;
             _mapper = mapper;
         }
+
+        #endregion
+
+
+
         public IActionResult Index()
         {
             return View();
@@ -48,20 +58,56 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             repoUser.Insert(user);
 
             var r = _unitOfWork.SaveChanges();
+
+            //_userInfoService.AddUserInfo();
             return Json(new MgResult()
             {
-                Code = r>0?0 : 1,
-                Msg = r>0? "ok" : "SaveChanges失败！"
+                Code = r > 0 ? 0 : 1,
+                Msg = r > 0 ? "ok" : "SaveChanges失败！"
             });
-        }
-        [HttpGet]
-        public IActionResult AddUser()
-        {
-                return View();
         }
 
         [HttpGet]
-        public ActionResult GetUserInfo(UserInfoModel user,int page = 1, int limit = 10)
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type">1编辑 2查看</param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult EditUser(int id,int type=1)
+        {
+            ViewBag.pageType = type;
+            var repUser=_unitOfWork.GetRepository<UserInfo>();
+            return View(_mapper.Map<UserInfoModel>(repUser.Find(id)));
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(UserInfoModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = _unitOfWork.GetRepository<UserInfo>().Find(model.Id);
+
+            _mapper.Map(model, user);
+            
+            var r = _unitOfWork.SaveChanges();
+ 
+            return Json(new MgResult()
+            {
+                Code = r > 0 ? 0 : 1,
+                Msg = r > 0 ? "ok" : "SaveChanges失败！"
+            });
+        }
+        [HttpGet]
+        public ActionResult GetUserInfo(UserInfoModel user, int page = 1, int limit = 10)
         {
             //var w = _unitOfWork.GetRepository<UserInfo>().GetPagedList(pageIndex:page-1,pageSize:limit);
 
@@ -72,7 +118,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 result = result.Where(i => i.UserName.Contains(user.PhoneNo));
             if (!string.IsNullOrEmpty(user.TrueName))
                 result = result.Where(i => i.UserName.Contains(user.TrueName));
-            var w1 = result.OrderByDescending(x=>x.Id).Skip((page - 1) * limit).Take(limit);
+            var w1 = result.OrderByDescending(x => x.Id).Skip((page - 1) * limit).Take(limit);
             return Json(new
             {
                 code = 0,
@@ -83,6 +129,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
 
         }
 
+        [HttpPost]
         public ActionResult UserDelete(List<int> ids)
         {
             var result = _unitOfWork.GetRepository<UserInfo>();

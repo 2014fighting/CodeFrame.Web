@@ -1,8 +1,11 @@
 ﻿
 @{
-    ViewData["Title"] = "AddUser";
+    ViewData["Title"] = "EditUser";
 }
- 
+@using CodeFrame.Web.Areas.Manage.Models
+@model CodeFrame.Web.Areas.Manage.Models.UserInfoModel
+
+
 <div>
     <form class="layui-form" action="">
         <fieldset class="layui-elem-field comfield" style="margin: 0">
@@ -11,38 +14,41 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="UserName" lay-verify="required|username" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            <input type="hidden" value="@Model.Id"/>
+                            <input type="text" value="@Model.UserName" name="UserName" lay-verify="required|username" autocomplete="off" placeholder="请输入名称" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="Password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
+                            <input type="text" name="Password" value="@Model.Password"  lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">用户手机</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input"  placeholder="手机号">
+                            <input type="tel" name="PhoneNo" value="@Model.PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="手机号">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">真实姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="TrueName" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            <input type="text" name="TrueName" value="@Model.TrueName"  lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
                         </div>
                     </div>
-                     
+
                 </div>
             </div>
-
-            <div style="position: absolute; left: 40%;bottom:10px">
-                <button class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="demo1">提交</button>
-                <button type="reset" class="layui-btn layui-btn-normal layui-btn-radius">重置</button>
-            </div>
+            @if (ViewBag.pageType == 1) {
+                <div style="position: absolute; left: 40%;bottom:10px">
+                    <button class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="demo1">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-normal layui-btn-radius">重置</button>
+                </div>
+            }
         </fieldset>
     </form>
 </div>
+
 
 
 <script type="text/javascript">
@@ -64,11 +70,11 @@
                 });
 
 
-                $.post('@Url.Action("AddUser")',
+                $.post('@Url.Action("EditUser")',
                     data.field,
                     function (data) {
                         if (data.code === 0) {
-                            parent.layer.msg("添加成功！：" + data.msg);
+                            parent.layer.msg("修改成功！：" + data.msg);
                             parent.layer.close(index);
                             parent.tableIns.reload();
                         }
@@ -77,8 +83,8 @@
                     });
                 return false;
             });
- 
-  
+
+
         });
 
 
