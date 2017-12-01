@@ -6,14 +6,14 @@ using AutoMapper;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Web.Areas.Manage.Models;
 
-namespace CodeFrame.Web
+namespace CodeFrame.Web.Models.AutoMapper
 {
-    public class MappingProfile : Profile
+    public class UserProfile : Profile
     {
-        public MappingProfile()
+        public UserProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<UserInfo,UserInfoModel>();
+            CreateMap<UserInfo, UserInfoModel>();
             CreateMap<UserInfoModel, UserInfo>();
         }
     }
