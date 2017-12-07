@@ -27,8 +27,8 @@ namespace CodeFrame.Web
     public class Startup
     {
         public static ILoggerRepository Repository;
-       
-        public Startup(IConfiguration configuration,IHostingEnvironment env)
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             //在CreateDefaultBuilder 已经配置 再此可以重写
             //var builder = new ConfigurationBuilder()
@@ -44,17 +44,18 @@ namespace CodeFrame.Web
 
             Configuration = configuration;
         }
-   
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ILogService log=new LogService();
+            log.Info("ConfigureServices开始");
             var connection = Configuration.GetConnectionString("MySqlConnection");
             //services.AddDbContext<CodeFrameContext>(options => options.UseMySql(connection));
             //DbContext 连接池 2.0版本
-            services.AddDbContextPool<CodeFrameContext>(options => options.UseMySql(connection));
-
+            services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
             services.AddUnitOfWork<CodeFrameContext>();//添加UnitOfWork支持
             //集中注册服务
             foreach (var item in ProjectCom.GetClassName("CodeFrame.Service"))
@@ -65,32 +66,28 @@ namespace CodeFrame.Web
                 }
             }
             //services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
- 
-
             //添加授权支持，并添加使用Cookie的方式，配置登录页面和没有权限时的跳转页面。
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权方案
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                 {
-                    
                     o.LoginPath = new PathString("/Account/Login");
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
             services.AddAutoMapper();
+
             //you can configure Json.NET to ignore cycles that it finds in the object graph
-            services.AddMvc().AddJsonOptions(
-                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILogService logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogService logger)
         {
 
             //var log = LogManager.GetLogger(Repository.Name, typeof(Startup));
             logger.Info("启动web");
 
             if (env.IsDevelopment())
-            {
+            { 
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
@@ -115,10 +112,12 @@ namespace CodeFrame.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
- 
+
             });
 
-           
+
         }
+
+
     }
 }

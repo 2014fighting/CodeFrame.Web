@@ -14,6 +14,15 @@ namespace CodeFrame.Models
         public CodeFrameContext(DbContextOptions<CodeFrameContext> options) : base(options)
         {
         }
+        //private string _connection;
+
+        //public CodeFrameContext(string connection) => this._connection = connection;
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(_connection))
+        //        optionsBuilder.UseMySql(_connection);
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserRole>()

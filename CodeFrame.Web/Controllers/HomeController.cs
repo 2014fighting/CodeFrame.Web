@@ -30,21 +30,21 @@ namespace CodeFrame.Web.Controllers
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
             _logger = logger;
-        } 
+        }
         #endregion
 
         public IActionResult Index()
         {
-
+            InitDBData();
             _logger.Info("握了个叉");
             _logger.Info("错误信息");
 
             //_userInfoService.AddUserInfo();
             var xuser = _unitOfWork.GetRepository<UserInfo>().
-                GetPagedList(predicate:i=>i.UserName.Contains("wenqing"),orderBy:sour=>sour.OrderByDescending(i=>i.Id));
+                GetPagedList(predicate: i => i.UserName.Contains("wenqing"), orderBy: sour => sour.OrderByDescending(i => i.Id));
             //var xuser = _unitOfWork.GetRepository<UserInfo>()
             //    .GetEntities(i => i.UserName.Contains("wenqing") && i.Password.Contains("12"));
-            //ViewBag.username = xuser.Items.First().UserName;
+            ViewBag.username = xuser.Items.First().UserName;
             //var w= _unitOfWork.GetRepository<UserInfo>().GetPagedList();
             var w = _unitOfWork.GetRepository<UserInfo>().GetEntities().Take(10).ToList();
             return View();
@@ -69,8 +69,49 @@ namespace CodeFrame.Web.Controllers
             var feature = HttpContext.Features.Get<IExceptionHandlerFeature>();
             var error = feature?.Error;
             _logger.Error(error);
-        
+
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        #region 初始化数据库数据
+        /// <summary>
+        /// 初始化数据库数据
+        /// </summary>
+        public void InitDBData()
+        {
+            var repoUser = _unitOfWork.GetRepository<UserInfo>();
+            var repoRole = _unitOfWork.GetRepository<RoleInfo>();
+            if (!repoUser.GetEntities().Any())
+            {
+                repoUser.Insert(new List<UserInfo>()
+                {
+                    new UserInfo() { Id =1, Password = "123456", UserName = "wenqing",
+                        PhoneNo = "15659284668", TrueName = "wenqing"}
+
+                });
+                for (int i = 1; i < 30; i++)
+                {
+                    repoUser.Insert(new List<UserInfo>()
+                    {
+                        new UserInfo() { Id = i+1, Password = "123456", UserName = "超级玛丽"+i,
+                            PhoneNo = "15659284668", TrueName = "超级玛丽"+i }
+                        
+                    });
+                }
+                
+
+                repoRole.Insert(new List<RoleInfo>()
+                {
+                    new RoleInfo() { Id = 1,RoleName="system",CreteTime = DateTime.Now,Describe ="haha"}
+                    ,new RoleInfo() { Id = 2,  RoleName="bos",CreteTime = DateTime.Now,Describe ="lihai"}
+
+                });
+                _unitOfWork.SaveChanges();
+            }
+           
+        }
+        #endregion
     }
 }

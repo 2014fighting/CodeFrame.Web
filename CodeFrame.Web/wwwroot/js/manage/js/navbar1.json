@@ -7,15 +7,15 @@
     "children": [
       {
         "id": "7",
-        "title": "导航栏",
+        "title": "用户管理",
         "icon": "&#xe6c6;",
         "url": "/manage/UserInfo/Index"
       },
       {
         "id": "8",
-        "title": "测试菜单四",
+        "title": "测试菜单一",
         "icon": "&#xe63c;",
-        "url": "form.html"
+        "url": "/manage/UserInfo/Index"
       }
     ]
   },{
@@ -26,15 +26,15 @@
     "children": [
       {
         "id": "9",
-        "title": "测试1",
+        "title": "测试菜单二",
         "icon": "&#xe6c6;",
         "url": "/manage/UserInfo/Index"
       },
       {
         "id": "10",
-        "title": "测试2",
+        "title": "测试菜单一",
         "icon": "&#xe63c;",
-        "url": "form.html"
+        "url": "/manage/UserInfo/Index"
       }
     ]
   },
@@ -42,7 +42,7 @@
     "id": "5",
     "title": "这也是菜单",
     "icon": "fa-stop-circle",
-    "url": "https://www.baidu.com",
+    "url": "/manage/UserInfo/Index",
     "spread": false
   }
 ]

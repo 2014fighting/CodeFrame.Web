@@ -23,7 +23,7 @@ namespace CodeFrame.Web.Controllers
         private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
-        //private readonly ILog _log = LogManager.GetLogger(Startup.Repository.Name, typeof(AccountController));
+        //private readonly ILog _log = LogManager.GetLogger(Startup.Repository..Name, typeof(AccountController));
         public AccountController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
         {
             _unitOfWork = unitOfWork;
@@ -57,6 +57,7 @@ namespace CodeFrame.Web.Controllers
             } );
             
         }
+
         public ActionResult GridTest()
         {
             return View();
@@ -94,7 +95,6 @@ namespace CodeFrame.Web.Controllers
             ViewBag.Errormessage = "登录失败，用户名密码不正确";
             return View();
         }
-
         [HttpGet]
         public  IActionResult  Login()
         {

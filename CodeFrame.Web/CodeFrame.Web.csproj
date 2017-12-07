@@ -64,11 +64,6 @@
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\tree.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\upload.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\util.js" />
-    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\GitHub.url" />
-    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\Git码云.url" />
-    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\在线示例.url" />
-    <None Include="wwwroot\lib\layui-v2.2.3\文档与示例\快速上手.url" />
-    <None Include="wwwroot\lib\layui-v2.2.3\更新日志.url" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>

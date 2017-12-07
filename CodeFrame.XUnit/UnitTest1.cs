@@ -8,6 +8,7 @@ using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
 using CodeFrame.XUnit.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace CodeFrame.XUnit
@@ -30,6 +31,7 @@ namespace CodeFrame.XUnit
         [Fact]
         public void TestMethod1()
         {
+ 
             var repository = new UnitOfWork<InMemoryContext>(_db);
             var city = repository.GetRepository<City>().GetEntities().ToList();
             var s = "akjdflsjfe2awfjwjafwljfe";

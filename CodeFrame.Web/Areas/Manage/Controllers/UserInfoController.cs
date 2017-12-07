@@ -20,7 +20,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
     public class UserInfoController : Controller
     {
         #region Constructor
-        private ILogger<UserInfoController> _logger;
+        private readonly ILogService _logger;
         private readonly IUnitOfWork _unitOfWork;
 
         private readonly IUserInfoService _userInfoService;
@@ -29,7 +29,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         private readonly IMapper _mapper;
 
         public UserInfoController(IUserInfoService userInfoService,
-            IUnitOfWork unitOfWork, ILogger<UserInfoController> logger, IMapper mapper)
+            IUnitOfWork unitOfWork, ILogService logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
@@ -39,8 +39,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
 
         #endregion
 
-
-
+ 
         public IActionResult Index()
         {
             return View();
@@ -55,6 +54,8 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             }
             var user = _mapper.Map<UserInfo>(model);
             var repoUser = _unitOfWork.GetRepository<UserInfo>();
+            //内存数据库无自增长
+            user.Id = repoUser.GetEntities().OrderByDescending(i => i.Id).FirstOrDefault().Id+1;
             repoUser.Insert(user);
 
             var r = _unitOfWork.SaveChanges();
