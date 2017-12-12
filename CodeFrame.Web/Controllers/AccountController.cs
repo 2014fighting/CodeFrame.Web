@@ -20,11 +20,11 @@ namespace CodeFrame.Web.Controllers
     public class AccountController : Controller
     {
         #region Constructor
-        private readonly ILogService _logger;
+        private readonly ILogService<AccountController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
         //private readonly ILog _log = LogManager.GetLogger(Startup.Repository..Name, typeof(AccountController));
-        public AccountController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService logger)
+        public AccountController(IUserInfoService userInfoService, IUnitOfWork unitOfWork, ILogService<AccountController> logger)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;
@@ -82,7 +82,7 @@ namespace CodeFrame.Web.Controllers
                 {
                     identity.AddClaim(new Claim(ClaimTypes.Role, i.RoleInfo.RoleName));
                 });
-
+                
                 // 将用户身份信息写入到响应cookie中 ，[Authorize]
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 _logger.Info($"{user.UserName}用户登入~");
@@ -98,6 +98,7 @@ namespace CodeFrame.Web.Controllers
         [HttpGet]
         public  IActionResult  Login()
         {
+            _userInfoService.InitDbData();
             return View();
         }
         [HttpGet]

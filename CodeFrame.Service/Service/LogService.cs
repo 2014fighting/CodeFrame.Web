@@ -12,7 +12,7 @@ using log4net.Repository;
 
 namespace CodeFrame.Service.Service
 {
-    public class LogService : ILogService 
+    public class LogService<T> : ILogService<T>
     {
         private   readonly ILog _logger;
         public   ILoggerRepository Repository;
@@ -23,7 +23,7 @@ namespace CodeFrame.Service.Service
                 LogManager.CreateRepository("NETCoreRepository");
             if (_logger == null)
             {
-                _logger = LogManager.GetLogger(Repository.Name, typeof(LogService));
+                _logger = LogManager.GetLogger(Repository.Name, typeof(T));
                 InitConfig();
             }
         }

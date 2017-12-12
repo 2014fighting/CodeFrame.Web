@@ -15,7 +15,7 @@ namespace CodeFrame.XUnit
 {
    public  class ControllerTest
     {
-        private readonly ILogService _logger;
+        private readonly ILogService<AccountController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserInfoService _userInfoService;
         public ControllerTest()
@@ -26,7 +26,7 @@ namespace CodeFrame.XUnit
             var optionsBuilder1 = optionsBuilder.UseMySql("Server=localhost;database=CodeFrameDb;uid=root;pwd=abc123;");
             _userInfoService = new UserInfoService(
                 new UnitOfWork<CodeFrameContext>(new CodeFrameContext(optionsBuilder1.Options)));
-            _logger=new LogService();
+            _logger=new LogService<AccountController>();
             _unitOfWork=new UnitOfWork<CodeFrameContext>(new CodeFrameContext(optionsBuilder1.Options));
         }
         [Fact]

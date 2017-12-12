@@ -20,7 +20,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
     public class UserInfoController : Controller
     {
         #region Constructor
-        private readonly ILogService _logger;
+        private readonly ILogService<UserInfoController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
         private readonly IUserInfoService _userInfoService;
@@ -29,7 +29,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         private readonly IMapper _mapper;
 
         public UserInfoController(IUserInfoService userInfoService,
-            IUnitOfWork unitOfWork, ILogService logger, IMapper mapper)
+            IUnitOfWork unitOfWork, ILogService<UserInfoController> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _userInfoService = userInfoService;

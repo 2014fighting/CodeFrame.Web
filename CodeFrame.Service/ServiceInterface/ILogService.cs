@@ -5,7 +5,7 @@ using log4net;
 
 namespace CodeFrame.Service.ServiceInterface
 {
-    public interface ILogService 
+    public interface ILogService<T>
     {
             
         void Error(Exception ex);

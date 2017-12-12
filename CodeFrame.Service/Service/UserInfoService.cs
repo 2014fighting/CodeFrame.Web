@@ -59,5 +59,44 @@ namespace CodeFrame.Service.Service
         {
             return true;
         }
+
+        #region 初始化数据库数据
+        /// <summary>
+        /// 初始化数据库数据
+        /// </summary>
+        public void InitDbData()
+        {
+            var repoUser = _unitOfWork.GetRepository<UserInfo>();
+            var repoRole = _unitOfWork.GetRepository<RoleInfo>();
+            if (!repoUser.GetEntities().Any())
+            {
+                repoUser.Insert(new List<UserInfo>()
+                {
+                    new UserInfo() { Id =1, Password = "123456", UserName = "wenqing",
+                        PhoneNo = "15659284668", TrueName = "wenqing"}
+
+                });
+                for (int i = 1; i < 30; i++)
+                {
+                    repoUser.Insert(new List<UserInfo>()
+                    {
+                        new UserInfo() { Id = i+1, Password = "123456", UserName = "超级玛丽"+i,
+                            PhoneNo = "15659284668", TrueName = "超级玛丽"+i }
+
+                    });
+                }
+
+
+                repoRole.Insert(new List<RoleInfo>()
+                {
+                    new RoleInfo() { Id = 1,RoleName="system",CreteTime = DateTime.Now,Describe ="haha"}
+                    ,new RoleInfo() { Id = 2,  RoleName="bos",CreteTime = DateTime.Now,Describe ="lihai"}
+
+                });
+                _unitOfWork.SaveChanges();
+            }
+
+        }
+        #endregion
     }
 }
