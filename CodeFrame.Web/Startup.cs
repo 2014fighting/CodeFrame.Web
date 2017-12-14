@@ -55,12 +55,18 @@ namespace CodeFrame.Web
             log.Info("ConfigureServices开始");
 
             var connection = Configuration.GetConnectionString("MySqlConnection");
-            //services.AddDbContext<CodeFrameContext>(options => options.UseMySql(connection));
+           
             //DbContext 连接池 2.0版本
+             
             services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
+             
+            // services.AddDbContextPool<CodeFrameContext>(options => options.UseMySql(connection));
+
+
+
             services.AddUnitOfWork<CodeFrameContext>();//添加UnitOfWork支持
-            //集中注入服务
-            foreach (var item in ProjectCom.GetClassName("CodeFrame.Service"))
+          
+            foreach (var item in ProjectCom.GetClassName("CodeFrame.Service")) //集中注入服务
             {
                 foreach (var typeArray in item.Value)
                 {
@@ -90,9 +96,8 @@ namespace CodeFrame.Web
                         .AllowCredentials();//指定处理cookie
                 });
             });
-
-            //you can configure Json.NET to ignore cycles that it finds in the object graph
-            services.AddMvc();
+             
+             services.AddMvc();
             _services = services;
         }
 

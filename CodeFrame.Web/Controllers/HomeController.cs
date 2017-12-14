@@ -35,7 +35,6 @@ namespace CodeFrame.Web.Controllers
 
         public IActionResult Index()
         {
-             _userInfoService.InitDbData();
             _logger.Info("握了个叉");
             _logger.Info("错误信息");
 

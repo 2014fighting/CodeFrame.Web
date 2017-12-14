@@ -96,7 +96,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 return View(model);
             }
             var user = _unitOfWork.GetRepository<UserInfo>().Find(model.Id);
-
+            user.UpdateTime=DateTime.Now;
             _mapper.Map(model, user);
             
             var r = _unitOfWork.SaveChanges();

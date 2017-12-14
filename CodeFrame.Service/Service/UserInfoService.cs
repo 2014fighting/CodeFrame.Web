@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CodeFrame.Models.DbModel;
-using CodeFrame.Models.VModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -70,29 +69,18 @@ namespace CodeFrame.Service.Service
             var repoRole = _unitOfWork.GetRepository<RoleInfo>();
             if (!repoUser.GetEntities().Any())
             {
-                repoUser.Insert(new List<UserInfo>()
+               
+                for (int i =0; i < 30; i++)
                 {
-                    new UserInfo() { Id =1, Password = "123456", UserName = "wenqing",
-                        PhoneNo = "15659284668", TrueName = "wenqing"}
-
-                });
-                for (int i = 1; i < 30; i++)
-                {
+                     
                     repoUser.Insert(new List<UserInfo>()
                     {
-                        new UserInfo() { Id = i+1, Password = "123456", UserName = "超级玛丽"+i,
+                        new UserInfo() {  Password = "123456", UserName = "超级玛丽"+i,
                             PhoneNo = "15659284668", TrueName = "超级玛丽"+i }
 
                     });
                 }
-
-
-                repoRole.Insert(new List<RoleInfo>()
-                {
-                    new RoleInfo() { Id = 1,RoleName="system",CreteTime = DateTime.Now,Describe ="haha"}
-                    ,new RoleInfo() { Id = 2,  RoleName="bos",CreteTime = DateTime.Now,Describe ="lihai"}
-
-                });
+ 
                 _unitOfWork.SaveChanges();
             }
 

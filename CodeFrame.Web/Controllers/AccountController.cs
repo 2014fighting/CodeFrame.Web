@@ -98,7 +98,6 @@ namespace CodeFrame.Web.Controllers
         [HttpGet]
         public  IActionResult  Login()
         {
-            _userInfoService.InitDbData();
             return View();
         }
         [HttpGet]
