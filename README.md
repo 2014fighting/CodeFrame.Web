@@ -10,4 +10,4 @@
 - EntityFrameworkCore https://github.com/aspnet/EntityFrameworkCore
 - layui https://github.com/sentsin/layui/
 - AutoMaper https://github.com/AutoMapper
-- https://github.com/StackExchange/StackExchange.Redis
+- Redis https://github.com/StackExchange/StackExchange.Redis
