@@ -116,9 +116,9 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             if (!string.IsNullOrEmpty(user.UserName))
                 result = result.Where(i => i.UserName.Contains(user.UserName));
             if (!string.IsNullOrEmpty(user.PhoneNo))
-                result = result.Where(i => i.UserName.Contains(user.PhoneNo));
+                result = result.Where(i => i.PhoneNo.Contains(user.PhoneNo));
             if (!string.IsNullOrEmpty(user.TrueName))
-                result = result.Where(i => i.UserName.Contains(user.TrueName));
+                result = result.Where(i => i.TrueName.Contains(user.TrueName));
             var w1 = result.OrderByDescending(x => x.Id).Skip((page - 1) * limit).Take(limit);
             return Json(new
             {
