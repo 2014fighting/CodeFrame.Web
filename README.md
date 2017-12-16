@@ -11,3 +11,5 @@
 - layui https://github.com/sentsin/layui/
 - AutoMaper https://github.com/AutoMapper
 - Redis https://github.com/StackExchange/StackExchange.Redis
+
+> 项目已发布linux 预览地址  http://demo.siyouku.cn/
