@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CodeFrame.Common;
+using CodeFrame.Common.Config;
 using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
 using StackExchange.Redis;
