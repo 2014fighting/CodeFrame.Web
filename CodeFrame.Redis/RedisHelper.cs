@@ -12,6 +12,7 @@ namespace CodeFrame.Redis
     /// 参考
     /// https://github.com/StackExchange/StackExchange.Redis
     /// https://github.com/zhaopeiym/Hi-Blogs
+    /// http://www.cnblogs.com/liqingwen/p/6672452.html
     /// </summary>
     public class RedisHelper
     {

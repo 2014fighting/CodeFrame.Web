@@ -32,21 +32,28 @@
         </div>
 
         <div style="float: left">
-            <button class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="demo1">查询</button>
-            <button type="reset" class="layui-btn layui-btn-normal layui-btn-radius">重置</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-submit=""
+                    lay-filter="demo1"><span class="layui-icon">
+                                           &#xe615;
+            </span>查询</button>
+            <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius">
+                <span class="layui-icon">
+                    &#xe639;
+                </span>重置
+            </button>
         </div>
     </fieldset>
 </form>
 <div class="layui-btn-group mytool">
-    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btnadd"><i class="layui-icon"></i>新增</button>
-    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btnedit"><i class="layui-icon"></i>编辑</button>
-    <button class="layui-btn layui-btn-primary layui-btn-sm" id="btndel"><i class="layui-icon"></i>删除</button>
+    <button class="layui-btn layui-btn-normal layui-btn-sm" id="btnadd"><i class="layui-icon">&#xe654;</i>新增</button>
+    <button class="layui-btn layui-btn-sm" id="btnedit"><i class="layui-icon">&#xe642;</i>编辑</button>
+    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</button>
 </div>
 <table id="demo" lay-filter="test"></table>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 </script>
 
 
@@ -166,10 +173,10 @@
                     , { field: 'phoneNo', title: '电话', width: 120 }
                     , { field: 'updateTime', title: '修改时间', width: 180 }
                     , { field: 'creteTime', title: '创建时间', width:180, sort: true }
-                    , { fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo' }
+                    , { fixed: 'right', width:210, align: 'center', toolbar: '#barDemo' }
                 ]]
-                , skin: 'row' //表格风格
-                , even: true
+                //, skin: 'row' //表格风格
+                , even: false
                 , page: true //是否显示分页
                 , limits: [5, 7, 10,100]
                 , limit:10 //每页默认显示的数量

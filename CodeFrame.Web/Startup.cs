@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using CodeFrame.Common;
+using CodeFrame.Common.Config;
 using CodeFrame.Models;
 using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
@@ -15,6 +16,7 @@ using log4net;
 using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +24,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -33,6 +36,11 @@ namespace CodeFrame.Web
         private IServiceCollection _services;
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
+            var path = Directory.GetCurrentDirectory();
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true)
+                .Build();
             //在CreateDefaultBuilder 已经配置 再此可以重写
             //var builder = new ConfigurationBuilder()
             //    .SetBasePath(env.ContentRootPath)
@@ -55,9 +63,7 @@ namespace CodeFrame.Web
         {
             ILogService<Startup> log=new LogService<Startup>();
             log.Info("ConfigureServices开始");
-
-            var connection = Configuration.GetConnectionString("MySqlConnection");
-           
+  
             //DbContext 连接池 2.0版本
              
             services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
@@ -79,12 +85,37 @@ namespace CodeFrame.Web
 
             //services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
             //添加授权支持，并添加使用Cookie的方式，配置登录页面和没有权限时的跳转页面。
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)//传入默认授权方案
+            //https://www.cnblogs.com/seriawei/p/7452743.html
+            services.AddAuthentication(option =>
+                {
+                    option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })//传入默认授权方案
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                 {
                     o.LoginPath = new PathString("/Account/Login");
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
+
+            //添加jwt授权
+            //services.AddAuthentication(option =>
+            //    {
+            //        option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    }) //传入默认授权方案
+            //    .AddJwtBearer(o =>
+            //    {
+            //        o.TokenValidationParameters = new TokenValidationParameters()
+            //        {
+            //            ValidAudience = JwtConfig.JwtConfigModel.Audience,
+            //            ValidIssuer = JwtConfig.JwtConfigModel.Issuer,
+            //            IssuerSigningKey = new SymmetricSecurityKey(
+            //                Encoding.UTF8.GetBytes(JwtConfig.JwtConfigModel.SecretKey))
+            //        };
+
+            //    });
+
+
             services.AddAutoMapper();//配置autoapper
 
             

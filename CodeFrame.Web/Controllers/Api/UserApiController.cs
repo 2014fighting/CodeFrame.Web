@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeFrame.Web.Controllers.Api
 {
+    //[Authorize]
     [Produces("application/json")]
     [Route("api/[controller]/[Action]")]
     [EnableCors("any")]
@@ -33,6 +35,7 @@ namespace CodeFrame.Web.Controllers.Api
         {
             var userModel = _unitOfWork.GetRepository<UserInfo>().GetPagedList(pageSize: count);
             return Ok(userModel);
+            
         }
     }
 }

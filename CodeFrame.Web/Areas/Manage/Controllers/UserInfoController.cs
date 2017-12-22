@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
@@ -145,6 +146,13 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 Code = r ? 0 : 1,
                 Msg = r ? "ok" : "SaveChanges失败！"
             });
+        }
+
+        [HttpGet]
+        public ActionResult GetRolesList()
+        {
+            var lstRes = _unitOfWork.GetRepository<RoleInfo>().GetEntities();
+            return Json(new { items = lstRes.ProjectTo<SelectsModel>().ToList(), total_count = lstRes.Count() });
         }
     }
 }

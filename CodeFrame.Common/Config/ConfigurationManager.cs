@@ -8,6 +8,9 @@ using Microsoft.Extensions.Options;
 
 namespace CodeFrame.Common.Config
 {
+    /// <summary>
+    /// 参考:https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/configuration/index?tabs=basicconfiguration
+    /// </summary>
     public class ConfigurationManager
     {
         public static readonly IConfiguration Configuration;
@@ -19,23 +22,30 @@ namespace CodeFrame.Common.Config
                 .AddJsonFile("appsettings.json", optional: true)
                 .Build();
         }
-
+        /// <summary>
+        /// 获取json配置映射到模型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static T GetSection<T>(string key) where T : class, new()
-        {
-            var obj = new ServiceCollection()
-                .AddOptions()
-                .Configure<T>(Configuration.GetSection(key))
-                .BuildServiceProvider()
-                .GetService<IOptions<T>>()
-                .Value;
-            return obj;
+        { 
+            return Configuration.GetSection(key).Get<T>();
         }
-
+        /// <summary>
+        /// 获取json字符串  key 需要重头开始以键值对方式如  "JwtSettings:SecretKey"
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string GetSection(string key)
         {
-            return Configuration.GetValue<string>(key);
+            return Configuration.GetSection(key).Value;
         }
-
+        /// <summary>
+        /// 获取链接字符串
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string GetConnectionString(string key)
         {
             return Configuration.GetConnectionString(key);
