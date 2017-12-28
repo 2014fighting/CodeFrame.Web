@@ -1,5 +1,5 @@
 # CodeFrame.Web
-- 基于.net core 2.0的代码框架，可用与快速构建web项目
+- 基于.net core 2.0的代码框架，用于快速构建web项目
 - 实现基本的 UnitOfWork+Repository模式
 - 封装Redis的基本使用
 
