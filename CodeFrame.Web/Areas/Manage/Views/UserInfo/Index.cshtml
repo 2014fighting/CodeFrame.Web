@@ -49,7 +49,9 @@
     <button class="layui-btn layui-btn-sm" id="btnedit"><i class="layui-icon">&#xe642;</i>编辑</button>
     <button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</button>
 </div>
-<table id="demo" lay-filter="test"></table>
+ 
+    <table id="demo" lay-filter="test"></table>
+ 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
@@ -59,20 +61,14 @@
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-  
     var tableIns;
-    function hideTest(obj) {
-        $(obj).parent().parent().remove();
-        tableIns.reload({
-            heigth: getHeight()
-        });
-    }
-
-    layui.use(['form', 'layedit', 'laydate', 'table','layer'],
+    
+    layui.use(['form', 'layedit', 'laydate', 'table', 'layer','manageCom'],
         function() {
             var form = layui.form
                 , layer = layui.layer
                 , laydate = layui.laydate
+                , manage = layui.manageCom
                 , table = layui.table;
 
             //日期
@@ -163,7 +159,7 @@
             tableIns=table.render({
                 elem: '#demo',
                 url: '@Url.Action("GetUserInfo")'
-                , height:getHeight()
+                , height:manage.getHeight()
                 , cols: [[ //标题栏
                     { checkbox: true, LAY_CHECKED: false } //默认全选
                     , { field: 'id', title: 'id', width: 80, sort: true }

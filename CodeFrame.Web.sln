@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.UnitOfWork", "Cod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.XUnit", "CodeFrame.XUnit\CodeFrame.XUnit.csproj", "{754D9915-37E7-48F2-B826-44022D9C3894}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFrame.Redis", "CodeFrame.Redis\CodeFrame.Redis.csproj", "{767C0241-89BD-431F-A05F-CAE11C54BDB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Redis", "CodeFrame.Redis\CodeFrame.Redis.csproj", "{767C0241-89BD-431F-A05F-CAE11C54BDB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

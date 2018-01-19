@@ -7,8 +7,15 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/lib/layui-v2.2.3/layui/css/layui.css" rel="stylesheet" />
     <script src="~/lib/layui-v2.2.3/layui/layui.js"></script>
-    <script src="~/js/manageCom.js"></script>
     <link href="~/css/manage.css" rel="stylesheet" />
+    <script type="text/javascript">
+        layui.config({
+            base: '/js/' //假设这是你存放拓展模块的根目录
+        }).extend({ //设定模块别名
+            manageCom: 'manageCom' //如果 manageCom.js 是在根目录，也可以不用设定别名
+            , layuiExtend:'layuiExtend'
+        });
+    </script> 
 </head>
 <body class="layui-layout-body">
 <div>@RenderBody()</div>

@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "AddUser";
 }
- 
+
 <div>
     <form class="layui-form" action="">
-        <fieldset class="layui-elem-field comfield" style="margin: 0">
+        <fieldset class="layui-elem-field comfield" style="margin: 0;height:485px">
             <div style="float:left">
                 <div class="layui-form-item">
                     <div class="layui-inline">
@@ -23,7 +23,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">用户手机</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input"  placeholder="手机号">
+                            <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="手机号">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -32,7 +32,28 @@
                             <input type="text" name="TrueName" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
                         </div>
                     </div>
-                     
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择框</label>
+                    <div class="layui-input-block">
+                        <select name="city" lay-filter="city">
+                            <option value=""></option>
+                            <option value="0">北京</option>
+                            <option value="1">上海</option>
+                            <option value="2">广州</option>
+                            <option value="3">深圳</option>
+                            <option value="4">杭州</option>
+                            <option value="5">杭州</option>
+                            <option value="6">杭州</option>
+                            <option value="7">杭州</option>
+                            <option value="8">杭州</option>
+                            <option value="9">杭州</option>
+                            <option value="10">杭州</option>
+                            <option value="11">杭州</option>
+                            <option value="12">杭州</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -48,12 +69,22 @@
 <script type="text/javascript">
     //注意：parent 是 JS 自带的全局对象，可用于操作父页面
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-    layui.use(['form', 'layedit', 'laydate', 'table','layer'],
+    layui.use(['form', 'layedit', 'laydate', 'table', 'layer','layuiExtend'],
         function() {
-            var form = layui.form, layer = layui.layer;
+            var form = layui.form, layer = layui.layer,
+                formselect = layui.layuiExtend.formSelects;
+
+            formselect.on({
+                layFilter: 'city',	//绑定select lay-filter
+                left: '【',		//显示的符号left
+                right: '】',		//显示的符号right
+                separator: ''		//多选分隔符
+            });
             //监听提交
             form.on('submit(demo1)', function (data) {
-                //console.info(data.field);
+                console.info(JSON.stringify(formselect.arr));
+                data.field.city = formselect.arr;
+
                 //自定义验证规则
                 form.verify({
                     username: function(value) {
@@ -77,8 +108,8 @@
                     });
                 return false;
             });
- 
-  
+
+
         });
 
 

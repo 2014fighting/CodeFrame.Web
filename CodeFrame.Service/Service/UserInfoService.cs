@@ -22,22 +22,31 @@ namespace CodeFrame.Service.Service
             var repoRole = _unitOfWork.GetRepository<RoleInfo>();
             var repoUr = _unitOfWork.GetRepository<UserRole>();
 
-            //repoUr.Find();
-
-            //repoRole.Insert(new RoleInfo()
-            //{
-            //    RoleName = "炒鸡管理11",
-            //    Describe = "miaoshu11"
-            //});
-            //_unitOfWork.SaveChanges();
-            repoUser.Insert(new UserInfo
+            var rlist = new List<UserInfo>()
             {
-                UserName = "wenqing" + new Random().Next(),
-                Password = "123456666",
-                TrueName = "wenqing666"
-            });
-            return _unitOfWork.SaveChanges() > 0;//提交到数据库
-
+                new UserInfo() {Password = "123456", UserName = "wenqing",
+                    PhoneNo = "15659284668", TrueName = "文清"},
+                new UserInfo() {Password = "123456", UserName = "admin",
+                    PhoneNo = "15659284668", TrueName = "管理员"},
+                new UserInfo() {Password = "123456", UserName = "supadmin",
+                    PhoneNo = "15659284668", TrueName = "超级管理员"}
+            };
+            for (int i = 1; i < 30; i++)
+            {
+                rlist.Add(
+                    new UserInfo()
+                    {
+                        Password = "123456",
+                        UserName = "LeBronJames" + i,
+                        PhoneNo = "15659286666",
+                        TrueName = "勒布朗·詹姆斯" + i
+                    });
+            }
+            if (!repoUser.GetEntities().Any()) { 
+                repoUser.Insert(rlist);
+                _unitOfWork.SaveChanges(); //提交到数据库
+            }
+            return true;
         }
 
         public UserInfo GetUserInfo(string userName, string password)

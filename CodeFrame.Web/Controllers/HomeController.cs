@@ -38,7 +38,7 @@ namespace CodeFrame.Web.Controllers
             _logger.Info("握了个叉");
             _logger.Info("错误信息");
 
-            //_userInfoService.AddUserInfo();
+             _userInfoService.AddUserInfo();
             var xuser = _unitOfWork.GetRepository<UserInfo>().
                 GetPagedList(predicate: i => i.UserName.Contains("wenqing"), orderBy: sour => sour.OrderByDescending(i => i.Id));
             //var xuser = _unitOfWork.GetRepository<UserInfo>()
