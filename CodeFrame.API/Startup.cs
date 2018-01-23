@@ -5,6 +5,8 @@ using CodeFrame.Models;
 using CodeFrame.Service.Service;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
+using log4net;
+using log4net.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,8 +22,10 @@ namespace CodeFrame.API
 {
     public class Startup
     {
+        public static ILoggerRepository Repository;
         public Startup(IConfiguration configuration)
         {
+            Repository = LogManager.CreateRepository("NETCoreRepository");
             Configuration = configuration;
         }
 
@@ -103,7 +107,14 @@ namespace CodeFrame.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
