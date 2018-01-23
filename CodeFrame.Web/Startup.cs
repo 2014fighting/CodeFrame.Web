@@ -16,7 +16,6 @@ using log4net;
 using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -97,24 +96,7 @@ namespace CodeFrame.Web
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
 
-            //添加jwt授权
-            //services.AddAuthentication(option =>
-            //    {
-            //        option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //        option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    }) //传入默认授权方案
-            //    .AddJwtBearer(o =>
-            //    {
-            //        o.TokenValidationParameters = new TokenValidationParameters()
-            //        {
-            //            ValidAudience = JwtConfig.JwtConfigModel.Audience,
-            //            ValidIssuer = JwtConfig.JwtConfigModel.Issuer,
-            //            IssuerSigningKey = new SymmetricSecurityKey(
-            //                Encoding.UTF8.GetBytes(JwtConfig.JwtConfigModel.SecretKey))
-            //        };
-
-            //    });
-
+   
 
             services.AddAutoMapper();//配置autoapper
 

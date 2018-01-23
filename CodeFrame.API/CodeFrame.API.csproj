@@ -10,10 +10,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeFrame.Common\CodeFrame.Common.csproj" />
+    <ProjectReference Include="..\CodeFrame.Models\CodeFrame.Models.csproj" />
+    <ProjectReference Include="..\CodeFrame.Service\CodeFrame.Service.csproj" />
   </ItemGroup>
 
 </Project>
