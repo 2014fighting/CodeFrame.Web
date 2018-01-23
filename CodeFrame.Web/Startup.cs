@@ -63,12 +63,12 @@ namespace CodeFrame.Web
         {
             ILogService<Startup> log=new LogService<Startup>();
             log.Info("ConfigureServices开始");
-  
+
             //DbContext 连接池 2.0版本
-             
-            services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
-             
-            // services.AddDbContextPool<CodeFrameContext>(options => options.UseMySql(connection));
+
+            // services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
+
+            services.AddDbContextPool<CodeFrameContext>(options => options.UseMySql(AppConfig.MySqlConnection));
 
 
 
@@ -136,7 +136,7 @@ namespace CodeFrame.Web
                         //忽略循环引用
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                         //不使用驼峰样式的key
-                        //options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                       options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                         //设置时间格式
                         options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                     }

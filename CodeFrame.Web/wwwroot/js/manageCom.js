@@ -8,9 +8,9 @@
     var manageCom = {
 
         getHeight:function () {
-            return $(window).height() - $('fieldset').outerHeight(true)
-                - $('.mytool').outerHeight(true);
-    }
+            return $(window).height() -
+                $('fieldset').outerHeight(true) - $('.mytool').outerHeight(true);
+        }
 }
     exports('manageCom', manageCom);
 });

@@ -13,9 +13,9 @@
       },
       {
         "id": "8",
-        "title": "测试菜单一",
+        "title": "角色管理",
         "icon": "&#xe63c;",
-        "url": "/manage/UserInfo/Index"
+        "url": "/manage/RoleInfo/Index"
       }
     ]
   },{

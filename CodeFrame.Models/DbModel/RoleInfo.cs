@@ -17,7 +17,7 @@ namespace CodeFrame.Models.DbModel
         [Required]
         public string Describe { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public  List<UserRole> UserRoles { get; set; }
     }

@@ -25,7 +25,18 @@ namespace CodeFrame.Models.DbModel
         [StringLength(11)]
         public string PhoneNo { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public List<UserRole> UserRoles { get; set; }
+
+        /// <summary>
+        /// 部门外键
+        /// </summary>
+        public  int ?DepartMentId { get; set; }
+
+        [ForeignKey("DepartMentId")]
+        public DepartMent DepartMent { get; set; }
+
 
     }
 }

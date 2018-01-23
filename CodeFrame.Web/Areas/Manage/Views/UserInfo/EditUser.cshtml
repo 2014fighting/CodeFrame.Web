@@ -73,13 +73,14 @@
                 $.post('@Url.Action("EditUser")',
                     data.field,
                     function (data) {
-                        if (data.code === 0) {
-                            parent.layer.msg("修改成功！：" + data.msg);
+                        if (data.Code === 0) {
+                            parent.layer.msg("修改成功！：" + data.Msg);
                             parent.layer.close(index);
+                            console.info(parent.tableIns);
                             parent.tableIns.reload();
                         }
                         else
-                            layer.msg("保存失败：" + data.msg);
+                            layer.msg("保存失败：" + data.Msg);
                     });
                 return false;
             });

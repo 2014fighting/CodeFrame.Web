@@ -18,7 +18,190 @@ namespace CodeFrame.Models.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Button", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BtnClass")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("BtnIcon")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("BtnName")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("BtnScript")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("BtnTip")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("BtnUrl")
+                        .HasMaxLength(300);
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<string>("DisplayCondition")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("EditType");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("SpName")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("SysTableId");
+
+                    b.Property<int?>("TableId");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("t_sys_Button");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Column", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ColumnName")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("ColumnType");
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<string>("DataOptions")
+                        .HasMaxLength(300);
+
+                    b.Property<int>("DisplayType");
+
+                    b.Property<int>("FkTableId");
+
+                    b.Property<bool>("IsIndexed");
+
+                    b.Property<bool>("IsShow");
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<string>("ReMark");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("ShowName")
+                        .HasMaxLength(20);
+
+                    b.Property<int?>("TableId");
+
+                    b.Property<string>("Tip")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("t_sys_Column");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.DepartMent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<string>("DptName")
+                        .HasMaxLength(20);
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<int>("ParentId");
+
+                    b.Property<string>("ReMark");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_sys_DepartMent");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("MenuName")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("MenuUrl")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<int?>("ParentMenuId");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<int?>("SubSystemId");
+
+                    b.Property<int?>("SysTableId");
+
+                    b.Property<int?>("TableId");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubSystemId");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("t_sys_MenuInfo");
+                });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.RoleInfo", b =>
                 {
@@ -26,6 +209,8 @@ namespace CodeFrame.Models.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
 
                     b.Property<string>("Describe")
                         .IsRequired()
@@ -42,9 +227,108 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
+                    b.Property<DateTime?>("UpdateUser");
+
                     b.HasKey("Id");
 
                     b.ToTable("t_sys_RoleInfo");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.RolePower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ButtonId");
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<int>("MentId");
+
+                    b.Property<int>("RoleId");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<int>("Type");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_sys_RolePower");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.SubSystem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Link");
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<string>("ReMark");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("SystemIcon");
+
+                    b.Property<string>("SystemName");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_sys_SubSystem");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsMultiple");
+
+                    b.Property<bool>("IsPaging");
+
+                    b.Property<int>("OrderBy");
+
+                    b.Property<string>("ReMark");
+
+                    b.Property<DateTime>("RowVersion")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("ShowName");
+
+                    b.Property<string>("TableName");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<DateTime?>("UpdateUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_sys_Table");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.UserInfo", b =>
@@ -53,6 +337,12 @@ namespace CodeFrame.Models.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreteTime");
+
+                    b.Property<DateTime>("CreteUser");
+
+                    b.Property<int?>("DepartMentId");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -70,11 +360,15 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
+                    b.Property<DateTime?>("UpdateUser");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartMentId");
 
                     b.ToTable("t_sys_UserInfo");
                 });
@@ -90,6 +384,38 @@ namespace CodeFrame.Models.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("t_sys_UserRole");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Button", b =>
+                {
+                    b.HasOne("CodeFrame.Models.DbModel.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Column", b =>
+                {
+                    b.HasOne("CodeFrame.Models.DbModel.Table", "Table")
+                        .WithMany("Columns")
+                        .HasForeignKey("TableId");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.Menu", b =>
+                {
+                    b.HasOne("CodeFrame.Models.DbModel.SubSystem", "SubSystem")
+                        .WithMany("MenuInfo")
+                        .HasForeignKey("SubSystemId");
+
+                    b.HasOne("CodeFrame.Models.DbModel.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId");
+                });
+
+            modelBuilder.Entity("CodeFrame.Models.DbModel.UserInfo", b =>
+                {
+                    b.HasOne("CodeFrame.Models.DbModel.DepartMent", "DepartMent")
+                        .WithMany("UserInfos")
+                        .HasForeignKey("DepartMentId");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.UserRole", b =>

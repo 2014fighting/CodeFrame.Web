@@ -32,6 +32,16 @@ namespace CodeFrame.Models.DbModel
         /// <summary>
         /// 修改时间
         /// </summary>
-        public DateTime? UpdateTime { get; set; } 
+        public DateTime? UpdateTime { get; set; }
+
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public DateTime CreteUser { get; set; }
+
+        /// <summary>
+        /// 修改人
+        /// </summary>
+        public DateTime? UpdateUser { get; set; }
     }
 }
