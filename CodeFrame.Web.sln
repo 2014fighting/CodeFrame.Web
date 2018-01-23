@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.XUnit", "CodeFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Redis", "CodeFrame.Redis\CodeFrame.Redis.csproj", "{767C0241-89BD-431F-A05F-CAE11C54BDB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFrame.API", "CodeFrame.API\CodeFrame.API.csproj", "{F976FE72-1170-4AAC-89D6-CDF878A8C037}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{767C0241-89BD-431F-A05F-CAE11C54BDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{767C0241-89BD-431F-A05F-CAE11C54BDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{767C0241-89BD-431F-A05F-CAE11C54BDB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F976FE72-1170-4AAC-89D6-CDF878A8C037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F976FE72-1170-4AAC-89D6-CDF878A8C037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F976FE72-1170-4AAC-89D6-CDF878A8C037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F976FE72-1170-4AAC-89D6-CDF878A8C037}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
