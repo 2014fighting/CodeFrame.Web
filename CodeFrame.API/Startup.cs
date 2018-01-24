@@ -100,7 +100,7 @@ namespace CodeFrame.API
                     }
                 );
 
-
+            //参考 http://www.cnblogs.com/suxinlcq/p/6757556.html
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
