@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using CodeFrame.Common;
 using CodeFrame.Common.Config;
 using CodeFrame.Models;
@@ -13,9 +14,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 
 namespace CodeFrame.API
@@ -96,6 +99,26 @@ namespace CodeFrame.API
                         options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                     }
                 );
+
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "TwBusManagement接口文档",
+                    Description = "RESTful API for TwBusManagement",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Alvin_Su", Email = "asdasdasd@outlook.com", Url = "" }
+                });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "CodeFrame.API.xml");
+                c.IncludeXmlComments(xmlPath);
+
+                //  c.OperationFilter<HttpHeaderOperation>(); // 添加httpHeader参数
+            });
             services.AddMvc();
         }
 
@@ -108,13 +131,23 @@ namespace CodeFrame.API
             }
 
             app.UseStaticFiles();
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TwBusManagement API V1");
+                c.ShowRequestHeaders();
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+        
         }
     }
 }

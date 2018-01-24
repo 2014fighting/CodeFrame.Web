@@ -30,7 +30,7 @@ namespace CodeFrame.API.Controllers
         {
             _userInfoService = userInfoService;
         }
-
+        [HttpPost]
         public ActionResult GetToken(LoginViewModel viewModel)
         {
             viewModel.UserName = "wenqing";
