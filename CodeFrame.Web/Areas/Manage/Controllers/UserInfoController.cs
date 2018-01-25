@@ -18,7 +18,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
     [Authorize]
-    public class UserInfoController : Controller
+    public class UserInfoController : BaseController
     {
         #region Constructor
         private readonly ILogService<UserInfoController> _logger;
@@ -43,6 +43,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
  
         public IActionResult Index()
         {
+           
             return View();
         }
 

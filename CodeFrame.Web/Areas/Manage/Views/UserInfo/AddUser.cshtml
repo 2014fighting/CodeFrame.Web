@@ -4,7 +4,7 @@
 }
 
 <div>
-    <form class="layui-form" action="">
+    <form class="layui-form layui-form-pane" action="">
         <fieldset class="layui-elem-field comfield" style="margin: 0;height:485px">
             <div style="float:left">
                 <div class="layui-form-item">
@@ -35,37 +35,16 @@
 
                 </div>
                 <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">选择框</label>
-                        <div class="layui-input-block">
-                            <select name="city" lay-filter="city">
-                                <option value=""></option>
-                                <option value="0">北京</option>
-                                <option value="1">上海</option>
-                                <option value="2">广州</option>
-                                <option value="3">深圳</option>
-                                <option value="4">杭州</option>
-                                <option value="5">杭州</option>
-                                <option value="6">杭州</option>
-                                <option value="7">杭州</option>
-                                <option value="8">杭州</option>
-                                <option value="9">杭州</option>
-                                <option value="10">杭州</option>
-                                <option value="11">杭州</option>
-                                <option value="12">杭州</option>
-                            </select>
-                        </div>
-                    </div>
                     
-                    <div class="layui-inline">
-                        <label class="layui-form-label">角色</label>
-                        <div class="layui-input-block">
+                        <label class="layui-form-label">用户角色</label>
+                        <div class="layui-input-block layui-form" lay-filter="role_select" >
                             <select name="role" lay-filter="role">
                                 <option value=""></option>
-                             
                             </select>
                         </div>
-                    </div>
+                
+                    
+                    
                 </div>
                 
 
@@ -86,7 +65,7 @@
     layui.use(['form', 'layedit', 'laydate', 'table', 'layer','layuiExtend'],
         function () {
 
-
+            var   formselect = layui.layuiExtend.formSelects;
             var form = layui.form, layer = layui.layer;
             $.get('@Url.Action("GetAllRoleInfo","RoleInfo")', function (data) {
                 data.forEach( 
@@ -94,17 +73,16 @@
                         console.info(item);
                         $("select[name='role']").append('<option value="' + item.Id + '">'
                             + item.RoleName + '</option>');
+                       
                     });
-                form.render('select');
+                form.render('select','role_select');
             });
-              var   formselect = layui.layuiExtend.formSelects;
-             
-          
+              
 
             formselect.on({
-                layFilter: 'city',	//绑定select lay-filter
-                left: '【',		//显示的符号left
-                right: '】',		//显示的符号right
+                layFilter: 'role',	//绑定select lay-filter
+                left: '<',		//显示的符号left
+                right: '>',		//显示的符号right
                 separator: ''		//多选分隔符
             });
 

@@ -9,10 +9,13 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
     [Authorize]
-    public class MyHomeController : Controller
+    public class MyHomeController : BaseController
     {
         public IActionResult Index()
         {
+            ViewBag.userid = CurUserInfo.UserId;
+            ViewBag.truename = CurUserInfo.TrueName;
+            ViewBag.userid = CurUserInfo.RoleList;
             return View();
         }
         public ActionResult Login()
