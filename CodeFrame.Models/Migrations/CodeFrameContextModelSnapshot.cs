@@ -386,6 +386,31 @@ namespace CodeFrame.Models.Migrations
                     b.ToTable("t_sys_UserRole");
                 });
 
+            modelBuilder.Entity("Microsoft.EntityFrameworkCore.AutoHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Changed")
+                        .HasMaxLength(2147483647);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<int>("Kind");
+
+                    b.Property<string>("RowId")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AutoHistory");
+                });
+
             modelBuilder.Entity("CodeFrame.Models.DbModel.Button", b =>
                 {
                     b.HasOne("CodeFrame.Models.DbModel.Table", "Table")

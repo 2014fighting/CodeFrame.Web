@@ -2,6 +2,12 @@
 @{
     ViewData["Title"] = "AddUser";
 }
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-select/bootstrap-select.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/bootstrap-select/bootstrap-select.js"></script>
+
+
 
 <div>
     <form class="layui-form layui-form-pane" action="">
@@ -34,7 +40,7 @@
                     </div>
 
                 </div>
-                <div class="layui-form-item">
+                @*<div class="layui-form-item">
                     
                         <label class="layui-form-label">用户角色</label>
                         <div class="layui-input-block layui-form" lay-filter="role_select" >
@@ -45,7 +51,20 @@
                 
                     
                     
+                </div>*@
+                <div class="layui-form-item">
+                    
+                        <label class="layui-form-label">用户角色</label>
+                        <div class="layui-input-block">
+                            <select class="selectpicker"  data-live-search="true" multiple="multiple" lay-ignore>
+                            </select>
+                        </div>
+                
+                    
+                    
                 </div>
+              
+                 
                 
 
             </div>
@@ -60,14 +79,32 @@
 
 
 <script type="text/javascript">
+    $(function() {
+        $.get('@Url.Action("GetAllRoleInfo","RoleInfo")',
+            function(data) {
+                data.forEach(
+                    function(item, index) {
+                        console.info(item);
+                        $('.selectpicker').append("<option value=" + item.Id + ">" + item.RoleName + "</option>");
+                    });
+                $('.selectpicker').selectpicker({
+                    noneSelectedText: "==请选择角色=="
+                });
+                 
+                // 缺一不可  
+                $('.selectpicker').selectpicker('refresh');  
+                $('.selectpicker').selectpicker('render'); 
+            });
+         
+
+    });
     //注意：parent 是 JS 自带的全局对象，可用于操作父页面
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-    layui.use(['form', 'layedit', 'laydate', 'table', 'layer','layuiExtend'],
+    layui.use(['form', 'layedit', 'laydate', 'table', 'layer'],
         function () {
-
-            var   formselect = layui.layuiExtend.formSelects;
+ 
             var form = layui.form, layer = layui.layer;
-            $.get('@Url.Action("GetAllRoleInfo","RoleInfo")', function (data) {
+            @*$.get('@Url.Action("GetAllRoleInfo","RoleInfo")', function (data) {
                 data.forEach( 
                     function (item, index) {
                         console.info(item);
@@ -76,18 +113,11 @@
                        
                     });
                 form.render('select','role_select');
-            });
+            });*@
               
-
-            formselect.on({
-                layFilter: 'role',	//绑定select lay-filter
-                left: '<',		//显示的符号left
-                right: '>',		//显示的符号right
-                separator: ''		//多选分隔符
-            });
-
-             
-             
+          
+              
+         
               
       
             //监听提交

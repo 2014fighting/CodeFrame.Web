@@ -49,6 +49,8 @@ namespace CodeFrame.Models
                 .HasOne(pt => pt.RoleInfo)
                 .WithMany(t => t.UserRoles)
                 .HasForeignKey(pt => pt.RoleId);
+
+            modelBuilder.EnableAutoHistory(Int32.MaxValue);
         }
     }
  

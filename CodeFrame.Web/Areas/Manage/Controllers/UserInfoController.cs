@@ -101,7 +101,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             user.UpdateTime=DateTime.Now;
             _mapper.Map(model, user);
             
-            var r = _unitOfWork.SaveChanges();
+            var r = _unitOfWork.SaveChanges(true);
  
             return Json(new MgResult()
             {
@@ -140,7 +140,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             {
                 result.Delete(result.Find(i));
             });
-            var r = _unitOfWork.SaveChanges() > 0;
+            var r = _unitOfWork.SaveChanges(true) > 0;
 
             return Json(new MgResult
             {
