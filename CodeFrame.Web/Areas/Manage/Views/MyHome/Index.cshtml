@@ -46,13 +46,14 @@
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src="http://siyouku.cn/Content/CommonImg/20140621193541.png" class="layui-nav-img"> @ViewBag.truename
+                        <img src="@ViewBag.handimg" class="layui-nav-img"> @ViewBag.truename
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"
-                               kit-target data-options="{url:'@Url.Action("AddUser","UserInfo")',icon:'&#xe658;',title:'基本资料',id:'966'}">
-                            <span>基本资料</span>
-                        </a></dd>
+                        <dd>
+                            <a href="javascript:;" id="baseinfo">
+                                <span>基本资料</span>
+                            </a>
+                        </dd>
                         <dd>
                             <a href="javascript:;"
                                kit-target data-options="url:'@Url.Action("AddUser","UserInfo")',icon:'&#xe658;',title:'安全设置',id:'966'}">
@@ -137,14 +138,15 @@
             app.set({
                 type: 'iframe'
             }).init();
-            $('#pay').on('click', function () {
-                
+            $('#baseinfo').on('click', function () {
                 layer.open({
-                    title: false,
-                    type: 1,
-                    content: '<div><img src="http://kit.zhengjinfan.cn/build/images/pay.png" /></div>',
-                    area: ['500px', '250px'],
-                    shadeClose: true
+                    type: 2,
+                    title: '修改基础信息',
+                    shadeClose: true,
+                    //shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/Manage/UserInfo/EditUser/' + @ViewBag.userid
                 });
             });
            

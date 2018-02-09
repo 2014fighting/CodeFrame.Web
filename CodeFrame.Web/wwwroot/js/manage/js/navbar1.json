@@ -1,21 +1,51 @@
 ﻿[
   {
     "id": "1",
-    "title": "基本元素",
+    "title": "系统管理",
     "icon": "fa-cubes",
     "spread": true,
     "children": [
       {
-        "id": "7",
+        "id": "6",
         "title": "用户管理",
         "icon": "&#xe6c6;",
         "url": "/manage/UserInfo/Index"
       },
       {
-        "id": "8",
+        "id": "7",
         "title": "角色管理",
         "icon": "&#xe63c;",
         "url": "/manage/RoleInfo/Index"
+      },
+      {
+        "id": "8",
+        "title": "部门管理",
+        "icon": "&#xe63c;",
+        "url": "/manage/DepartMent/Index"
+      },
+      {
+        "id": "9",
+        "title": "按钮管理",
+        "icon": "&#xe63c;",
+        "url": "/manage/Button/Index"
+      },
+      {
+        "id": "10",
+        "title": "系统表管理",
+        "icon": "&#xe63c;",
+        "url": "/manage/Table/Index"
+      },
+      {
+        "id": "11",
+        "title": "系统列管理",
+        "icon": "&#xe63c;",
+        "url": "/manage/Column/Index"
+      },
+      {
+        "id": "12",
+        "title": "菜单管理",
+        "icon": "&#xe63c;",
+        "url": "/manage/Menu/Index"
       }
     ]
   },{

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CodeFrame.Models.DbModel;
 using CodeFrame.Service.ServiceInterface;
 using CodeFrame.UnitOfWork;
 using CodeFrame.Web.Areas.Manage.Models;
+using CodeFrame.Web.Areas.Manage.Models.Common;
+using CodeFrame.Web.Areas.Manage.Models.QueryModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,7 +39,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
 
         #endregion
         [HttpGet]
-        public ActionResult GetRoleInfo(RoleInfoModel role, int page = 1, int limit = 10)
+        public ActionResult GetRoleInfo(RoleInfoQueryModel role)
         {
      
             var result = _unitOfWork.GetRepository<RoleInfo>().GetEntities();
@@ -45,7 +48,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             if (!string.IsNullOrEmpty(role.Describe))
                 result = result.Where(i => i.Describe.Contains(role.Describe));
  
-            var w1 = result.OrderByDescending(x => x.Id).Skip((page - 1) * limit).Take(limit);
+            var w1 = result.OrderByDescending(x => x.Id).Skip((role.page - 1) * role.limit).Take(role.limit);
             return Json(new
             {
                 code = 0,
@@ -67,10 +70,16 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         {
             return View();
         }
+
+
+        public IActionResult AddRolePower(int id) {
+            return View();
+        }
         [HttpGet]
         public IActionResult GetAllRoleInfo()
         {
-            var result = _unitOfWork.GetRepository<RoleInfo>().GetEntities();
+            var result = _unitOfWork.GetRepository<RoleInfo>()
+                .GetEntities().ProjectTo<SelectsModel>();
             return Json(result.ToList());
         }
     }

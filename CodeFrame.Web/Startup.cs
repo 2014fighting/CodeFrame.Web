@@ -67,7 +67,7 @@ namespace CodeFrame.Web
 
             //  services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
 
-            services.AddDbContextPool<CodeFrameContext>(options => options.UseMySql(AppConfig.MySqlConnection));
+            services.AddDbContext<CodeFrameContext>(options => options.UseMySql(AppConfig.MySqlConnection));
 
 
 

@@ -43,9 +43,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<string>("BtnUrl")
                         .HasMaxLength(300);
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<string>("DisplayCondition")
                         .HasMaxLength(500);
@@ -53,6 +55,8 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("EditType");
 
                     b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsSpecial");
 
                     b.Property<int>("OrderBy");
 
@@ -62,13 +66,13 @@ namespace CodeFrame.Models.Migrations
                     b.Property<string>("SpName")
                         .HasMaxLength(50);
 
-                    b.Property<int>("SysTableId");
-
-                    b.Property<int?>("TableId");
+                    b.Property<int>("TableId");
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -85,18 +89,20 @@ namespace CodeFrame.Models.Migrations
                     b.Property<string>("ColumnName")
                         .HasMaxLength(30);
 
-                    b.Property<int>("ColumnType");
+                    b.Property<int?>("ColumnType");
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<string>("DataOptions")
                         .HasMaxLength(300);
 
-                    b.Property<int>("DisplayType");
+                    b.Property<int?>("DisplayType");
 
-                    b.Property<int>("FkTableId");
+                    b.Property<int?>("FkTableId");
 
                     b.Property<bool>("IsIndexed");
 
@@ -119,7 +125,11 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
+
+                    b.Property<int?>("Width");
 
                     b.HasKey("Id");
 
@@ -133,9 +143,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<string>("DptName")
                         .HasMaxLength(20);
@@ -153,7 +165,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -165,9 +179,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<bool>("IsActive");
 
@@ -192,7 +208,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -208,9 +226,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<string>("Describe")
                         .IsRequired()
@@ -227,7 +247,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -241,9 +263,11 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<int>("ButtonId");
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<int>("MentId");
 
@@ -256,7 +280,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -268,9 +294,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<bool>("IsActive");
 
@@ -289,7 +317,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -301,9 +331,11 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<bool>("IsActive");
 
@@ -324,7 +356,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.HasKey("Id");
 
@@ -336,11 +370,24 @@ namespace CodeFrame.Models.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreteTime");
+                    b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("CreteUser");
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int?>("CreateUserId");
 
                     b.Property<int?>("DepartMentId");
+
+                    b.Property<string>("Describe")
+                        .HasMaxLength(500);
+
+                    b.Property<int?>("Gender");
+
+                    b.Property<string>("Group")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("GroupNum")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("IsActive");
 
@@ -351,8 +398,17 @@ namespace CodeFrame.Models.Migrations
                     b.Property<string>("PhoneNo")
                         .HasMaxLength(11);
 
+                    b.Property<string>("Picture")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("Post")
+                        .HasMaxLength(300);
+
                     b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Skill")
+                        .HasMaxLength(100);
 
                     b.Property<string>("TrueName")
                         .IsRequired()
@@ -360,7 +416,9 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<DateTime?>("UpdateUser");
+                    b.Property<string>("UpdateUser");
+
+                    b.Property<int?>("UpdateUserId");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -415,7 +473,8 @@ namespace CodeFrame.Models.Migrations
                 {
                     b.HasOne("CodeFrame.Models.DbModel.Table", "Table")
                         .WithMany()
-                        .HasForeignKey("TableId");
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.Column", b =>

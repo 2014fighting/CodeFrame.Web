@@ -16,8 +16,8 @@ namespace CodeFrame.Models.DbModel
         /// <summary>
         /// 关联表
         /// </summary>
-        public int SysTableId { get; set; }
-
+        public int TableId { get; set; }
+        [ForeignKey("TableId")]
         public Table Table { get; set; }
         [MaxLength(300)]
         public string BtnUrl { get; set; }
@@ -41,6 +41,9 @@ namespace CodeFrame.Models.DbModel
         public string DisplayCondition { get; set; }
  
         public bool IsActive { get; set; } = true;
-
+        /// <summary>
+        /// 是否特俗
+        /// </summary>
+        public bool IsSpecial { get; set; } = true;
     }
 }

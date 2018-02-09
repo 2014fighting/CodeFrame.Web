@@ -10,6 +10,7 @@ namespace CodeFrame.Models.DbModel
     public class Column : BaseEntity<int>
     {
         public int? TableId { get; set; }
+        [ForeignKey("TableId")]
         //所属系统表
         public Table Table { get; set; }
         //显示名称
@@ -28,12 +29,14 @@ namespace CodeFrame.Models.DbModel
         //是否显示
         public bool IsShow { get; set; } = true;
         //字段类型
-        public int ColumnType { get; set; }
+        public int? ColumnType { get; set; }
         //显示控件
-        public int DisplayType { get; set; }
+        public int ?DisplayType { get; set; }
 
         //外键表编号
-        public int FkTableId { get; set; }
+        public int ?FkTableId { get; set; }
+
+        public int? Width { get; set; }
 
         //作为查询条件
         public bool IsIndexed { get; set; } = true;

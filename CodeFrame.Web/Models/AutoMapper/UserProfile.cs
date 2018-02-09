@@ -13,8 +13,8 @@ namespace CodeFrame.Web.Models.AutoMapper
         public UserProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<UserInfo, UserInfoModel>();
-            CreateMap<UserInfoModel, UserInfo>();
+            CreateMap<UserInfo, UserInfoModel>().ForMember(d => d.UserRoles, otp => otp.Ignore());
+            CreateMap<UserInfoModel, UserInfo>().ForMember(d => d.UserRoles, otp => otp.Ignore());
         }
     }
 }

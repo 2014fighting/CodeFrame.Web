@@ -110,7 +110,7 @@
                     , {field: 'Password', title: '密码', width: 100 }
                     , {field: 'PhoneNo', title: '电话', width: 120 }
                     , {field: 'UpdateTime', title: '修改时间', width: 180 }
-                    , {field: 'CreteTime', title: '创建时间', width:180, sort: true }
+                    , {field: 'CreateTime', title: '创建时间', width:180, sort: true }
                     , {fixed: 'right', width:210, align: 'center', toolbar: '#barDemo' }
                 ]]
                 //, skin: 'row' //表格风格

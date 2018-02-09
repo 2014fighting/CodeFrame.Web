@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manage\Data\" />
+    <Folder Include="wwwroot\lib\zTree_v3\.git\objects\info\" />
+    <Folder Include="wwwroot\lib\zTree_v3\.git\refs\tags\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -274,6 +276,51 @@
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\tree.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\upload.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\util.js" />
+    <None Include="wwwroot\lib\zTree_v3\.gitignore" />
+    <None Include="wwwroot\lib\zTree_v3\.git\config" />
+    <None Include="wwwroot\lib\zTree_v3\.git\description" />
+    <None Include="wwwroot\lib\zTree_v3\.git\HEAD" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\hooks\update.sample" />
+    <None Include="wwwroot\lib\zTree_v3\.git\index" />
+    <None Include="wwwroot\lib\zTree_v3\.git\info\exclude" />
+    <None Include="wwwroot\lib\zTree_v3\.git\logs\HEAD" />
+    <None Include="wwwroot\lib\zTree_v3\.git\logs\refs\heads\master" />
+    <None Include="wwwroot\lib\zTree_v3\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\lib\zTree_v3\.git\objects\pack\pack-77745432c339e9da670a47ebd2bdc27020c7c499.idx" />
+    <None Include="wwwroot\lib\zTree_v3\.git\objects\pack\pack-77745432c339e9da670a47ebd2bdc27020c7c499.pack" />
+    <None Include="wwwroot\lib\zTree_v3\.git\packed-refs" />
+    <None Include="wwwroot\lib\zTree_v3\.git\refs\heads\master" />
+    <None Include="wwwroot\lib\zTree_v3\.git\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\api.js" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\jquery-1.6.2.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\jquery.ztree.core.js" />
+    <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\awesome.less" />
+    <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\fa.less" />
+    <None Include="wwwroot\lib\zTree_v3\demo\cn\asyncData\getNodes.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\cn\asyncData\getNodesForBigData.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\en\asyncData\getNodes.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\en\asyncData\getNodesForBigData.php" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery-1.4.4.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.core.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.core.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.excheck.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.excheck.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exedit.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exedit.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exhide.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exhide.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\README.md" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>

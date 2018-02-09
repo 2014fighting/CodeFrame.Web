@@ -60,7 +60,25 @@
                     content: '/Manage/RoleInfo/EditRole/' + checkStatus.data[0].Id
                 });
             });
-
+        $("#btnPower").on('click',
+            function () {
+                var checkStatus = table.checkStatus('demo');
+                var checkdata = checkStatus.data;
+                if (checkdata.length != 1) {
+                    layer.msg("请选一条数据编辑！");
+                    return;
+                }
+                layer.open({
+                    type: 2,
+                    title: '分配角色权限',
+                    shadeClose: true,
+                    //shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['400px', '600px'],
+                    content: '/Manage/RoleInfo/AddRolePower/' + checkStatus.data[0].Id
+                });
+            });
+        
         $("#btndel").on('click',
             function () {
                 var checkStatus = table.checkStatus('demo');
@@ -107,9 +125,8 @@
                 , { field: 'RoleName', title: '角色名称', width: 220 }
                 , { field: 'Describe', title: '描述', width: 150 }
                 , { field: 'IsActive', title: '是否激活', width: 100 }
-
                 , { field: 'UpdateTime', title: '修改时间', width: 180 }
-                , { field: 'CreteTime', title: '创建时间', width: 180, sort: true }
+                , { field: 'CreateTime', title: '创建时间', width: 180, sort: true }
                 , { fixed: 'right', width: 210, align: 'center', toolbar: '#barDemo' }
             ]]
             //, skin: 'row' //表格风格

@@ -23,6 +23,13 @@ namespace CodeFrame.Models
 
                 await codeframeContext.SaveChangesAsync();
             }
+            if (!codeframeContext.DepartMent.Any())
+            {
+                codeframeContext.DepartMent.AddRange(GetPreconfiguredDepartment());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+
         }
 
 
@@ -31,13 +38,13 @@ namespace CodeFrame.Models
             var rlist = new List<UserInfo>()
             {
                 new UserInfo() {Password = "123456", UserName = "wenqing",
-                    PhoneNo = "15659284668", TrueName = "文清"},
+                    PhoneNo = "15659284668", TrueName = "文清",Group="1"},
                 new UserInfo() {Password = "123456", UserName = "admin",
-                    PhoneNo = "15659284668", TrueName = "管理员"},
+                    PhoneNo = "15659284668", TrueName = "管理员",Group="1"},
                 new UserInfo() {Password = "123456", UserName = "supadmin",
-                    PhoneNo = "15659284668", TrueName = "超级管理员"}
+                    PhoneNo = "15659284668", TrueName = "超级管理员",Group="1"}
             };
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i < 10; i++)
             {
                 rlist.Add(
                     new UserInfo()
@@ -45,7 +52,8 @@ namespace CodeFrame.Models
                         Password = "123456",
                         UserName = "LeBronJames" + i,
                         PhoneNo = "15659286666",
-                        TrueName = "勒布朗·詹姆斯" + i
+                        TrueName = "用户" + i,
+                        Group = "2"
                     });
             }
             return rlist;
@@ -56,8 +64,24 @@ namespace CodeFrame.Models
         {
             return new List<RoleInfo>()
             {
-                new RoleInfo() { RoleName="system",CreteTime = DateTime.Now,Describe ="系统角色"}
-                ,new RoleInfo() {RoleName="bos",CreteTime = DateTime.Now,Describe ="大bos"}
+                new RoleInfo() { RoleName="经理",CreateTime = DateTime.Now,Describe ="部门经理"},
+                new RoleInfo() { RoleName="业务员",CreateTime = DateTime.Now,Describe ="业务员"},
+                new RoleInfo() { RoleName="组长",CreateTime = DateTime.Now,Describe ="组长"},
+                new RoleInfo() { RoleName="组员",CreateTime = DateTime.Now,Describe ="组员"},
+                new RoleInfo() { RoleName="系统管理员",CreateTime = DateTime.Now,Describe ="系统管理员"}
+                ,new RoleInfo() {RoleName="超级管理员",CreateTime = DateTime.Now,Describe ="超级管理员"}
+            };
+        }
+
+        static IEnumerable<DepartMent> GetPreconfiguredDepartment()
+        {
+            return new List<DepartMent>()
+            {
+                new DepartMent() { DptName= "技术部",CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing",ParentId =0},
+                new DepartMent() { DptName= "销售部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0},
+                new DepartMent() { DptName= "设计部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0},
+                new DepartMent() { DptName= "技术部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0},
+                new DepartMent() { DptName= "业务部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0}
             };
         }
     }

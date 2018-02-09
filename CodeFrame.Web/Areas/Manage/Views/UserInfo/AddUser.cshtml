@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "AddUser";
 }
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -7,123 +6,196 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="~/lib/bootstrap-select/bootstrap-select.js"></script>
 
-
-
-<div>
+<div class="layui-container comfield">
+    @*<blockquote class="layui-elem-quote layui-text">
+            鉴于小伙伴的普遍反馈，先温馨提醒两个常见“问题”：1. <a href="#" target="_blank">为什么select/checkbox/radio没显示？</a> 2. <a href="#" target="_blank">动态添加的表单元素如何更新？</a>
+        </blockquote>*@
     <form class="layui-form layui-form-pane" action="">
-        <fieldset class="layui-elem-field comfield" style="margin: 0;height:485px">
-            <div style="float:left">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">用户名</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="UserName" lay-verify="required|username" autocomplete="off" placeholder="请输入名称" class="layui-input">
-                        </div>
+        <div style="float: left">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="UserName" lay-verify="required|username" autocomplete="off" placeholder="请输入名称" class="layui-input">
                     </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">密码</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="Password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
-                        </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
                     </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">用户手机</label>
-                        <div class="layui-input-inline">
-                            <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="手机号">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">真实姓名</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="TrueName" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
-                        </div>
-                    </div>
+                </div>
 
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户手机</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="PhoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="手机号">
+                    </div>
                 </div>
-                @*<div class="layui-form-item">
-                    
-                        <label class="layui-form-label">用户角色</label>
-                        <div class="layui-input-block layui-form" lay-filter="role_select" >
-                            <select name="role" lay-filter="role">
-                                <option value=""></option>
-                            </select>
-                        </div>
-                
-                    
-                    
-                </div>*@
-                <div class="layui-form-item">
-                    
-                        <label class="layui-form-label">用户角色</label>
-                        <div class="layui-input-block">
-                            <select class="selectpicker"  data-live-search="true" multiple="multiple" lay-ignore>
-                            </select>
-                        </div>
-                
-                    
-                    
+                <div class="layui-inline">
+                    <label class="layui-form-label">真实姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="TrueName" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                    </div>
                 </div>
-              
-                 
-                
+
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">部门</label>
+                    <div class="layui-input-inline layui-form" lay-filter="role_select">
+                        <select name="DepartMentId" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="Gender" value="1" title="男" checked="">
+                        <input type="radio" name="Gender" value="2" title="女">
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属小组</label>
+                    <div class="layui-input-inline">
+                        <select name="Group" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">集团短号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="GroupNum" lay-verify="required" autocomplete="off" placeholder="集团短号" class="layui-input">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">职务</label>
+                    <div class="layui-input-inline">
+                        <select name="Post" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否启用</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="IsActive" value="true" title="是" checked="">
+                        <input type="radio" name="IsActive" value="false" title="否">
+                    </div>
+                </div>
 
             </div>
 
-            <div style="position: absolute; left: 40%;bottom:10px">
-                <button class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="demo1">提交</button>
-                <button type="reset" class="layui-btn layui-btn-normal layui-btn-radius">重置</button>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户角色</label>
+                <div class="layui-input-block">
+                    <select class="selectpicker" name="UserRoles" id="UserRoles" data-live-search="true" multiple="multiple" lay-ignore></select>
+                </div>
             </div>
-        </fieldset>
+
+        </div>
+
+        <div style="float: left; position: absolute; right: 1px;top:5px">
+            <div class="layui-upload">
+                <input type="hidden" id="Picture" value="http://siyouku.cn/Content/CommonImg/20140621193541.png" />
+                <div class="layui-upload-list" id="test1">
+                    <img style="width:100px;height:100px" src="http://siyouku.cn/Content/CommonImg/20140621193541.png" id="demo1">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <button class="layui-btn" lay-submit="" lay-filter="demo1">提交保存</button>
+        <button class="layui-btn layui-btn-primary" onclick="parent.layer.close(index);">关闭</button>
+
     </form>
 </div>
 
 
 <script type="text/javascript">
-    $(function() {
-        $.get('@Url.Action("GetAllRoleInfo","RoleInfo")',
-            function(data) {
-                data.forEach(
-                    function(item, index) {
-                        console.info(item);
-                        $('.selectpicker').append("<option value=" + item.Id + ">" + item.RoleName + "</option>");
-                    });
-                $('.selectpicker').selectpicker({
-                    noneSelectedText: "==请选择角色=="
-                });
-                 
-                // 缺一不可  
-                $('.selectpicker').selectpicker('refresh');  
-                $('.selectpicker').selectpicker('render'); 
-            });
-         
 
-    });
+
     //注意：parent 是 JS 自带的全局对象，可用于操作父页面
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-    layui.use(['form', 'layedit', 'laydate', 'table', 'layer'],
+    layui.use(['form', 'upload', 'element','layedit', 'laydate', 'table', 'layer','manageCom'],
         function () {
- 
-            var form = layui.form, layer = layui.layer;
-            @*$.get('@Url.Action("GetAllRoleInfo","RoleInfo")', function (data) {
-                data.forEach( 
-                    function (item, index) {
-                        console.info(item);
-                        $("select[name='role']").append('<option value="' + item.Id + '">'
-                            + item.RoleName + '</option>');
-                       
+
+            var form = layui.form, layer = layui.layer
+                , managecom = layui.manageCom,
+                element = layui.element, upload = layui.upload;
+            $.get('@Url.Action("GetAllRoleInfo", "RoleInfo")', function (data) {
+                console.info(data);
+                data.forEach(
+                    function(item, index) {
+                        $('.selectpicker').append("<option value=" + item.value + ">" + item.text +"</option>");
                     });
-                form.render('select','role_select');
-            });*@
-              
-          
-              
-         
-              
-      
+                $('.selectpicker').selectpicker({
+                    noneSelectedText: "==请选择角色==",
+                    width:"84%"
+                });
+
+                // 缺一不可
+                $('.selectpicker').selectpicker('refresh');
+                $('.selectpicker').selectpicker('render');
+            });
+
+            $.get('@Url.Action("GetDpList", "DepartMent")', function (data) {
+                console.info(data);
+                managecom.selectInint('DepartMentId', data);
+                form.render('select',"role_select");
+            });
+
+            managecom.selectInint('Group', enumGroup);
+            managecom.selectInint('Post', enumPost);
+            form.render('select');
+
+
+
+            //上传头像
+            var uploadInst = upload.render({
+                elem: '#test1'
+                , url: '/api/ImgService'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    if(res.code == 0) {
+                        $('#Picture').val(res.data.src);
+                    }else{
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+
             //监听提交
             form.on('submit(demo1)', function (data) {
-                console.info(JSON.stringify(formselect.arr));
-                data.field.city = formselect.arr;
+
+                var rolws = $('#UserRoles').val();
+                data.field.UserRoles = rolws;
+                data.field.Picture = $('#Picture').val();
 
                 //自定义验证规则
                 form.verify({
@@ -133,7 +205,7 @@
                         }
                     },pass: [/(.+){6,12}$/, '密码必须6到12位']
                 });
-                 
+
                 $.post('@Url.Action("AddUser")',
                     data.field,
                     function (data) {

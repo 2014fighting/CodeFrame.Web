@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Web", "CodeFrame.Web\CodeFrame.Web.csproj", "{1256797F-E298-4246-A950-CFC63829C4DA}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.XUnit", "CodeFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.Redis", "CodeFrame.Redis\CodeFrame.Redis.csproj", "{767C0241-89BD-431F-A05F-CAE11C54BDB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFrame.API", "CodeFrame.API\CodeFrame.API.csproj", "{F976FE72-1170-4AAC-89D6-CDF878A8C037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFrame.API", "CodeFrame.API\CodeFrame.API.csproj", "{F976FE72-1170-4AAC-89D6-CDF878A8C037}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

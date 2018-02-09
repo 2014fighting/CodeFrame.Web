@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewData["Title"] = "AddColumn";
+}
+ 
+<div class="layui-container comfield">
+    @*<blockquote class="layui-elem-quote layui-text">
+            鉴于小伙伴的普遍反馈，先温馨提醒两个常见“问题”：1. <a href="#" target="_blank">为什么select/checkbox/radio没显示？</a> 2. <a href="#" target="_blank">动态添加的表单元素如何更新？</a>
+        </blockquote>*@
+    <form class="layui-form layui-form-pane" action="">
+        <div style="float: left">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">显示名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="ShowName" lay-verify="required" autocomplete="off" placeholder="请输入显示名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">列名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="ColumnName" lay-verify="" autocomplete="off" placeholder="请输入列名" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="OrderBy" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入排序">
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否显示</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="IsShow" value="true" title="是" checked="">
+                        <input type="radio" name="IsShow" value="false" title="否">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属表</label>
+                    <div class="layui-input-inline layui-form" lay-filter="TableId_select">
+                        <select name="TableId" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">控件类型</label>
+                    <div class="layui-input-inline">
+                        <select name="DisplayType" lay-verify="" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">字段类型</label>
+                    <div class="layui-input-inline">
+                        <select name="ColumnType" lay-verify="" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">提示</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Tip" lay-verify="" autocomplete="off" placeholder="请输入提示" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">宽度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Width" lay-verify="" autocomplete="off" placeholder="请输入宽度" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">查询条件</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="IsIndexed" value="true" title="是" checked="">
+                        <input type="radio" name="IsIndexed" value="false" title="否">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输备注" name="ReMark" id="ReMark" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <button class="layui-btn" lay-submit="" lay-filter="demo1">提交保存</button>
+        <button class="layui-btn layui-btn-primary" onclick="parent.layer.close(index);">关闭</button>
+
+    </form>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+    //注意：parent 是 JS 自带的全局对象，可用于操作父页面
+    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    layui.use(['form', 'upload', 'element','layedit', 'laydate', 'table', 'layer','manageCom'],
+        function () {
+
+            var form = layui.form, layer = layui.layer
+                , managecom = layui.manageCom,
+                element = layui.element, upload = layui.upload;
+
+            
+
+            $.get('@Url.Action("GetAllTable", "Table")', function (data) {
+                console.info(data);
+                managecom.selectInint('TableId', data);
+                form.render('select',"TableId_select");
+            });
+
+            managecom.selectInint('ColumnType', enumColumnType);
+            managecom.selectInint('DisplayType', enumDisplayType);
+            form.render('select');
+            
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                //自定义验证规则
+                form.verify({
+                    
+                });
+                console.info(data.field);
+                $.post('@Url.Action("AddColumn")',
+                    data.field,
+                    function (data) {
+                        if (data.Code === 0) {
+                            parent.layer.msg("添加成功！：" + data.Msg);
+                            parent.layer.close(index);
+                            parent.tableIns.reload();
+                        }
+                        else
+                            layer.msg("保存失败：" + data.Msg);
+                    });
+                return false;
+            });
+
+
+        });
+
+
+</script>
