@@ -38,11 +38,13 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 tempname = filename1;
                 var path = _hostingEnv.WebRootPath;
                 string dir = DateTime.Now.ToString("yyyyMMdd");
-                if (!System.IO.Directory.Exists(_hostingEnv.WebRootPath + $@"\upload\{dir}"))
+
+                //注意linux下 路径需要用/ 符号
+                if (!System.IO.Directory.Exists(_hostingEnv.WebRootPath + $@"/upload/{dir}"))
                 {
-                    System.IO.Directory.CreateDirectory(_hostingEnv.WebRootPath + $@"\upload\{dir}");
+                    System.IO.Directory.CreateDirectory(_hostingEnv.WebRootPath + $@"/upload/{dir}");
                 }
-                filename = _hostingEnv.WebRootPath + $@"\upload\{dir}\{filename1}";
+                filename = _hostingEnv.WebRootPath + $@"/upload/{dir}/{filename1}";
                 size += imgFile.Length;
                 using (FileStream fs = System.IO.File.Create(filename))
                 {

@@ -13,3 +13,5 @@
 - Redis https://github.com/StackExchange/StackExchange.Redis
 
 > 项目已发布linux 预览地址  http://demo.siyouku.cn/
+
+>.net core 技术交流群QQ:575518230

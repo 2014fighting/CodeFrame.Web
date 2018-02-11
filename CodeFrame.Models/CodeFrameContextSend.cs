@@ -38,11 +38,11 @@ namespace CodeFrame.Models
             var rlist = new List<UserInfo>()
             {
                 new UserInfo() {Password = "123456", UserName = "wenqing",
-                    PhoneNo = "15659284668", TrueName = "文清",Group="1"},
+                    PhoneNo = "15659284668", TrueName = "文清",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
                 new UserInfo() {Password = "123456", UserName = "admin",
-                    PhoneNo = "15659284668", TrueName = "管理员",Group="1"},
+                    PhoneNo = "15659284668", TrueName = "管理员",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
                 new UserInfo() {Password = "123456", UserName = "supadmin",
-                    PhoneNo = "15659284668", TrueName = "超级管理员",Group="1"}
+                    PhoneNo = "15659284668", TrueName = "超级管理员",Group="1",Picture = "http://siyouku.cn/Content/CommonImg/20140621193541.png"}
             };
             for (int i = 1; i < 10; i++)
             {
@@ -53,7 +53,8 @@ namespace CodeFrame.Models
                         UserName = "LeBronJames" + i,
                         PhoneNo = "15659286666",
                         TrueName = "用户" + i,
-                        Group = "2"
+                        Group = "2",
+                        Picture = "http://siyouku.cn/Content/CommonImg/20140621193541.png"
                     });
             }
             return rlist;
