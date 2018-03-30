@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "AddMenu";
+}
+
+<div class="layui-container comfield">
+    @*<blockquote class="layui-elem-quote layui-text">
+            鉴于小伙伴的普遍反馈，先温馨提醒两个常见“问题”：1. <a href="#" target="_blank">为什么select/checkbox/radio没显示？</a> 2. <a href="#" target="_blank">动态添加的表单元素如何更新？</a>
+        </blockquote>*@
+    <form class="layui-form layui-form-pane" action="">
+        <div style="float: left">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">菜单名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="MenuName" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">父级菜单</label>
+                    <div class="layui-input-inline layui-form" lay-filter="ParentMenuId_select">
+                        <select name="ParentMenuId" lay-verify="" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                   
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属子系统</label>
+                    <div class="layui-input-inline layui-form" lay-filter="SubSystem_select">
+                        <select name="SubSystemId" lay-verify="" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属表</label>
+                    <div class="layui-input-inline layui-form" lay-filter="SysTableId_select">
+                        <select name="SysTableId" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                 
+                <div class="layui-inline">
+                    <label class="layui-form-label">菜单Url</label>
+                      <div class="layui-input-inline">
+                        <input type="text" name="MenuUrl" lay-verify="" autocomplete="off" placeholder="URL" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="OrderBy" lay-verify="" autocomplete="off" placeholder="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否启用</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="IsActive" value="true" title="是" checked="">
+                        <input type="radio" name="IsActive" value="false" title="否">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <button class="layui-btn" lay-submit="" lay-filter="demo1">提交保存</button>
+        <button class="layui-btn layui-btn-primary" onclick="parent.layer.close(index);">关闭</button>
+
+    </form>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+    //注意：parent 是 JS 自带的全局对象，可用于操作父页面
+    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    layui.use(['form', 'upload', 'element','layedit', 'laydate', 'table', 'layer','manageCom'],
+        function () {
+
+            var form = layui.form, layer = layui.layer
+                , managecom = layui.manageCom,
+                element = layui.element, upload = layui.upload;
+             
+            $.get('@Url.Action("GetSubSystemlist", "SubSystem")', function (data) {
+                managecom.selectInint('SubSystemId', data);
+                form.render('select',"SubSystem_select");
+            });
+            $.get('@Url.Action("GetAllTable", "Table")', function (data) {
+                managecom.selectInint('SysTableId', data);
+                form.render('select',"SysTableId_select");
+            });
+            $.get('@Url.Action("GetMenulist", "Menu")', function (data) {
+                managecom.selectInint('ParentMenuId', data);
+                form.render('select',"ParentMenuId_select");
+            });
+            
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                //自定义验证规则
+                form.verify({
+                    username: function(value) {
+                        if(value.length < 5){
+                            return '标题至少得5个字符啊';
+                        }
+                    },pass: [/(.+){6,12}$/, '密码必须6到12位']
+                });
+                $.post('@Url.Action("AddMenu")',
+                    data.field,
+                    function (data) {
+                        if (data.Code === 0) {
+                            parent.layer.msg("添加成功！：" + data.Msg);
+                            parent.layer.close(index);
+                            parent.tableIns.reload();
+                        }
+                        else
+                            layer.msg("保存失败：" + data.Msg);
+                    });
+                return false;
+            });
+
+
+        });
+
+
+</script>

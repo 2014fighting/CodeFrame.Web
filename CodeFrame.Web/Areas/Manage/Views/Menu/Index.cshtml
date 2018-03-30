@@ -8,9 +8,9 @@
         <div style="float:left">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">表名称</label>
+                    <label class="layui-form-label">菜单名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="TableName" lay-verify="" autocomplete="off" placeholder="输入表名称" class="layui-input">
+                        <input type="text" name="MenuName" lay-verify="" autocomplete="off" placeholder="输入按钮名称" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -18,24 +18,24 @@
         </div>
 
         <div style="float: left">
-            <Button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-submit=""
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-submit=""
                     lay-filter="demo1">
                 <span class="layui-icon">
                     &#xe615;
                 </span>查询
-            </Button>
-            <Button type="reset" class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius">
+            </button>
+            <button type="reset" class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius">
                 <span class="layui-icon">
                     &#xe639;
                 </span>重置
-            </Button>
+            </button>
         </div>
     </fieldset>
 </form>
 <div class="layui-btn-group mytool">
-    <Button class="layui-btn layui-btn-normal layui-btn-sm" id="btnadd"><i class="layui-icon">&#xe654;</i>新增</Button>
-    <Button class="layui-btn layui-btn-sm" id="btnedit"><i class="layui-icon">&#xe642;</i>编辑</Button>
-    <Button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</Button>
+    <button class="layui-btn layui-btn-normal layui-btn-sm" id="btnadd"><i class="layui-icon">&#xe654;</i>新增</button>
+    <button class="layui-btn layui-btn-sm" id="btnedit"><i class="layui-icon">&#xe642;</i>编辑</button>
+    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</button>
 </div>
 
 <table id="demo" lay-filter="test"></table>
@@ -79,12 +79,12 @@
                 function () {
                     layer.open({
                         type: 2,
-                        title: '新增资料信息',
+                        title: '新增菜单',
                         shadeClose: true,
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '@Url.Action("AddTable")'
+                        content: '@Url.Action("AddMenu")'
                     });
                 });
             $("#btnedit").on('click',
@@ -98,12 +98,12 @@
                     console.info(checkStatus.data[0]);
                     layer.open({
                         type: 2,
-                        title: '编辑资料信息',
+                        title: '编辑菜单',
                         shadeClose: true,
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '@Url.Action("EditTable")/' + checkStatus.data[0].Id
+                        content: '@Url.Action("EditMenu")/' + checkStatus.data[0].Id
                     });
                 });
 
@@ -124,7 +124,7 @@
                         //console.info(postdata);
                         $.ajax({
                             type: "post",
-                            url: '@Url.Action("TableDelete")',
+                            url: '@Url.Action("MenuDelete")',
                             data: { ids: postdata },
                             success: function (data) {
                                 console.info(data);
@@ -145,18 +145,18 @@
             //展示已知数据
             tableIns = table.render({
                 elem: '#demo',
-                url: '@Url.Action("GetTable")'
+                url: '@Url.Action("GetMenu")'
                 , height: manage.getHeight()
                 , cols: [[ //标题栏
                     { checkbox: true, LAY_CHECKED: false } //默认全选
                     , { field: 'Id', title: 'Id', width: 80, sort: true }
-                    , { field: 'TableName', title: '表名称', width: 140 }
-                    , { field: 'ShowName', title: '显示名称', width: 100 }
-                    , { field: 'IsMultiple', title: '是否多选', width: 100 }
-                    , { field: 'ReMark', title: '备注', width: 80 }
+                    , { field: 'MenuName', title: '菜单名称', width: 100 }
+                    , { field: 'ParentMenuId', title: '父菜单', width: 100 }
+                    , { field: 'SubSystemId', title: '子系统', width: 100 }
+                    , { field: 'SysTableId', title: '关联表', width: 100 }
+                    , { field: 'MenuUrl', title: '菜单url', width: 80 }
                     , { field: 'OrderBy', title: '排序', width: 120 }
-                    , { field: 'IsPaging', title: '是否分页', width:80 }
-                    , { field: 'IsActive', title: '是否启用', width:80 }
+                    , { field: 'IsActive', title: '是否启用', width: 180 }
                     , { field: 'CreateTime', title: '创建时间', width: 180, sort: true }
                     , { fixed: 'right', width: 210, align: 'center', toolbar: '#barDemo' }
                 ]]
@@ -182,7 +182,7 @@
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '@Url.Action("EditTable")?Id=' + data.Id + '&type=2'
+                        content: '@Url.Action("EditButton")?Id=' + data.Id + '&type=2'
                     });
                 } else if (layEvent === 'del') { //删除
                     layer.confirm('真的删除' + data.Id + '这行么', function (index) {
@@ -191,7 +191,7 @@
 
                         $.ajax({
                             type: "post",
-                            url: '@Url.Action("TableDelete")',
+                            url: '@Url.Action("ButtonDelete")',
                             data: { ids: postdata },
                             success: function (data) {
                                 console.info(data);
@@ -216,7 +216,7 @@
                         //shade: false,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['893px', '600px'],
-                        content: '@Url.Action("EditTable")/' + data.Id
+                        content: '@Url.Action("EditButton")/' + data.Id
                     });
                 }
             });

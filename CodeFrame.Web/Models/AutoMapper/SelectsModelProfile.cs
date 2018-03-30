@@ -12,6 +12,10 @@ namespace CodeFrame.Web.Models.AutoMapper
     {
         public SelectsModelProfile()
         {
+            CreateMap<Menu, SelectsModel>().ForMember(d => d.value, otp => otp.MapFrom(i => i.Id))
+                .ForMember(d => d.text, otp => otp.MapFrom(i => i.MenuName));
+            CreateMap<SubSystem, SelectsModel>().ForMember(d => d.value, otp => otp.MapFrom(i => i.Id))
+                .ForMember(d => d.text, otp => otp.MapFrom(i => i.SystemName));
             CreateMap<RoleInfo, SelectsModel>().ForMember(d => d.value, otp => otp.MapFrom(i => i.Id))
                 .ForMember(d => d.text, otp => otp.MapFrom(i => i.RoleName));
             CreateMap<DepartMent, SelectsModel>().ForMember(d => d.value, otp => otp.MapFrom(i => i.Id))
@@ -20,6 +24,7 @@ namespace CodeFrame.Web.Models.AutoMapper
                 .ForMember(d => d.text, otp => otp.MapFrom(i => i.ShowName));
           
             CreateMap<UserInfo, SelectsModel>().ForMember(d => d.value, otp => otp.MapFrom(i => i.Id));
+
         }
     }
 }
