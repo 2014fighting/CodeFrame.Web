@@ -21,9 +21,7 @@ namespace CodeFrame.Web.Areas.Manage.Models
   
   
         public string MenuUrl { get; set; }
-
- 
-        public int OrderBy { get; set; } = 0;
+         
  
         public bool IsActive { get; set; } = true;
     }

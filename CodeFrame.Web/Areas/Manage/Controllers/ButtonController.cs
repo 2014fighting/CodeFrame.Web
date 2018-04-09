@@ -50,7 +50,6 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 return Json(res);
             }
             var button = _mapper.Map<Button>(model);
-
             var repoButton = _unitOfWork.GetRepository<Button>();
             button.CreateUser = CurUserInfo.TrueName;
             button.CreateUserId = CurUserInfo.UserId;

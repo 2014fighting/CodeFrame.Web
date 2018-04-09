@@ -78,17 +78,13 @@
 
 
 <script type="text/javascript">
-
-
     //注意：parent 是 JS 自带的全局对象，可用于操作父页面
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
     layui.use(['form', 'upload', 'element','layedit', 'laydate', 'table', 'layer','manageCom'],
         function () {
-
             var form = layui.form, layer = layui.layer
                 , managecom = layui.manageCom,
                 element = layui.element, upload = layui.upload;
-             
             $.get('@Url.Action("GetSubSystemlist", "SubSystem")', function (data) {
                 managecom.selectInint('SubSystemId', data);
                 form.render('select',"SubSystem_select");
@@ -101,8 +97,6 @@
                 managecom.selectInint('ParentMenuId', data);
                 form.render('select',"ParentMenuId_select");
             });
-            
-
             //监听提交
             form.on('submit(demo1)', function (data) {
                 //自定义验证规则

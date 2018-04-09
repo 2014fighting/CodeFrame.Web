@@ -15,6 +15,16 @@ namespace CodeFrame.Web.Models.AutoMapper
             // Add as many of these lines as you need to map your objects
             CreateMap<Column, ColumnModel>();
             CreateMap<ColumnModel, Column>();
+
+            CreateMap<Menu, MenuModel>();
+            CreateMap<MenuModel, Menu>();
+
+            CreateMap<Button, ButtonModel>();
+            CreateMap<ButtonModel, Button>();
+
+
+            CreateMap<UserInfo, UserInfoModel>().ForMember(d => d.UserRoles, otp => otp.Ignore());
+            CreateMap<UserInfoModel, UserInfo>().ForMember(d => d.UserRoles, otp => otp.Ignore());
         }
     }
 }

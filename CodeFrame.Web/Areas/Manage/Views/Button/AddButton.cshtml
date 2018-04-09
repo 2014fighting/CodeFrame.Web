@@ -40,7 +40,7 @@
 
                 <div class="layui-inline">
                     <label class="layui-form-label">所属表</label>
-                    <div class="layui-input-inline layui-form" lay-filter="role_select">
+                    <div class="layui-input-inline layui-form" lay-filter="TableId_select">
                         <select name="TableId" lay-verify="required" lay-search="">
                             <option value="">直接选择或搜索选择</option>
                         </select>
@@ -102,16 +102,9 @@
                         <textarea placeholder="请输显示条件" name="DisplayCondition" id="DisplayCondition" class="layui-textarea"></textarea>
                     </div>
                 </div>
-
-
             </div>
- 
-
         </div>
-
-  
-
-
+         
         <button class="layui-btn" lay-submit="" lay-filter="demo1">提交保存</button>
         <button class="layui-btn layui-btn-primary" onclick="parent.layer.close(index);">关闭</button>
 
@@ -133,12 +126,13 @@
                 , managecom = layui.manageCom,
                 element = layui.element, upload = layui.upload;
             
-
+            $.get('@Url.Action("GetAllTable", "Table")', function (data) {
+                managecom.selectInint('TableId', data);
+                form.render('select',"TableId_select");
+            });
+            managecom.selectInint('EditType', enumButtonType);
+            form.render('select');
             
-
-
-          
-
             //监听提交
             form.on('submit(demo1)', function (data) {
                 //自定义验证规则

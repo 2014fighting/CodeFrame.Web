@@ -37,7 +37,14 @@ var enumReceiveState = [
     { value: "4", text: "确认完成" }
 
 ];
+var enumButtonType = [
+    { value: "1", text: "新增" },
+    { value: "2", text: "编辑" },
+    { value: "3", text: "执行存储过程" },
+    { value: "4", text: "导入" },
+    { value: "5", text: "导出" }
 
+];
 var enumColumnType = [
     { value: "101", text: "longtext" },
     { value: "102", text: "varchar" },
