@@ -12,12 +12,7 @@ namespace CodeFrame.Web.Areas.Manage.Models.QueryModel
         [MaxLength(20)]
         public string BtnName { get; set; }
 
-
-        /// <summary>
-        /// 关联表
-        /// </summary>
-        public int SysTableId { get; set; }
-
+         
  
     }
 }

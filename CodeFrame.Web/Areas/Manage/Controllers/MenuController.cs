@@ -12,6 +12,7 @@ using CodeFrame.Web.Areas.Manage.Models.Common;
 using CodeFrame.Web.Areas.Manage.Models.QueryModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CodeFrame.Web.Areas.Manage.Controllers
 {
@@ -153,6 +154,98 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             var result = _unitOfWork.GetRepository<Menu>()
                 .GetEntities().ProjectTo<SelectsModel>();
             return Json(result.ToList());
+        }
+        [HttpGet]
+        public IActionResult GetAllMenuAndButton(int roleId)
+        {
+            //todo 
+            var menus = _unitOfWork.GetRepository<Menu>().GetEntities();
+            var rps = _unitOfWork.GetRepository<RolePower>().GetEntities();
+            var listr = rps.Where(x => x.RoleId == roleId).Select(i => i.MentId);
+           
+            var subsystems = _unitOfWork.GetRepository<SubSystem>().GetEntities();
+         
+            var buttons = _unitOfWork.GetRepository<Button>().GetEntities();
+            List<TreeModel> treeModels = new List<TreeModel>();
+            foreach (var sub in subsystems)
+            {
+                treeModels.Add(new TreeModel { id = "a"+sub.Id, name = sub.SystemName, pId = "#"
+                    ,@checked= menus.Any(i => listr.Contains(i.Id)&&sub.Id==i.SubSystemId)
+            });
+            }
+        
+            foreach (var menu in menus)
+            {
+                treeModels.Add(new TreeModel { id = "b"+menu.Id,
+                    name = menu.MenuName,
+                    pId = menu.ParentMenuId == null ? "a" + menu.SubSystemId: "b" + menu.ParentMenuId,
+                    @checked = rps.Any(i => i.MentId == menu.Id && i.RoleId == roleId)
+                });
+            }
+
+            foreach (var btn in buttons)
+            {
+                treeModels.Add(new TreeModel
+                {
+                    id = "c" + btn.Id,
+                    name = btn.BtnName,
+                    pId = "b" +btn.MenuId
+                    ,@checked= rps.Any(i=>i.ButtonId==btn.Id&&i.RoleId==roleId)
+                });
+            }
+            return Json(treeModels);
+        }
+
+
+        public IActionResult UpdateRolePower(int roleId, string powerString)
+        {
+            var rolepower = _unitOfWork.GetRepository<RolePower>();
+            var res = new MgResult();
+            if (roleId <= 0 || string.IsNullOrEmpty(powerString))
+            {
+                res.Code = 1;
+                res.Msg = "参数有误！";
+                return Json(res);
+            }
+           
+            IList<TreeModel> pList = JsonConvert.DeserializeObject<IList<TreeModel>>(powerString);
+            if (!pList.Any())
+            {
+                res.Code = 1;
+                res.Msg = "没有任何需要变更的权限！";
+                return Json(res);
+            }
+            rolepower.Delete(rolepower.GetEntities(i=>i.RoleId==roleId));
+            var listrp=new List<RolePower>();
+            foreach (var p in pList)
+            {
+                var rp = new RolePower();
+                var strtemp = p.id.Substring(0, 1);
+                if (strtemp == "b")
+                {
+                    rp.ButtonId =0;
+                    rp.CreateTime = DateTime.Now;
+                    rp.CreateUser = CurUserInfo.UserName;
+                    rp.CreateUserId = CurUserInfo.UserId;
+                    rp.MentId = Convert.ToInt32(p.id.TrimStart('b'));
+                    rp.RoleId = roleId;
+                }
+                else
+                {
+                    rp.ButtonId = Convert.ToInt32(p.id.TrimStart('c'));
+                    rp.CreateTime = DateTime.Now;
+                    rp.CreateUser = CurUserInfo.UserName;
+                    rp.CreateUserId = CurUserInfo.UserId;
+                    rp.MentId = Convert.ToInt32(p.pId.TrimStart('b'));
+                    rp.RoleId = roleId;
+                }
+                listrp.Add(rp);
+            }
+            rolepower.Insert(listrp);
+           var r= _unitOfWork.SaveChanges();
+            res.Code = r > 0 ? 0 : 1;
+            res.Msg = r > 0 ? "ok" : "SaveChanges失败！";
+            return Json(res);
         }
     }
 }

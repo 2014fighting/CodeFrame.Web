@@ -75,7 +75,7 @@
                     //shade: false,
                     maxmin: true, //开启最大化最小化按钮
                     area: ['400px', '600px'],
-                    content: '/Manage/RoleInfo/AddRolePower/' + checkStatus.data[0].Id
+                    content: '/Manage/RoleInfo/AddRolePower/?id=' + checkStatus.data[0].Id
                 });
             });
         

@@ -75,6 +75,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         public IActionResult AddRolePower(int id) {
             return View();
         }
+   
         [HttpGet]
         public IActionResult GetAllRoleInfo()
         {

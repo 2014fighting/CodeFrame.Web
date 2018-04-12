@@ -14,11 +14,11 @@ namespace CodeFrame.Models.DbModel
 
 
         /// <summary>
-        /// 关联表
+        /// 所属菜单
         /// </summary>
-        public int TableId { get; set; }
-        [ForeignKey("TableId")]
-        public Table Table { get; set; }
+        public int MenuId { get; set; }
+        [ForeignKey("MenuId")]
+        public Menu Menu { get; set; }
         [MaxLength(300)]
         public string BtnUrl { get; set; }
 
