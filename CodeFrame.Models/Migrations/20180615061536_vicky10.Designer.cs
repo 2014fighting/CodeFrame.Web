@@ -11,9 +11,10 @@ using System;
 namespace CodeFrame.Models.Migrations
 {
     [DbContext(typeof(CodeFrameContext))]
-    partial class CodeFrameContextModelSnapshot : ModelSnapshot
+    [Migration("20180615061536_vicky10")]
+    partial class vicky10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

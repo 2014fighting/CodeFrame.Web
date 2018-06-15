@@ -49,6 +49,7 @@ namespace CodeFrame.Models
                 rlist.Add(
                     new UserInfo()
                     {
+                       
                         Password = "123456",
                         UserName = "LeBronJames" + i,
                         PhoneNo = "15659286666",

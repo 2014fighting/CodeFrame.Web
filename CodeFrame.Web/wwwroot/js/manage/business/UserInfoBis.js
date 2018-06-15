@@ -12,6 +12,8 @@
                 , manage = layui.manageCom
                 , table = layui.table;
 
+            manage.GenerateBtnByPower();
+
             //日期
             laydate.render({
         elem: '#date'

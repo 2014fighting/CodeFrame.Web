@@ -25,12 +25,9 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         #region Constructor
         private readonly ILogService<UserInfoController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
         private readonly IUserInfoService _userInfoService;
-
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
-
         public UserInfoController(IUserInfoService userInfoService,
             IUnitOfWork unitOfWork, ILogService<UserInfoController> logger, IMapper mapper)
         {

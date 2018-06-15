@@ -19,17 +19,17 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">父级菜单</label>
                     <div class="layui-input-inline layui-form" lay-filter="ParentMenuId_select">
-                        <select name="ParentMenuId" lay-verify="" lay-search="">
+                        <select name="ParentMenuId" lay-verify="required" lay-search="">
                             <option value="">直接选择或搜索选择</option>
                         </select>
                     </div>
-                   
+
                 </div>
 
                 <div class="layui-inline">
                     <label class="layui-form-label">所属子系统</label>
                     <div class="layui-input-inline layui-form" lay-filter="SubSystem_select">
-                        <select name="SubSystemId" lay-verify="" lay-search="">
+                        <select name="SubSystemId" lay-verify="required" lay-search="">
                             <option value="">直接选择或搜索选择</option>
                         </select>
                     </div>
@@ -42,17 +42,23 @@
                         </select>
                     </div>
                 </div>
-                 
+
                 <div class="layui-inline">
                     <label class="layui-form-label">菜单Url</label>
-                      <div class="layui-input-inline">
+                    <div class="layui-input-inline">
                         <input type="text" name="MenuUrl" lay-verify="" autocomplete="off" placeholder="URL" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="OrderBy" lay-verify="" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="OrderBy" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">菜单图片</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="MenuIcon" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -62,6 +68,7 @@
                         <input type="radio" name="IsActive" value="false" title="否">
                     </div>
                 </div>
+
             </div>
         </div>
 

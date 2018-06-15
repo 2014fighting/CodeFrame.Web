@@ -22,9 +22,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         #region Constructor
         private readonly ILogService<RoleInfoController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
         private readonly IUserInfoService _userInfoService;
-
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
 
@@ -70,12 +68,9 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         {
             return View();
         }
-
-
         public IActionResult AddRolePower(int id) {
             return View();
         }
-   
         [HttpGet]
         public IActionResult GetAllRoleInfo()
         {

@@ -38,5 +38,18 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 .GetEntities().ProjectTo<SelectsModel>();
             return Json(result.ToList());
         }
+        [HttpGet]
+        public IActionResult GetAllSubSystem()
+        {
+            var result = from r in _unitOfWork.GetRepository<SubSystem>()
+                    .GetEntities(i => i.IsActive)
+                select new
+                {
+                    title = r.SystemName,
+                    icon =r.SystemIcon,
+                    id = r.Id
+                };
+            return Json(result);
+        }
     }
 }

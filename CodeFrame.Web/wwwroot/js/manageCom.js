@@ -25,6 +25,14 @@
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
+        },
+        GenerateBtnByPower: function () {
+            //console.info(333);
+            var menuId = self.frameElement.parentNode.getAttribute("lay-item-id");
+            $.get('/Manage/RolePower/GetPowerByMenuId', { "menuId": menuId },
+                function(d) {
+                    console.info(d);
+                });
         }
     }
     exports('manageCom', manageCom);

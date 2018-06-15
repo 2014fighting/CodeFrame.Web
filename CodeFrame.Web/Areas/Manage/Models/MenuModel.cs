@@ -12,7 +12,10 @@ namespace CodeFrame.Web.Areas.Manage.Models
         public int? Id { get; set; }
 
         public string MenuName { get; set; }
-   
+
+        public string MenuIcon { get; set; }
+
+
         public int? ParentMenuId { get; set; }
  
         public int? SubSystemId { get; set; }

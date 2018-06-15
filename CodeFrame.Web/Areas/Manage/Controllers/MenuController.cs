@@ -10,6 +10,7 @@ using CodeFrame.UnitOfWork;
 using CodeFrame.Web.Areas.Manage.Models;
 using CodeFrame.Web.Areas.Manage.Models.Common;
 using CodeFrame.Web.Areas.Manage.Models.QueryModel;
+using CodeFrame.Web.Areas.Manage.Models.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -54,6 +55,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             var repoMenu = _unitOfWork.GetRepository<Menu>();
             tempMenu.CreateUser = CurUserInfo.TrueName;
             tempMenu.CreateUserId = CurUserInfo.UserId;
+            tempMenu.MenuIcon = model.MenuIcon ?? "&#xe63c;";
             tempMenu.CreateTime = DateTime.Now;
             repoMenu.Insert(tempMenu);
             var r = _unitOfWork.SaveChanges();
@@ -246,6 +248,56 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             res.Code = r > 0 ? 0 : 1;
             res.Msg = r > 0 ? "ok" : "SaveChanges失败！";
             return Json(res);
+        }
+
+
+        /// <summary>
+        /// 根据子系统获取相应的菜单列表
+        /// </summary>
+        /// <returns></returns>
+        public  IActionResult GetMenuBySubsystem(int subId)
+        {
+            
+              var result =   _unitOfWork.GetRepository<Menu>().GetEntities(i=>i.SubSystemId==subId);
+
+            var allMenuList = result.ToList();
+           var rootNodeList = new List<LeftMenuVm>();
+            foreach (var parentNodeList in allMenuList.Where(t => t.ParentMenuId == null))
+            {
+                var menuNode = new LeftMenuVm();
+                menuNode.id = parentNodeList.Id;
+                menuNode.title = parentNodeList.MenuName??"";
+                menuNode.url = parentNodeList.MenuUrl??"";
+                menuNode.icon =parentNodeList.MenuIcon??"";
+                menuNode.children = CreateChildTree(allMenuList, menuNode);
+                rootNodeList.Add(menuNode);
+            }
+         
+            return  Json(rootNodeList);
+        }
+
+        /// <summary>
+        /// 递归生成子树
+        /// </summary>
+        /// <param name="allMenuList"></param>
+        /// <param name="vmMenu"></param>
+        /// <returns></returns>
+        private List<LeftMenuVm> CreateChildTree(List<Menu> allMenuList, LeftMenuVm vmMenu)
+        {
+            var parentMenuId = vmMenu.id;//根节点ID
+            List<LeftMenuVm> nodeList = new List<LeftMenuVm>();
+            var children = allMenuList.Where(t => t.ParentMenuId == parentMenuId);
+            foreach (var chl in children)
+            {
+                var node = new LeftMenuVm();
+                node.id = chl.Id;
+                node.title = chl.MenuName??"";
+                node.url = chl.MenuUrl??"";
+                node.icon =chl.MenuIcon??"";
+                node.children = CreateChildTree(allMenuList, node);
+                nodeList.Add(node);
+            }
+            return nodeList;
         }
     }
 }

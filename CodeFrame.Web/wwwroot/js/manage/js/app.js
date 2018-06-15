@@ -134,15 +134,18 @@ layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'
                 if (onelevel.hasElem()) {
                     onelevel.set({
                         remote: {
-                            url: 'js/manage/js/onelevel1.json' //远程地址
-                        },
+                            //url: 'js/manage/js/onelevel1.json' //远程地址
+                            url:'/Manage/SubSystem/GetAllSubSystem'
+                },
                         onClicked: function (id) {
-                       
+                           
                             switch (id) {
                                 case 1:
                                     navbar.set({
                                         remote: {
-                                            url: 'js/manage/js/navbar1.json'
+                                            //  url: 'js/manage/js/navbar1.json'
+                                            
+                                             url: '/Manage/Menu/GetMenuBySubsystem?subId=' + id
                                         }
                                     }).render(function(data) {
                                         tab.tabAdd(data);

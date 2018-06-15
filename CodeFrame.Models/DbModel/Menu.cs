@@ -19,6 +19,8 @@ namespace CodeFrame.Models.DbModel
          /// </summary>
         public int? ParentMenuId { get; set; }
 
+        public string MenuIcon { get; set; }
+
         /// <summary>
         /// 子系统id
         /// </summary>
