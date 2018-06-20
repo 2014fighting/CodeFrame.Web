@@ -45,6 +45,12 @@ var enumButtonType = [
     { value: "5", text: "导出" }
 
 ];
+var enumBtnPosition = [
+    { value: "1", text: "工具栏" },
+    { value: "2", text: "列表右侧"},
+    { value: "3", text: "查询框" },
+    { value: "4", text: "详细页" }
+];
 var enumColumnType = [
     { value: "101", text: "longtext" },
     { value: "102", text: "varchar" },

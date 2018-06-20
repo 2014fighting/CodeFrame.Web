@@ -91,6 +91,10 @@ namespace CodeFrame.Web
                 {
                     o.LoginPath = new PathString("/Account/Login");
                     o.AccessDeniedPath = new PathString("/Account/AccessDenied");
+                    o.Events = new CookieAuthenticationEvents()
+                    {
+                        OnRedirectToLogin = (context) => context.Response.WriteAsync("<script>window.top.location.href ='/Account/Login'</script>")
+                    };
                 });
 
    

@@ -21,9 +21,10 @@ namespace CodeFrame.Common.Definitions
         /// </summary>
         public static string TrueName { get; } = ClaimTypes.Name;
         /// <summary>
-        /// 角色
+        /// 角色编号
         /// </summary>
         public static string Role { get; } = ClaimTypes.Role;
  
+
     }
 }

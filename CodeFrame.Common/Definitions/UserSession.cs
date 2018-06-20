@@ -15,7 +15,7 @@ namespace CodeFrame.Common.Definitions
 
 
         public string TrueName { get; }
-        public List<string> RoleList { get; }=new List<string>();
+        public List<int> RoleList { get; }=new List<int>();
 
         public UserSession()
         { }
@@ -37,10 +37,10 @@ namespace CodeFrame.Common.Definitions
             var userNameClaim = user.Claims.FirstOrDefault(c => c.Type == MyClaimTypes.UserName);
             UserName = userNameClaim?.Value;
 
-
+            //角色编号可能是多个角色
             user.Claims.Where(c => c.Type == MyClaimTypes.Role).ToList().ForEach(i =>
             {
-                RoleList.Add(i.Value);
+                RoleList.Add(i.Value.ToInt());
             });
         }
     }

@@ -79,9 +79,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         public IActionResult EditColumn(int id, int type = 1)
         {
             ViewBag.pageType = type;
-
             var column = _unitOfWork.GetRepository<Column>().Find(id);
-
             return View(_mapper.Map<ColumnModel>(column));
         }
 

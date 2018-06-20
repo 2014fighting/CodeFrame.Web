@@ -45,5 +45,10 @@ namespace CodeFrame.Models.DbModel
         /// 是否特俗
         /// </summary>
         public bool IsSpecial { get; set; } = true;
+
+        /// <summary>
+        /// 按钮摆放位置，工具栏，数据列表右侧，查询框，详细页
+        /// </summary>
+        public int BtnPosition { get; set; } =0;
     }
 }

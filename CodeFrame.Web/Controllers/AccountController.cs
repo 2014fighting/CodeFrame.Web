@@ -83,9 +83,9 @@ namespace CodeFrame.Web.Controllers
                 //用户所有角色 分别一个claim
                 user.UserRoles.ForEach(i =>
                 {
-                    identity.AddClaim(new Claim(MyClaimTypes.Role, i.RoleInfo.RoleName));
+                    identity.AddClaim(new Claim(MyClaimTypes.Role, i.RoleInfo.Id.ToString()));
                 });
-                
+ 
                 // 将用户身份信息写入到响应cookie中 ，[Authorize]
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identity));
