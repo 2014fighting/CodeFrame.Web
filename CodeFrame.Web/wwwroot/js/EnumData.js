@@ -38,11 +38,13 @@ var enumReceiveState = [
 
 ];
 var enumButtonType = [
+    { value: "0", text: "其它" },
     { value: "1", text: "新增" },
     { value: "2", text: "编辑" },
-    { value: "3", text: "执行存储过程" },
-    { value: "4", text: "导入" },
-    { value: "5", text: "导出" }
+    { value: "3", text: "查看" },
+    { value: "4", text: "删除" },
+    { value: "5", text: "导入" },
+    { value: "6", text: "导出" }
 
 ];
 var enumBtnPosition = [

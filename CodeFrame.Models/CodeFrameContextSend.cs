@@ -29,7 +29,19 @@ namespace CodeFrame.Models
 
                 await codeframeContext.SaveChangesAsync();
             }
+            if (!codeframeContext.SubSystem.Any())
+            {
+                codeframeContext.SubSystem.AddRange(GetPreconfiguredSubsystem());
 
+                await codeframeContext.SaveChangesAsync();
+            }
+            if (!codeframeContext.Menu.Any())
+            {
+                codeframeContext.Menu.AddRange(GetPreconfiguredMenu());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+            
         }
 
 
@@ -84,6 +96,30 @@ namespace CodeFrame.Models
                 new DepartMent() { DptName= "设计部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0},
                 new DepartMent() { DptName= "技术部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0},
                 new DepartMent() { DptName= "业务部",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing",ParentId =0}
+            };
+        }
+
+
+        static IEnumerable<SubSystem> GetPreconfiguredSubsystem()
+        {
+            return new List<SubSystem>()
+            {
+                new SubSystem() { SystemName ="系统配置",SystemIcon="&#xe658;",CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+                new SubSystem() { SystemName="订单系统",SystemIcon="&#xe62a;", CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing"},
+                new SubSystem() {  SystemName="物流系统",SystemIcon="&#xe64c;",CreateTime = DateTime.Now,IsActive =true,CreateUser ="wenqing"}
+            };
+        }
+
+        static IEnumerable<Menu> GetPreconfiguredMenu()
+        {
+            return new List<Menu>()
+            {
+                new Menu() { MenuName = "系统管理",MenuIcon= "fa-cubes",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+                new Menu() { MenuName = "用户管理",MenuIcon= "&#xe6c6;",ParentMenuId =1,MenuUrl = "/manage/UserInfo/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+                new Menu() { MenuName = "角色管理",MenuIcon= "&#xe63c;",ParentMenuId =1,MenuUrl = "/manage/RoleInfo/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+                new Menu() { MenuName = "按钮管理",MenuIcon= "&#xe63c;",ParentMenuId =1,MenuUrl = "/manage/Button/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+                new Menu() { MenuName = "菜单管理",MenuIcon= "&#xe656;",ParentMenuId =1,MenuUrl = "/manage/Menu/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+
             };
         }
     }
