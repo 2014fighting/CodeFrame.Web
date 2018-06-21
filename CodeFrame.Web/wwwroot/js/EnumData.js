@@ -53,6 +53,16 @@ var enumBtnPosition = [
     { value: "3", text: "查询框" },
     { value: "4", text: "详细页" }
 ];
+
+var enumIcon = [
+    { value: "&#xe654;", text: "新增" },
+    { value: "&#xe640;", text: "删除" },
+    { value: "&#xe642;", text: "编辑" },
+    { value: "&#xe649;", text: "导入" },
+    { value: "&#xe648;", text: "导出" },
+    { value: "&#xe63c;", text: "其它" }
+];
+
 var enumColumnType = [
     { value: "101", text: "longtext" },
     { value: "102", text: "varchar" },

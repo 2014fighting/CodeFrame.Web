@@ -33,17 +33,17 @@
     </fieldset>
 </form>
 <div class="layui-btn-group mytool">
-    <button class="layui-btn layui-btn-normal layui-btn-sm" id="btnadd"><i class="layui-icon">&#xe654;</i>新增</button>
+    @*<button class="layui-btn layui-btn-normal layui-btn-sm" id="btnadd"><i class="layui-icon">&#xe654;</i>新增</button>
     <button class="layui-btn layui-btn-sm" id="btnedit"><i class="layui-icon">&#xe642;</i>编辑</button>
-    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</button>
+    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btndel"><i class="layui-icon">&#xe640;</i>删除</button>*@
 </div>
 
 <table id="demo" lay-filter="test"></table>
  
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
+    @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>*@
 </script>
 
 <script type="text/javascript">
@@ -62,7 +62,8 @@
                 elem: '#date'
                 , type: 'datetime'
             });
-
+            //根据权限生成按钮
+            manage.GenerateBtnByPower();
             //监听提交
             form.on('submit(demo1)', function (data) {
                 tableIns.reload({
@@ -75,7 +76,7 @@
                 return false;
             });
 
-            $("#btnadd").on('click',
+            $('.mytool').on('click', "#btn_add",
                 function () {
                     layer.open({
                         type: 2,
@@ -87,7 +88,7 @@
                         content: '@Url.Action("AddButton")'
                     });
                 });
-            $("#btnedit").on('click',
+            $('.mytool').on('click', "#btn_edit",
                 function () {
                     var checkStatus = table.checkStatus('demo');
                     var checkdata = checkStatus.data;
@@ -107,7 +108,7 @@
                     });
                 });
 
-            $("#btndel").on('click',
+            $('.mytool').on('click', "#btn_del",
                 function () {
                     var checkStatus = table.checkStatus('demo');
                     var checkdata = checkStatus.data;
@@ -179,7 +180,7 @@
                 var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
                 var tr = obj.tr; //获得当前行 tr 的DOM对象
                 console.info(data);
-                if (layEvent === 'detail') { //查看
+                if (layEvent === 'event_detail') { //查看
                     layer.open({
                         type: 2,
                         title: '查看资料信息',
@@ -189,7 +190,7 @@
                         area: ['893px', '600px'],
                         content: '@Url.Action("EditButton")?Id=' + data.Id + '&type=2'
                     });
-                } else if (layEvent === 'del') { //删除
+                } else if (layEvent === 'event_del') { //删除
                     layer.confirm('真的删除' + data.Id + '这行么', function (index) {
                         var postdata = [];
                         postdata.push(data.Id);
@@ -213,7 +214,7 @@
                         //向服务端发送删除指令
 
                     });
-                } else if (layEvent === 'edit') { //编辑
+                } else if (layEvent === 'event_edit') { //编辑
                     layer.open({
                         type: 2,
                         title: '编辑资料信息',

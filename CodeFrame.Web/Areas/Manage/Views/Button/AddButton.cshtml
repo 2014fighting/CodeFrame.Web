@@ -83,7 +83,10 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">按钮图标</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="BtnIcon" lay-verify="" autocomplete="off" placeholder="请输入按钮图标" class="layui-input">
+                        
+                        <select name="BtnIcon" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -134,7 +137,8 @@
                 form.render('select',"MenuId_select");
             });
             managecom.selectInint('EditType', enumButtonType);
-            managecom.selectInint('BtnPosition', enumBtnPosition);
+            managecom.selectInint('BtnPosition', enumBtnPosition); 
+            managecom.selectInint('BtnIcon', enumIcon);
             form.render('select');
             
             //监听提交
