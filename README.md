@@ -2,6 +2,9 @@
 - 基于.net core 2.0的代码框架，用于快速构建web项目
 - 实现基本的 UnitOfWork+Repository模式
 - 封装Redis的基本使用
+- 基于ef codefirst 支持多数据库具体见 UnitOfWork开源项目
+- 后台已实现基于角色的基本权限设计，子系统，菜单，按钮权限
+
 
 ## 参考整合以下开源项目
 - asp.net core  https://github.com/aspnet/Home

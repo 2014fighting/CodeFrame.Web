@@ -65,8 +65,8 @@ namespace CodeFrame.Web
 
             //DbContext 连接池 2.0版本
             // services.AddDbContextPool<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
-            //  services.AddDbContext<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
-            services.AddDbContext<CodeFrameContext>(options => options.UseMySql(AppConfig.MySqlConnection));
+              services.AddDbContext<CodeFrameContext>(options => options.UseInMemoryDatabase("mytempdb"));
+            //services.AddDbContext<CodeFrameContext>(options => options.UseMySql(AppConfig.MySqlConnection));
              
             services.AddUnitOfWork<CodeFrameContext>();//添加UnitOfWork支持
           
