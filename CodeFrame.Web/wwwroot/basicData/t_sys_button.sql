@@ -1,0 +1,17 @@
+INSERT INTO `t_sys_button` VALUES (10, NULL, '&#xe654;', '新增', 'add', NULL, NULL, '2018-4-11 17:07:30', NULL, 1, '', 1, '2018-4-11 17:07:30', NULL, 5, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (11, NULL, '&#xe642;', '修改', 'edit', NULL, NULL, '2018-4-11 17:07:44', NULL, 2, '', 3, '2018-4-11 17:07:44', NULL, 5, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (12, NULL, '&#xe640;', '删除', 'del', NULL, NULL, '2018-4-11 17:08:06', NULL, 3, '', 4, '2018-4-11 17:08:06', NULL, 5, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (13, NULL, '&#xe649;', '导出', 'export', NULL, NULL, '2018-4-11 17:08:23', NULL, 5, '', 5, '2018-4-11 17:08:23', NULL, 5, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (14, NULL, '&#xe615;', '查看', 'detail', '1', NULL, '2018-6-20 16:14:22', '1', 3, '', 1, '2018-6-20 16:14:22', NULL, 5, NULL, NULL, '文清', 3, NULL, '', 2);
+INSERT INTO `t_sys_button` VALUES (15, '1', '&#xe654;', '新增', 'add', '1', NULL, '2018-6-21 14:36:02', '1', 1, '', 1, '2018-6-21 14:36:02', NULL, 13, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (16, '1', '&#xe642;', '编辑', 'edit', '1', NULL, '2018-6-21 14:36:50', NULL, 2, '', 1, '2018-6-21 14:36:50', NULL, 13, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (17, '1', '&#xe640;', '删除', 'del', '1', '1', '2018-6-21 14:37:28', '1', 4, '', 1, '2018-6-21 14:37:28', NULL, 13, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (18, '1', '&#xe630;', '分配权限', 'power', '1', NULL, '2018-6-21 14:38:27', '1', 0, '', 1, '2018-6-21 14:38:27', NULL, 13, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (19, '1', '', '新增', 'add', '1', NULL, '2018-6-21 15:12:46', '1', 1, '', 1, '2018-6-21 15:12:46', NULL, 11, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (20, '1', '', '编辑', 'edit', '1', NULL, '2018-6-21 15:13:17', '1', 2, '', 1, '2018-6-21 15:13:17', NULL, 11, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (21, '1', '', '删除', 'del', '1', NULL, '2018-6-21 15:13:52', '1', 4, '', 1, '2018-6-21 15:13:52', NULL, 11, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (22, '1', '', '查看', 'detail', '1', NULL, '2018-6-21 15:14:45', '1', 3, '', 1, '2018-6-21 15:14:45', NULL, 11, NULL, NULL, '文清', 3, NULL, '', 2);
+INSERT INTO `t_sys_button` VALUES (23, '1', '', '新增', 'add', '1', NULL, '2018-6-21 15:39:53', '1', 1, '', 1, '2018-6-21 15:39:53', NULL, 16, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (24, NULL, '', '编辑', 'edit', NULL, NULL, '2018-6-21 15:40:42', NULL, 2, '', 1, '2018-6-21 15:40:42', NULL, 16, NULL, NULL, '文清', 3, NULL, '', 1);
+INSERT INTO `t_sys_button` VALUES (25, NULL, '', '删除', 'del', NULL, NULL, '2018-6-21 15:41:24', NULL, 4, '', 1, '2018-6-21 15:41:24', NULL, 16, NULL, NULL, '文清', 3, NULL, '', 2);
+INSERT INTO `t_sys_button` VALUES (26, NULL, '', '查看', 'detail', NULL, NULL, '2018-6-21 15:42:00', NULL, 3, '', 1, '2018-6-21 15:42:00', NULL, 16, NULL, NULL, '文清', 3, NULL, '', 2);

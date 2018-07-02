@@ -197,7 +197,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 count = result.Count(),
                 data = w1.ToList()
             });
-
+          
         }
 
         [HttpPost]

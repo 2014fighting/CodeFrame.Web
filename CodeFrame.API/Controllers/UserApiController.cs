@@ -46,7 +46,6 @@ namespace CodeFrame.API.Controllers
             
         }
 
-
         [HttpGet]
         public ActionResult GetUserInfo(UserInfoModel user, int page = 1, int limit = 10)
         {
