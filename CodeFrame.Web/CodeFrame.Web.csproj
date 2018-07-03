@@ -279,6 +279,12 @@
     <None Include="wwwroot\lib\zTree_v3\api\apiCss\jquery.ztree.core.js" />
     <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\awesome.less" />
     <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\fa.less" />
+    <None Include="wwwroot\lib\zTree_v3\demo\cn\asyncData\getNodes.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\cn\asyncData\getNodesForBigData.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\en\asyncData\getNodes.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\en\asyncData\getNodesForBigData.php" />
+    <None Include="wwwroot\lib\zTree_v3\demo\js\fuzzysearch.js" />
+    <None Include="wwwroot\lib\zTree_v3\demo\js\fuzzysearch.min.js" />
     <None Include="wwwroot\lib\zTree_v3\js\jquery-1.4.4.min.js" />
     <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.js" />
     <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.min.js" />
