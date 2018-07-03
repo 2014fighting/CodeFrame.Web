@@ -86,7 +86,7 @@ namespace CodeFrame.Models.Migrations
                     UpdateUserId = table.Column<int>(nullable: true),
                     ButtonId = table.Column<int>(nullable: false),
                     RoleId = table.Column<int>(nullable: false),
-                    MentId = table.Column<int>(nullable: false),
+                    MenuId = table.Column<int>(nullable: false),
                     Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

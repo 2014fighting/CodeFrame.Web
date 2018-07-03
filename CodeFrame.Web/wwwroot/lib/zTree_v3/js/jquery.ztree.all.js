@@ -1,6 +1,6 @@
 
 /*
- * JQuery zTree core v3.5.36
+ * JQuery zTree core v3.5.33
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -9,7 +9,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2018-06-26
+ * Date: 2018-01-30
  */
 (function ($) {
     var settings = {}, roots = {}, caches = {},
@@ -99,8 +99,6 @@
                 contentType: "application/x-www-form-urlencoded",
                 type: "post",
                 dataType: "text",
-                headers: {},
-                xhrFields: {},
                 url: "",
                 autoParam: [],
                 otherParam: [],
@@ -1075,8 +1073,6 @@
                     url: tools.apply(setting.async.url, [setting.treeId, node], setting.async.url),
                     data: setting.async.contentType.indexOf('application/json') > -1 ? JSON.stringify(tmpParam) : tmpParam,
                     dataType: setting.async.dataType,
-                    headers: setting.async.headers,
-                    xhrFields: setting.async.xhrFields,
                     success: function (msg) {
                         if (_tmpV != data.getRoot(setting)._ver) {
                             return;
@@ -1985,7 +1981,7 @@
         consts = zt.consts;
 })(jQuery);
 /*
- * JQuery zTree excheck v3.5.36
+ * JQuery zTree excheck v3.5.33
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -1994,7 +1990,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2018-06-26
+ * Date: 2018-01-30
  */
 (function($){
 	//default consts of excheck
@@ -2583,7 +2579,7 @@
     var key = setting.data.key.checked;
     if (typeof newChecked !== 'undefined') {
       if (typeof newChecked === "string") {
-        newChecked = tools.eqs(newChecked, "true");
+        newChecked = tools.eqs(checked, "true");
       }
       newChecked = !!newChecked;
       node[key] = newChecked;
@@ -2629,7 +2625,7 @@
 	}
 })(jQuery);
 /*
- * JQuery zTree exedit v3.5.36
+ * JQuery zTree exedit v3.5.33
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -2638,7 +2634,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2018-06-26
+ * Date: 2018-01-30
  */
 (function($){
 	//default consts of exedit
@@ -3345,12 +3341,11 @@
 				return false;
 			}
 
-			// 2018-03-30 FireFox has fixed this issue.
 			//Avoid FireFox's Bug
 			//If zTree Div CSS set 'overflow', so drag node outside of zTree, and event.target is error.
-			// if(eventMouseDown.preventDefault) {
-			// 	eventMouseDown.preventDefault();
-			// }
+			if(eventMouseDown.preventDefault) {
+				eventMouseDown.preventDefault();
+			}
 			return true;
 		}
 	},

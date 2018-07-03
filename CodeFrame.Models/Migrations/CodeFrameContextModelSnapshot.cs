@@ -270,7 +270,7 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<int?>("CreateUserId");
 
-                    b.Property<int>("MentId");
+                    b.Property<int>("MenuId");
 
                     b.Property<int>("RoleId");
 

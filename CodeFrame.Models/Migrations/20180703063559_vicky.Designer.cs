@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeFrame.Models.Migrations
 {
     [DbContext(typeof(CodeFrameContext))]
-    [Migration("20180703055617_vicky")]
+    [Migration("20180703063559_vicky")]
     partial class vicky
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -272,7 +272,7 @@ namespace CodeFrame.Models.Migrations
 
                     b.Property<int?>("CreateUserId");
 
-                    b.Property<int>("MentId");
+                    b.Property<int>("MenuId");
 
                     b.Property<int>("RoleId");
 

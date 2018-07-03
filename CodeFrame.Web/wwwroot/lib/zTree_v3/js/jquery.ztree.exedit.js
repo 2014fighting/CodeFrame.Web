@@ -1,5 +1,5 @@
 /*
- * JQuery zTree exedit v3.5.36
+ * JQuery zTree exedit v3.5.33
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2018-06-26
+ * Date: 2018-01-30
  */
 (function($){
 	//default consts of exedit
@@ -715,12 +715,11 @@
 				return false;
 			}
 
-			// 2018-03-30 FireFox has fixed this issue.
 			//Avoid FireFox's Bug
 			//If zTree Div CSS set 'overflow', so drag node outside of zTree, and event.target is error.
-			// if(eventMouseDown.preventDefault) {
-			// 	eventMouseDown.preventDefault();
-			// }
+			if(eventMouseDown.preventDefault) {
+				eventMouseDown.preventDefault();
+			}
 			return true;
 		}
 	},

@@ -158,7 +158,9 @@ namespace CodeFrame.Models
         {
             return new List<RolePower>()
             {
-                new RolePower() {ButtonId =5,RoleId =6,MenuId = 1,Type = 0,CreateUserId =1,CreateTime = DateTime.Now}
+                new RolePower() {ButtonId =5,RoleId =6,MenuId = 3,Type = 0,CreateUserId =1,CreateTime = DateTime.Now},
+                new RolePower() {ButtonId =0,RoleId =6,MenuId = 1,Type = 0,CreateUserId =1,CreateTime = DateTime.Now},
+                new RolePower() {ButtonId =0,RoleId =6,MenuId = 3,Type = 0,CreateUserId =1,CreateTime = DateTime.Now}
             };
         }
     }

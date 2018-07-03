@@ -21,14 +21,17 @@ div.content_wrap {width: 600px;height:380px;}
 div.content_wrap div.left{float: left;width: 250px;}
 div.content_wrap div.right{float: right;width: 340px;}
 div.zTreeDemoBackground {width:250px;height:362px;text-align:left;}
-
+.btnGroup {
+    margin-top: 15px;
+    margin-left: 35px
+}
 ul.ztree {
     margin-top: 10px;
-    /*border: 1px solid #617775;*/
-    background: #ffffff;
-    width: 220px;
-    height: 360px;
-    /*overflow-y: scroll;*/
+    border: 0px solid #617775;
+    background: white;
+    width: 390px;
+    height: 450px;
+    overflow-y: scroll;
     overflow-x: auto;
 }
 ul.log {border: 1px solid #617775;background: #f0f6e4;width:300px;height:170px;overflow: hidden;}
