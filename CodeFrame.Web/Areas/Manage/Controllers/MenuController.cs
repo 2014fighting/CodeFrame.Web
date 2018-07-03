@@ -163,7 +163,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
             //todo 
             var menus = _unitOfWork.GetRepository<Menu>().GetEntities();
             var rps = _unitOfWork.GetRepository<RolePower>().GetEntities();
-            var listr = rps.Where(x => x.RoleId == roleId).Select(i => i.MentId);
+            var listr = rps.Where(x => x.RoleId == roleId).Select(i => i.MenuId);
            
             var subsystems = _unitOfWork.GetRepository<SubSystem>().GetEntities();
          
@@ -181,7 +181,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                 treeModels.Add(new TreeModel { id = "b"+menu.Id,
                     name = menu.MenuName,
                     pId = menu.ParentMenuId == null ? "a" + menu.SubSystemId: "b" + menu.ParentMenuId,
-                    @checked = rps.Any(i => i.MentId == menu.Id && i.RoleId == roleId)
+                    @checked = rps.Any(i => i.MenuId == menu.Id && i.RoleId == roleId)
                 });
             }
 
@@ -229,7 +229,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                     rp.CreateTime = DateTime.Now;
                     rp.CreateUser = CurUserInfo.UserName;
                     rp.CreateUserId = CurUserInfo.UserId;
-                    rp.MentId = Convert.ToInt32(p.id.TrimStart('b'));
+                    rp.MenuId = Convert.ToInt32(p.id.TrimStart('b'));
                     rp.RoleId = roleId;
                 }
                 else
@@ -238,7 +238,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                     rp.CreateTime = DateTime.Now;
                     rp.CreateUser = CurUserInfo.UserName;
                     rp.CreateUserId = CurUserInfo.UserId;
-                    rp.MentId = Convert.ToInt32(p.pId.TrimStart('b'));
+                    rp.MenuId = Convert.ToInt32(p.pId.TrimStart('b'));
                     rp.RoleId = roleId;
                 }
                 listrp.Add(rp);

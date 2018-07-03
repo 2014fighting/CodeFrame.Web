@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_Column")]
+    [Table("t_sysColumn")]
     public class Column : BaseEntity<int>
     {
         public int? TableId { get; set; }

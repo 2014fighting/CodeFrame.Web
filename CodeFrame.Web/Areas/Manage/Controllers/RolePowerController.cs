@@ -57,7 +57,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
                     BtnUrl = i.BtnUrl,
                     HasAuthority = repRp.GetEntities().Any(
                         x => CurUserInfo.RoleList.Contains(x.RoleId)
-                             && x.MentId == menuId && x.ButtonId==i.Id),
+                             && x.MenuId == menuId && x.ButtonId==i.Id),
                     IsActive = i.IsActive,
                     EditType = i.EditType,
                     BtnPosition=i.BtnPosition

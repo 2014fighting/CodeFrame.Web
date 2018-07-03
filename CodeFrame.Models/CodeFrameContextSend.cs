@@ -11,18 +11,21 @@ namespace CodeFrame.Models
     {
         public static async Task SeedAsync(CodeFrameContext codeframeContext)
         {
-            if (!codeframeContext.UserInfo.Any())
-            {
-                codeframeContext.UserInfo.AddRange(GetPreconfiguredUserInfo());
 
-                await codeframeContext.SaveChangesAsync();
-            }
             if (!codeframeContext.RoleInfo.Any())
             {
                 codeframeContext.RoleInfo.AddRange(GetPreconfiguredRoleInfo());
 
                 await codeframeContext.SaveChangesAsync();
             }
+
+            if (!codeframeContext.UserInfo.Any())
+            {
+                codeframeContext.UserInfo.AddRange(GetPreconfiguredUserInfo());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+         
             if (!codeframeContext.DepartMent.Any())
             {
                 codeframeContext.DepartMent.AddRange(GetPreconfiguredDepartment());
@@ -41,7 +44,20 @@ namespace CodeFrame.Models
 
                 await codeframeContext.SaveChangesAsync();
             }
+            if (!codeframeContext.Button.Any())
+            {
+                codeframeContext.Button.AddRange(GetPreconfiguredButton());
+
+                await codeframeContext.SaveChangesAsync();
+            }
             
+            if (!codeframeContext.RolePower.Any())
+            {
+                codeframeContext.RolePower.AddRange(GetPreconfiguredRolePower());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+
         }
 
 
@@ -49,7 +65,7 @@ namespace CodeFrame.Models
         {
             var rlist = new List<UserInfo>()
             {
-                new UserInfo() {Password = "123456", UserName = "wenqing",
+                new UserInfo() {Password = "123456", UserName = "wenqing",UserRoles =new List<UserRole>(){new UserRole(){RoleId = 6} },
                     PhoneNo = "15659284668", TrueName = "文清",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
                 new UserInfo() {Password = "123456", UserName = "admin",
                     PhoneNo = "15659284668", TrueName = "管理员",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
@@ -120,6 +136,29 @@ namespace CodeFrame.Models
                 new Menu() { MenuName = "按钮管理",MenuIcon= "&#xe63c;",ParentMenuId =1,MenuUrl = "/manage/Button/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
                 new Menu() { MenuName = "菜单管理",MenuIcon= "&#xe656;",ParentMenuId =1,MenuUrl = "/manage/Menu/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
 
+            };
+        }
+
+
+        static IEnumerable<Button> GetPreconfiguredButton()
+        {
+            return new List<Button>()
+            {
+                new Button() {MenuId =4,BtnIcon ="&#xe654;",BtnName ="新增",BtnScript ="add",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 1,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe642;",BtnName ="编辑",BtnScript ="edit",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 1,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe640;", BtnName ="删除",BtnScript ="del",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 2,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe640;",BtnName ="查看",BtnScript ="detail",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 2,IsSpecial =true},
+                new Button() {MenuId =3,BtnIcon = "&#xe630;",BtnName ="分配权限",BtnScript ="power",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =0,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition =1,IsSpecial =true},
+
+            };
+        }
+
+
+        static IEnumerable<RolePower> GetPreconfiguredRolePower()
+        {
+            return new List<RolePower>()
+            {
+                new RolePower() {ButtonId =5,RoleId =6,MenuId = 1,Type = 0,CreateUserId =1,CreateTime = DateTime.Now}
             };
         }
     }
