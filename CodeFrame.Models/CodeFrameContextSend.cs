@@ -59,7 +59,7 @@ namespace CodeFrame.Models
         {
             var rlist = new List<UserInfo>()
             {
-                new UserInfo() {Password = "123456", UserName = "wenqing",
+                new UserInfo() {Password = "123456", UserName = "wenqing",UserRoles =new List<UserRole>(){new UserRole(){RoleId = 6} },
                     PhoneNo = "15659284668", TrueName = "文清",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
                 new UserInfo() {Password = "123456", UserName = "admin",
                     PhoneNo = "15659284668", TrueName = "管理员",Group="1",Picture ="http://siyouku.cn/Content/CommonImg/20140621193541.png"},
