@@ -11,18 +11,22 @@ namespace CodeFrame.Models
     {
         public static async Task SeedAsync(CodeFrameContext codeframeContext)
         {
-            if (!codeframeContext.UserInfo.Any())
-            {
-                codeframeContext.UserInfo.AddRange(GetPreconfiguredUserInfo());
 
-                await codeframeContext.SaveChangesAsync();
-            }
             if (!codeframeContext.RoleInfo.Any())
             {
                 codeframeContext.RoleInfo.AddRange(GetPreconfiguredRoleInfo());
 
                 await codeframeContext.SaveChangesAsync();
             }
+
+
+            if (!codeframeContext.UserInfo.Any())
+            {
+                codeframeContext.UserInfo.AddRange(GetPreconfiguredUserInfo());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+         
             if (!codeframeContext.DepartMent.Any())
             {
                 codeframeContext.DepartMent.AddRange(GetPreconfiguredDepartment());
@@ -38,6 +42,12 @@ namespace CodeFrame.Models
             if (!codeframeContext.Menu.Any())
             {
                 codeframeContext.Menu.AddRange(GetPreconfiguredMenu());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+            if (!codeframeContext.Button.Any())
+            {
+                codeframeContext.Button.AddRange(GetPreconfiguredButton());
 
                 await codeframeContext.SaveChangesAsync();
             }
@@ -119,6 +129,20 @@ namespace CodeFrame.Models
                 new Menu() { MenuName = "角色管理",MenuIcon= "&#xe63c;",ParentMenuId =1,MenuUrl = "/manage/RoleInfo/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
                 new Menu() { MenuName = "按钮管理",MenuIcon= "&#xe63c;",ParentMenuId =1,MenuUrl = "/manage/Button/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
                 new Menu() { MenuName = "菜单管理",MenuIcon= "&#xe656;",ParentMenuId =1,MenuUrl = "/manage/Menu/Index",SubSystemId =1,CreateTime = DateTime.Now,IsActive =true,CreateUser = "wenqing"},
+
+            };
+        }
+
+
+        static IEnumerable<Button> GetPreconfiguredButton()
+        {
+            return new List<Button>()
+            {
+                new Button() {MenuId =4,BtnIcon ="&#xe654;",BtnName ="新增",BtnScript ="add",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 1,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe642;",BtnName ="编辑",BtnScript ="edit",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 1,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe640;", BtnName ="删除",BtnScript ="del",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 2,IsSpecial =true},
+                new Button() {MenuId =4,BtnIcon ="&#xe640;",BtnName ="查看",BtnScript ="detail",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 2,IsSpecial =true},
+                new Button() {MenuId =3,BtnIcon = "&#xe630;",BtnName ="分配权限",BtnScript ="power",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =0,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition =1,IsSpecial =true},
 
             };
         }
