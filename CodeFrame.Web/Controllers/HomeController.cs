@@ -39,11 +39,11 @@ namespace CodeFrame.Web.Controllers
             _logger.Info("错误信息");
 
              _userInfoService.AddUserInfo();
-            var xuser = _unitOfWork.GetRepository<UserInfo>().
-                GetPagedList(predicate: i => i.UserName.Contains("wenqing"), orderBy: sour => sour.OrderByDescending(i => i.Id));
+            //var xuser = _unitOfWork.GetRepository<UserInfo>().
+            //    GetPagedList(predicate: i => i.UserName.Contains("wenqing"), orderBy: sour => sour.OrderByDescending(i => i.Id));
             //var xuser = _unitOfWork.GetRepository<UserInfo>()
             //    .GetEntities(i => i.UserName.Contains("wenqing") && i.Password.Contains("12"));
-            ViewBag.username = xuser.Items.First().UserName;
+           // ViewBag.username = xuser.Items.First().UserName;
             //var w= _unitOfWork.GetRepository<UserInfo>().GetPagedList();
             var w = _unitOfWork.GetRepository<UserInfo>().GetEntities().Take(10).ToList();
             return View();

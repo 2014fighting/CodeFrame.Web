@@ -18,6 +18,7 @@ namespace CodeFrame.Common.Config
         /// redis 连接
         /// </summary>
         public static string RedisConnection { get; } =  ConfigurationManager.GetSection("RedisConnection");
+        public static string MsSqlConnection { get; } = ConfigurationManager.GetConnectionString("SqlServerConnection");
  
     }
 }
