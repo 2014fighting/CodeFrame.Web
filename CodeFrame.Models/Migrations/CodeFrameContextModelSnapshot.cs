@@ -3,7 +3,6 @@ using System;
 using CodeFrame.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeFrame.Models.Migrations
@@ -16,14 +15,12 @@ namespace CodeFrame.Models.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.Button", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("BtnClass")
                         .HasMaxLength(50);
@@ -80,14 +77,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasIndex("MenuId");
 
-                    b.ToTable("t_sys_Button");
+                    b.ToTable("t_sysButton");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.Column", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ColumnName")
                         .HasMaxLength(30);
@@ -138,14 +134,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasIndex("TableId");
 
-                    b.ToTable("t_sys_Column");
+                    b.ToTable("t_sysColumn");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.DepartMent", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -175,14 +170,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_sys_DepartMent");
+                    b.ToTable("t_sysDepartMent");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.Menu", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -225,14 +219,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasIndex("TableId");
 
-                    b.ToTable("t_sys_MenuInfo");
+                    b.ToTable("t_sysMenuInfo");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.RoleInfo", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -261,14 +254,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_sys_RoleInfo");
+                    b.ToTable("t_sysRoleInfo");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.RolePower", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("ButtonId");
 
@@ -295,14 +287,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_sys_RolePower");
+                    b.ToTable("t_sysRolePower");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.SubSystem", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -333,14 +324,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_sys_SubSystem");
+                    b.ToTable("t_sysSubSystem");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.Table", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -373,14 +363,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_sys_Table");
+                    b.ToTable("t_sysTable");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.UserInfo", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateTime");
 
@@ -440,7 +429,7 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasIndex("DepartMentId");
 
-                    b.ToTable("t_sys_UserInfo");
+                    b.ToTable("t_sysUserInfo");
                 });
 
             modelBuilder.Entity("CodeFrame.Models.DbModel.UserRole", b =>
@@ -453,14 +442,13 @@ namespace CodeFrame.Models.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("t_sys_UserRole");
+                    b.ToTable("t_sysUserRole");
                 });
 
             modelBuilder.Entity("Microsoft.EntityFrameworkCore.AutoHistory", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Changed");
 

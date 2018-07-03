@@ -19,7 +19,6 @@ namespace CodeFrame.Models
                 await codeframeContext.SaveChangesAsync();
             }
 
-
             if (!codeframeContext.UserInfo.Any())
             {
                 codeframeContext.UserInfo.AddRange(GetPreconfiguredUserInfo());
@@ -52,6 +51,13 @@ namespace CodeFrame.Models
                 await codeframeContext.SaveChangesAsync();
             }
             
+            if (!codeframeContext.RolePower.Any())
+            {
+                codeframeContext.RolePower.AddRange(GetPreconfiguredRolePower());
+
+                await codeframeContext.SaveChangesAsync();
+            }
+
         }
 
 
@@ -144,6 +150,15 @@ namespace CodeFrame.Models
                 new Button() {MenuId =4,BtnIcon ="&#xe640;",BtnName ="查看",BtnScript ="detail",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =1,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition = 2,IsSpecial =true},
                 new Button() {MenuId =3,BtnIcon = "&#xe630;",BtnName ="分配权限",BtnScript ="power",CreateTime =DateTime.Now,CreateUser ="wenqing",EditType =0,IsActive=true,OrderBy = 1,CreateUserId =3,BtnPosition =1,IsSpecial =true},
 
+            };
+        }
+
+
+        static IEnumerable<RolePower> GetPreconfiguredRolePower()
+        {
+            return new List<RolePower>()
+            {
+                new RolePower() {ButtonId =5,RoleId =6,MenuId = 1,Type = 0,CreateUserId =1,CreateTime = DateTime.Now}
             };
         }
     }

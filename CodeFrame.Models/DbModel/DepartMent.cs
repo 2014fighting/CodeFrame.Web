@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_DepartMent")]
+    [Table("t_sysDepartMent")]
     public class DepartMent : BaseEntity<int>
     {
         /// <summary>

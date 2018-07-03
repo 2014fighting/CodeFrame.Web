@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_SubSystem")]
+    [Table("t_sysSubSystem")]
     public class SubSystem : BaseEntity<int>
     {
         public string SystemName { get; set; }

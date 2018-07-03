@@ -13,7 +13,7 @@ namespace CodeFrame.Models.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowId = table.Column<string>(maxLength: 50, nullable: false),
                     TableName = table.Column<string>(maxLength: 128, nullable: false),
                     Changed = table.Column<string>(nullable: true),
@@ -26,11 +26,11 @@ namespace CodeFrame.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_DepartMent",
+                name: "t_sysDepartMent",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -46,15 +46,15 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_DepartMent", x => x.Id);
+                    table.PrimaryKey("PK_t_sysDepartMent", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_RoleInfo",
+                name: "t_sysRoleInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -68,15 +68,15 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_RoleInfo", x => x.Id);
+                    table.PrimaryKey("PK_t_sysRoleInfo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_RolePower",
+                name: "t_sysRolePower",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -91,15 +91,15 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_RolePower", x => x.Id);
+                    table.PrimaryKey("PK_t_sysRolePower", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_SubSystem",
+                name: "t_sysSubSystem",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -116,15 +116,15 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_SubSystem", x => x.Id);
+                    table.PrimaryKey("PK_t_sysSubSystem", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_Table",
+                name: "t_sysTable",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -142,15 +142,15 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_Table", x => x.Id);
+                    table.PrimaryKey("PK_t_sysTable", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_UserInfo",
+                name: "t_sysUserInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -174,21 +174,21 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_UserInfo", x => x.Id);
+                    table.PrimaryKey("PK_t_sysUserInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_t_sys_UserInfo_t_sys_DepartMent_DepartMentId",
+                        name: "FK_t_sysUserInfo_t_sysDepartMent_DepartMentId",
                         column: x => x.DepartMentId,
-                        principalTable: "t_sys_DepartMent",
+                        principalTable: "t_sysDepartMent",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_Column",
+                name: "t_sysColumn",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -212,21 +212,21 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_Column", x => x.Id);
+                    table.PrimaryKey("PK_t_sysColumn", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_t_sys_Column_t_sys_Table_TableId",
+                        name: "FK_t_sysColumn_t_sysTable_TableId",
                         column: x => x.TableId,
-                        principalTable: "t_sys_Table",
+                        principalTable: "t_sysTable",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_MenuInfo",
+                name: "t_sysMenuInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -246,23 +246,23 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_MenuInfo", x => x.Id);
+                    table.PrimaryKey("PK_t_sysMenuInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_t_sys_MenuInfo_t_sys_SubSystem_SubSystemId",
+                        name: "FK_t_sysMenuInfo_t_sysSubSystem_SubSystemId",
                         column: x => x.SubSystemId,
-                        principalTable: "t_sys_SubSystem",
+                        principalTable: "t_sysSubSystem",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_t_sys_MenuInfo_t_sys_Table_TableId",
+                        name: "FK_t_sysMenuInfo_t_sysTable_TableId",
                         column: x => x.TableId,
-                        principalTable: "t_sys_Table",
+                        principalTable: "t_sysTable",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_UserRole",
+                name: "t_sysUserRole",
                 columns: table => new
                 {
                     UserId = table.Column<int>(nullable: false),
@@ -270,27 +270,27 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_UserRole", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_t_sysUserRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_t_sys_UserRole_t_sys_RoleInfo_RoleId",
+                        name: "FK_t_sysUserRole_t_sysRoleInfo_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "t_sys_RoleInfo",
+                        principalTable: "t_sysRoleInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_t_sys_UserRole_t_sys_UserInfo_UserId",
+                        name: "FK_t_sysUserRole_t_sysUserInfo_UserId",
                         column: x => x.UserId,
-                        principalTable: "t_sys_UserInfo",
+                        principalTable: "t_sysUserInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_sys_Button",
+                name: "t_sysButton",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RowVersion = table.Column<DateTime>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
@@ -315,43 +315,43 @@ namespace CodeFrame.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_t_sys_Button", x => x.Id);
+                    table.PrimaryKey("PK_t_sysButton", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_t_sys_Button_t_sys_MenuInfo_MenuId",
+                        name: "FK_t_sysButton_t_sysMenuInfo_MenuId",
                         column: x => x.MenuId,
-                        principalTable: "t_sys_MenuInfo",
+                        principalTable: "t_sysMenuInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_Button_MenuId",
-                table: "t_sys_Button",
+                name: "IX_t_sysButton_MenuId",
+                table: "t_sysButton",
                 column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_Column_TableId",
-                table: "t_sys_Column",
+                name: "IX_t_sysColumn_TableId",
+                table: "t_sysColumn",
                 column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_MenuInfo_SubSystemId",
-                table: "t_sys_MenuInfo",
+                name: "IX_t_sysMenuInfo_SubSystemId",
+                table: "t_sysMenuInfo",
                 column: "SubSystemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_MenuInfo_TableId",
-                table: "t_sys_MenuInfo",
+                name: "IX_t_sysMenuInfo_TableId",
+                table: "t_sysMenuInfo",
                 column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_UserInfo_DepartMentId",
-                table: "t_sys_UserInfo",
+                name: "IX_t_sysUserInfo_DepartMentId",
+                table: "t_sysUserInfo",
                 column: "DepartMentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_sys_UserRole_RoleId",
-                table: "t_sys_UserRole",
+                name: "IX_t_sysUserRole_RoleId",
+                table: "t_sysUserRole",
                 column: "RoleId");
         }
 
@@ -361,34 +361,34 @@ namespace CodeFrame.Models.Migrations
                 name: "AutoHistory");
 
             migrationBuilder.DropTable(
-                name: "t_sys_Button");
+                name: "t_sysButton");
 
             migrationBuilder.DropTable(
-                name: "t_sys_Column");
+                name: "t_sysColumn");
 
             migrationBuilder.DropTable(
-                name: "t_sys_RolePower");
+                name: "t_sysRolePower");
 
             migrationBuilder.DropTable(
-                name: "t_sys_UserRole");
+                name: "t_sysUserRole");
 
             migrationBuilder.DropTable(
-                name: "t_sys_MenuInfo");
+                name: "t_sysMenuInfo");
 
             migrationBuilder.DropTable(
-                name: "t_sys_RoleInfo");
+                name: "t_sysRoleInfo");
 
             migrationBuilder.DropTable(
-                name: "t_sys_UserInfo");
+                name: "t_sysUserInfo");
 
             migrationBuilder.DropTable(
-                name: "t_sys_SubSystem");
+                name: "t_sysSubSystem");
 
             migrationBuilder.DropTable(
-                name: "t_sys_Table");
+                name: "t_sysTable");
 
             migrationBuilder.DropTable(
-                name: "t_sys_DepartMent");
+                name: "t_sysDepartMent");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_Button")]
+    [Table("t_sysButton")]
     public  class Button : BaseEntity<int>
     {
         [MaxLength(20)]

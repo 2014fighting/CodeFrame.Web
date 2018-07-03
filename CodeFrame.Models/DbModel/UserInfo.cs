@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_UserInfo")]
+    [Table("t_sysUserInfo")]
     public class UserInfo : BaseEntity<int>
     {
         [MaxLength(20)]

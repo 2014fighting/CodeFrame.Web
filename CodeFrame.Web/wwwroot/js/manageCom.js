@@ -39,7 +39,7 @@
                             console.info(r.HasAuthority);
                             //默认生成工具栏按钮id  为 btn_BtnScript，在实现页面用事件注册方式写代码
                             //默认生成列表右侧按钮 lay-event  为 event_BtnScript 在页面实现根据事件写代码
-                            if (r.HasAuthority||r.BtnScript=== "power") {
+                            if (r.HasAuthority) {
                                 
                                 if (r.BtnPosition === 1) {
                                     toolBtnElm +=

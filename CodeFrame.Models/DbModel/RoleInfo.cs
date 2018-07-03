@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeFrame.Models.DbModel
 {
-    [Table("t_sys_RoleInfo")]
+    [Table("t_sysRoleInfo")]
     public  class RoleInfo:BaseEntity<int>
     {
         [MaxLength(20)]
