@@ -274,6 +274,22 @@
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\tree.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\upload.js" />
     <None Include="wwwroot\lib\layui-v2.2.3\layui\lay\modules\util.js" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\api.js" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\jquery-1.6.2.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\api\apiCss\jquery.ztree.core.js" />
+    <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\awesome.less" />
+    <None Include="wwwroot\lib\zTree_v3\css\awesomeStyle\fa.less" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery-1.4.4.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.all.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.core.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.core.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.excheck.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.excheck.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exedit.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exedit.min.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exhide.js" />
+    <None Include="wwwroot\lib\zTree_v3\js\jquery.ztree.exhide.min.js" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
