@@ -36,6 +36,7 @@ namespace CodeFrame.Web.Areas.Manage.Controllers
         public IActionResult GetGridData(CommonQueryModel quereyModel)
         {
             string tablename = "Table";
+
             var table = _unitOfWork.GetRepository<Table>().Find(quereyModel.tableId);
             var filter = new FilterGroup();
 

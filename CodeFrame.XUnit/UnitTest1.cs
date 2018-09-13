@@ -21,17 +21,16 @@ namespace CodeFrame.XUnit
         public UnitTest1()
         {
             _db = new InMemoryContext();
-         
-                _db.AddRange(TestCountries);
-                _db.AddRange(TestCities);
-                _db.AddRange(TestTowns); 
+
+            _db.AddRange(TestCountries);
+            _db.AddRange(TestCities);
+            _db.AddRange(TestTowns);
             _db.AddRange(TestUsers);
             _db.SaveChanges();
         }
         [Fact]
         public void TestMethod1()
         {
- 
             var repository = new UnitOfWork<InMemoryContext>(_db);
             var city = repository.GetRepository<City>().GetEntities().ToList();
             var s = "akjdflsjfe2awfjwjafwljfe";
